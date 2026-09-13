@@ -397,7 +397,7 @@ function renderTxTable(txs) {
   return `
     <div class="tx-header"><div>Merchant</div><div>Method</div><div>Date</div><div style="text-align:right">Amount</div><div></div></div>
     ${txs.map(t => `
-      <div class="tx-row">
+      <div class="tx-row" onclick="viewTx(${t.id})">
         <div class="tx-merchant">
           <div class="tx-icon ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? ICONS.plus : ICONS.minus}</div>
           <div class="tx-info"><h5>${t.merchant}</h5><p>${t.category}</p></div>

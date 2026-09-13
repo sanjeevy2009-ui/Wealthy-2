@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#0F7A4D" />
+<title>Wealthy — Track. Understand. Save.</title>
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/icon-192.png" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 18V8l4 6 5-8 5 8 4-6v10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1>WEALTHY</h1>
+      <p>Track. Understand. Save.</p>
+    </div>
+    <div class="auth-toggle">
+      <button class="active" onclick="switchAuth('signin',this)">Sign In</button>
+      <button onclick="switchAuth('signup',this)">Sign Up</button>
+    </div>
+    <div class="auth-error" id="authError"></div>
+    <form id="signinForm" onsubmit="handleSignin(event)">
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="signinEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="signinPassword" placeholder="Enter your password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="auth-btn" id="signinBtn">Sign In</button>
+      <div class="auth-footer">New to Wealthy? <a onclick="switchAuth('signup',document.querySelectorAll('.auth-toggle button')[1])">Create account</a></div>
+    </form>
+    <form id="signupForm" style="display:none" onsubmit="handleSignup(event)">
+      <div class="auth-field">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name" required autocomplete="name" />
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password" />
+      </div>
+      <button type="submit" class="auth-btn" id="signupBtn">Create Account</button>
+      <div class="auth-footer">Already registered? <a onclick="switchAuth('signin',document.querySelectorAll('.auth-toggle button')[0])">Sign in</a></div>
+    </form>
+  </div>
+</div>
+
+<!-- APP SCREEN -->
+<div class="app hidden" id="appScreen">
+  <div class="overlay-backdrop" id="backdrop" onclick="closeSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 18V8l4 6 5-8 5 8 4-6v10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>WEALTHY</h1>
+        <p>Track. Understand. Save.</p>
+      </div>
+    </div>
+    <button class="cta-primary" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      Add Transaction
+    </button>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input placeholder="Search transactions..." id="globalSearch" oninput="onSearch(this.value)" />
+    </div>
+    <nav class="nav-section">
+      <div class="nav-label">Main</div>
+      <button class="nav-item active" data-page="overview"><span class="nav-icon" data-icon="overview"></span>Overview</button>
+      <button class="nav-item" data-page="transactions"><span class="nav-icon" data-icon="transactions"></span>Transactions</button>
+      <button class="nav-item" data-page="analysis"><span class="nav-icon" data-icon="analysis"></span>Analysis</button>
+      <button class="nav-item" data-page="calendar"><span class="nav-icon" data-icon="calendar"></span>Money Calendar</button>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-label">Money & Rails</div>
+      <button class="nav-item" data-page="accounts"><span class="nav-icon" data-icon="accounts"></span>Accounts & Cards</button>
+      <button class="nav-item" data-page="upi"><span class="nav-icon" data-icon="upi"></span>UPI Hub</button>
+      <button class="nav-item" data-page="cashflow"><span class="nav-icon" data-icon="cashflow"></span>Cash Flow</button>
+      <button class="nav-item" data-page="bills"><span class="nav-icon" data-icon="bills"></span>Bills</button>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-label">Goals & Growth</div>
+      <button class="nav-item" data-page="budgets"><span class="nav-icon" data-icon="budgets"></span>Budgets</button>
+      <button class="nav-item" data-page="savings"><span class="nav-icon" data-icon="savings"></span>Savings Goals</button>
+      <button class="nav-item" data-page="ai"><span class="nav-icon" data-icon="sparkles"></span>AI Assistant</button>
+      <button class="nav-item" data-page="reports"><span class="nav-icon" data-icon="reports"></span>Reports</button>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-label">System</div>
+      <button class="nav-item" data-page="profile"><span class="nav-icon" data-icon="user"></span>My Profile</button>
+      <button class="nav-item" data-page="settings"><span class="nav-icon" data-icon="settings"></span>Settings</button>
+      <button class="nav-item" data-page="help"><span class="nav-icon" data-icon="help"></span>Help</button>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip" onclick="nav('profile')">
+        <div class="avatar-sm" id="userAvatar">U</div>
+        <div class="info"><h6 id="userName">User</h6><p id="userEmail">user@wealthy.in</p></div>
+      </div>
+      <div class="theme-toggle">
+        <button class="active" data-theme-btn="light" onclick="setTheme('light',this)">☀ Light</button>
+        <button data-theme-btn="dark" onclick="setTheme('dark',this)">🌙 Dark</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="breadcrumb">
+          <span>Wealthy</span><span>/</span><strong id="pageName">Overview</strong>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="toggleNotif()" title="Notifications" id="notifBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+          <span class="badge-count" id="notifBadge" style="display:none">0</span>
+        </button>
+        <div class="avatar-sm" id="topbarAvatar" onclick="nav('profile')" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#22C55E,#0F7A4D);display:grid;place-items:center;color:#FFF;font-weight:700;font-size:12px;cursor:pointer">U</div>
+      </div>
+    </div>
+    <div id="pageContainer"></div>
+    <div class="footer-note">
+      <div class="owner-info">
+        <span>Owner: <strong>SANJEEV SHEKHAR</strong></span>
+        <span>Email: <strong>sanjeev@wealthy.in</strong></span>
+        <span>Parent: <strong>D2C Ventures</strong></span>
+      </div>
+      <span>© 2026 Wealthy · v1.0.0 · Made in India 🇮🇳</span>
+    </div>
+  </main>
+</div>
+
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header"><h4>Notifications</h4><button onclick="markAllRead()">Mark all read</button></div>
+  <div class="notif-list" id="notifList"></div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ============ ICONS ============ */
+const ICONS = {
+  overview:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`,
+  transactions:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>`,
+  analysis:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+  calendar:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
+  accounts:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>`,
+  upi:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
+  cashflow:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
+  bills:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
+  budgets:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+  savings:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>`,
+  reports:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>`,
+  settings:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 4.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 11.5 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 19.4 11a2 2 0 1 1 0 4z"/></svg>`,
+  help:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>`,
+  user:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  plus:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`,
+  minus:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>`,
+  transfer:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
+  cash:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>`,
+  card:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>`,
+  bill:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
+  bolt:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg>`,
+  shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  trendingUp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+  trendingDown:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M17 17H7V7"/></svg>`,
+  arrowRight:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  arrowUp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`,
+  play:`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>`,
+  pause:`<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`,
+  edit:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  trash:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+  download:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
+  upload:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>`,
+  check:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>`,
+  x:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>`,
+  sparkles:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg>`,
+  bell:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>`,
+  lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+  palette:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
+  qr:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
+  info:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>`,
+  bot:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>`,
+  file:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>`,
+  code:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`
+};
+
+const CARD_COLORS = {
+  black:{bg:'linear-gradient(135deg,#1F1F1F 0%,#0A0A0A 45%,#151515 100%)',text:'#FFF',muted:'rgba(255,255,255,0.5)',glow:'rgba(22,163,74,0.35)'},
+  gunmetal:{bg:'linear-gradient(135deg,#2A2A2A 0%,#1A1A1A 50%,#3A3A3A 100%)',text:'#FFF',muted:'rgba(255,255,255,0.5)',glow:'rgba(148,163,184,0.3)'},
+  silver:{bg:'linear-gradient(135deg,#F0F0F0 0%,#B0B0B0 50%,#E8E8E8 100%)',text:'#111',muted:'rgba(0,0,0,0.5)',glow:'rgba(148,163,184,0.4)'},
+  gold:{bg:'linear-gradient(135deg,#E5C158 0%,#8B6914 50%,#D4AF37 100%)',text:'#1A1400',muted:'rgba(26,20,0,0.55)',glow:'rgba(212,175,55,0.4)'},
+  blue:{bg:'linear-gradient(135deg,#1E40AF 0%,#0F1E4D 50%,#1E3A8A 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(37,99,235,0.4)'},
+  red:{bg:'linear-gradient(135deg,#B91C1C 0%,#4D0D0D 50%,#991B1B 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(220,38,38,0.4)'},
+  green:{bg:'linear-gradient(135deg,#16A34A 0%,#064D2E 50%,#0F7A4D 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(34,197,94,0.4)'},
+  purple:{bg:'linear-gradient(135deg,#7C3AED 0%,#2D0F5E 50%,#5B21B6 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(124,58,237,0.4)'}
+};
+
+const state = {
+  user: null,
+  settings: { theme: 'light', card_color: 'black', currency: 'INR', upi_id: '', qr_code: '' },
+  summary: { balance: 0, income: 0, expense: 0, savings: 0, savingsRate: 0 },
+  transactions: [], bills: [], budgets: [], goals: [], cards: [], notifications: [],
+  cardRotationPaused: false, filter: 'all', search: '', currentPage: 'overview', timeframe: 'month',
+  chatMessages: []
+};
+
+async function api(path, options = {}) {
+  const res = await fetch('/api' + path, {
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    ...options,
+    body: options.body ? JSON.stringify(options.body) : undefined
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
+}
+function toast(msg, type = 'success') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `${type === 'success' ? ICONS.check : ICONS.bolt}<span>${msg}</span>`;
+  document.getElementById('toastContainer').appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(30px)'; el.style.transition = 'all .4s'; setTimeout(() => el.remove(), 400); }, 2800);
+}
+function switchAuth(mode, btn) {
+  document.querySelectorAll('.auth-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('signinForm').style.display = mode === 'signin' ? 'block' : 'none';
+  document.getElementById('signupForm').style.display = mode === 'signup' ? 'block' : 'none';
+  document.getElementById('authError').classList.remove('show');
+}
+function showAuthError(msg) { const el = document.getElementById('authError'); el.textContent = msg; el.classList.add('show'); }
+async function handleSignin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('signinBtn');
+  const email = document.getElementById('signinEmail').value.trim();
+  const password = document.getElementById('signinPassword').value;
+  document.getElementById('authError').classList.remove('show');
+  btn.disabled = true; btn.textContent = 'Signing in...';
+  try { await api('/auth/login', { method: 'POST', body: { email, password } }); await boot(); }
+  catch (err) { showAuthError(err.message); }
+  finally { btn.disabled = false; btn.textContent = 'Sign In'; }
+}
+async function handleSignup(e) {
+  e.preventDefault();
+  const btn = document.getElementById('signupBtn');
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  document.getElementById('authError').classList.remove('show');
+  btn.disabled = true; btn.textContent = 'Creating...';
+  try { await api('/auth/signup', { method: 'POST', body: { name, email, password } }); toast('Account created!'); await boot(); }
+  catch (err) { showAuthError(err.message); }
+  finally { btn.disabled = false; btn.textContent = 'Create Account'; }
+}
+async function logout() {
+  await api('/auth/logout', { method: 'POST' });
+  state.user = null;
+  document.getElementById('appScreen').classList.add('hidden');
+  document.getElementById('authScreen').classList.add('active');
+  location.reload();
+}
+async function setTheme(theme, btn) {
+  document.body.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-toggle button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  state.settings.theme = theme;
+  try { await api('/settings', { method: 'PUT', body: { theme } }); } catch (e) {}
+}
+function applyCardColor(color) {
+  const c = CARD_COLORS[color] || CARD_COLORS.black;
+  document.documentElement.style.setProperty('--card-bg', c.bg);
+  document.documentElement.style.setProperty('--card-text', c.text);
+  document.documentElement.style.setProperty('--card-muted', c.muted);
+  document.documentElement.style.setProperty('--card-glow', c.glow);
+}
+const fmtINR = n => Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+function fmtDate(d) {
+  if (!d) return '—';
+  const dt = new Date(d); const today = new Date();
+  if (dt.toDateString() === today.toDateString()) return 'Today';
+  const y = new Date(today); y.setDate(today.getDate() - 1);
+  if (dt.toDateString() === y.toDateString()) return 'Yesterday';
+  return dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+}
+function initials(name) { return (name || 'U').split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase(); }
+function updateUserChip() {
+  const ini = initials(state.user?.name);
+  ['userAvatar', 'topbarAvatar'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ini; });
+  const un = document.getElementById('userName'); if (un) un.textContent = state.user?.name || '';
+  const ue = document.getElementById('userEmail'); if (ue) ue.textContent = state.user?.email || '';
+}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('backdrop').classList.toggle('active'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('backdrop').classList.remove('active'); }
+function toggleCardRotation() {
+  const card = document.getElementById('card360');
+  if (!card) return;
+  state.cardRotationPaused = !state.cardRotationPaused;
+  card.classList.toggle('paused', state.cardRotationPaused);
+  const btn = document.getElementById('cardToggleBtn');
+  if (btn) btn.innerHTML = state.cardRotationPaused ? ICONS.play : ICONS.pause;
+}
+async function changeCardColor(color) {
+  applyCardColor(color);
+  document.querySelectorAll('.card-color-btn').forEach(b => b.classList.toggle('active', b.dataset.color === color));
+  state.settings.card_color = color;
+  try { await api('/settings', { method: 'PUT', body: { card_color: color } }); } catch (e) {}
+}
+
+function render3DCard() {
+  const isPaused = state.cardRotationPaused;
+  const cardNum = state.user?.card_number || '';
+  const holder = (state.user?.card_holder || state.user?.name || 'YOUR NAME').toUpperCase();
+  const expiry = state.user?.card_expiry || 'MM/YY';
+  const parts = cardNum.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim().split(' ');
+  const display = parts.length >= 4 && parts[0].length === 4 ? parts.slice(0, 4) : ['••••', '••••', '••••', '••••'];
+  return `
+    <div class="card-stage">
+      <div class="card-360 ${isPaused ? 'paused' : ''}" id="card360">
+        <div class="card-face card-front">
+          <div class="card-brand-row">
+            <div class="card-brand-3d">WEALTHY</div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--card-muted)"><path d="M6 9a9 9 0 0 1 0 6M10 7a13 13 0 0 1 0 10M14 5a17 17 0 0 1 0 14"/></svg>
+              <div class="card-chip-3d"></div>
+            </div>
+          </div>
+          <div class="card-number-3d">${display.map(p => `<span>${p}</span>`).join('')}</div>
+          <div class="card-bottom-3d">
+            <div><div class="card-field-label">Cardholder</div><div class="card-field-value">${holder}</div></div>
+            <div><div class="card-field-label">Expires</div><div class="card-field-value">${expiry}</div></div>
+            <div class="card-network-3d"><div class="circle white"></div><div class="circle red"></div></div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-magnetic-strip"></div>
+          <div class="card-signature">${holder}</div>
+          <div class="card-back-text">Issued by Wealthy Financial Services Pvt. Ltd. under license from NPCI. Use subject to Cardholder Agreement.</div>
+          <div class="card-back-footer"><div class="card-back-brand">WEALTHY · TITANIUM</div><div style="font-size:9px;color:rgba(255,255,255,.4)">CVV NOT STORED</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-controls-row">
+      <button class="card-toggle-btn" id="cardToggleBtn" onclick="toggleCardRotation()">${isPaused ? ICONS.play : ICONS.pause}</button>
+      <div class="card-color-dots">${Object.keys(CARD_COLORS).map(c => `<button class="card-color-btn ${state.settings.card_color === c ? 'active' : ''}" data-color="${c}" onclick="changeCardColor('${c}')" style="background:${CARD_COLORS[c].bg}"></button>`).join('')}</div>
+    </div>`;
+}
+function renderQuickActions() {
+  const actions = [
+    { icon: 'minus', label: 'Expense', type: 'expense' },
+    { icon: 'plus', label: 'Income', type: 'income' },
+    { icon: 'transfer', label: 'Transfer' },
+    { icon: 'cash', label: 'Cash' },
+    { icon: 'card', label: 'Card' },
+    { icon: 'bill', label: 'Bill' },
+    { icon: 'download', label: 'Import', onclick: 'openImportModal()' },
+    { icon: 'upi', label: 'UPI' }
+  ];
+  return actions.map(a => `<button class="action-btn" onclick="${a.onclick || `openModal('${a.type || 'expense'}')`}"><div class="action-icon">${ICONS[a.icon]}</div>${a.label}</button>`).join('');
+}
+function renderTxTable(txs) {
+  if (!txs.length) return `<div class="empty-state"><div class="icon">${ICONS.transactions}</div><h4>No transactions yet</h4><p>Add your first transaction to see it here</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openModal()">Add Transaction</button></div>`;
+  return `
+    <div class="tx-header"><div>Merchant</div><div>Method</div><div>Date</div><div style="text-align:right">Amount</div><div></div></div>
+    ${txs.map(t => `
+      <div class="tx-row">
+        <div class="tx-merchant">
+          <div class="tx-icon ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? ICONS.plus : ICONS.minus}</div>
+          <div class="tx-info"><h5>${t.merchant}</h5><p>${t.category}</p></div>
+        </div>
+        <div class="tx-method">${t.method}</div>
+        <div class="tx-date">${fmtDate(t.date)}</div>
+        <div class="tx-amount ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</div>
+        <div class="tx-actions">
+          <button class="tx-act" onclick="editTx(${t.id})">${ICONS.edit}</button>
+          <button class="tx-act danger" onclick="deleteTx(${t.id})">${ICONS.trash}</button>
+        </div>
+      </div>
+    `).join('')}`;
+}
+function renderEnhancedChart() {
+  const s = state.summary;
+  const max = Math.max(s.income, s.expense, Math.abs(s.savings), 1);
+  const incH = Math.max((s.income / max) * 100, 4);
+  const expH = Math.max((s.expense / max) * 100, 4);
+  const savH = Math.max((Math.abs(s.savings) / max) * 100, 4);
+  const gridLines = [0, 25, 50, 75, 100].map(p => `<div class="grid-line" style="top:${100-p}%"></div><div class="grid-line-label" style="top:${100-p}%">₹${fmtINR(Math.round(max * p / 100))}</div>`).join('');
+  return `
+    <div class="bar-chart-enhanced">
+      ${gridLines}
+      <div class="bars-container">
+        <div class="bar-group-enhanced"><div class="bar-enhanced income" style="height:${incH}%"><div class="bar-value">+₹${fmtINR(s.income)}</div></div></div>
+        <div class="bar-group-enhanced"><div class="bar-enhanced expense" style="height:${expH}%"><div class="bar-value">−₹${fmtINR(s.expense)}</div></div></div>
+        <div class="bar-group-enhanced"><div class="bar-enhanced" style="height:${savH}%;background:linear-gradient(180deg,#2563EB,#1E40AF)"><div class="bar-value">${s.savings>=0?'+':''}₹${fmtINR(s.savings)}</div></div></div>
+      </div>
+    </div>
+    <div class="bar-labels-enhanced">
+      <div class="bar-label-enhanced">Income</div>
+      <div class="bar-label-enhanced">Expense</div>
+      <div class="bar-label-enhanced">Net Savings</div>
+    </div>`;
+}
+function setTimeframe(tf) {
+  state.timeframe = tf;
+  const now = new Date();
+  let cutoff = new Date(0);
+  if (tf === 'today') { cutoff = new Date(now); cutoff.setHours(0,0,0,0); }
+  else if (tf === 'week') { cutoff = new Date(now); cutoff.setDate(now.getDate() - 7); }
+  else if (tf === 'month') { cutoff = new Date(now); cutoff.setMonth(now.getMonth() - 1); }
+  else if (tf === 'year') { cutoff = new Date(now); cutoff.setFullYear(now.getFullYear() - 1); }
+  const filtered = state.transactions.filter(t => new Date(t.date) >= cutoff);
+  const income = filtered.filter(t => t.type === 'income').reduce((s,t) => s + t.amount, 0);
+  const expense = filtered.filter(t => t.type === 'expense').reduce((s,t) => s + t.amount, 0);
+  const savings = income - expense;
+  const rate = income > 0 ? (savings/income)*100 : 0;
+  const disp = document.getElementById('balanceAmount');
+  if (disp) disp.innerHTML = `<span class="currency">₹</span>${fmtINR(savings)}`;
+  const lbl = document.getElementById('balanceLabel');
+  if (lbl) lbl.textContent = `${tf.charAt(0).toUpperCase()+tf.slice(1)} Net Balance`;
+  const chg = document.getElementById('balanceChange');
+  if (chg) chg.innerHTML = `${ICONS.trendingUp} ${filtered.length} transactions · ${rate.toFixed(1)}% rate`;
+  document.querySelectorAll('.balance-timeframe button').forEach(b => b.classList.toggle('active', b.dataset.tf === tf));
+}
+
+/* PAGES */
+function pageOverview() {
+  const s = state.summary;
+  const recent = state.transactions.slice(0, 5);
+  const first = (state.user?.name || 'there').split(' ')[0];
+  const isEmpty = state.transactions.length === 0;
+  return `
+    <section class="hero"><div class="hero-greeting">Good day, ${first} 👋</div><h2>Your money, beautifully organized.</h2><p>A clear view of your income, spending, savings and financial progress.</p></section>
+    <section class="balance-hero">
+      <div>
+        <div class="balance-label" id="balanceLabel">Total Net Balance</div>
+        <div class="balance-amount" id="balanceAmount"><span class="currency">₹</span>${fmtINR(s.balance)}</div>
+        <div class="balance-change" id="balanceChange">${ICONS.trendingUp} ${s.savingsRate > 0 ? s.savingsRate.toFixed(1) + '% savings rate' : 'Start tracking'}</div>
+      </div>
+      <div class="balance-timeframe">
+        <button data-tf="today" onclick="setTimeframe('today')">Today</button>
+        <button data-tf="week" onclick="setTimeframe('week')">Week</button>
+        <button data-tf="month" class="active" onclick="setTimeframe('month')">Month</button>
+        <button data-tf="year" onclick="setTimeframe('year')">Year</button>
+      </div>
+    </section>
+    <section class="metrics-grid">
+      <div class="metric"><div class="metric-head"><div class="metric-ico up">${ICONS.trendingUp}</div><div class="metric-label">Income</div></div><div class="metric-value">₹${fmtINR(s.income)}</div><div class="metric-trend up">${s.income > 0 ? 'Active' : 'No income'}</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico down">${ICONS.trendingDown}</div><div class="metric-label">Expense</div></div><div class="metric-value">₹${fmtINR(s.expense)}</div><div class="metric-trend down">${s.expense > 0 ? 'Tracked' : 'No expense'}</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico blue">${ICONS.savings}</div><div class="metric-label">Savings</div></div><div class="metric-value">₹${fmtINR(s.savings)}</div><div class="metric-trend up">Net surplus</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico purple">${ICONS.analysis}</div><div class="metric-label">Rate</div></div><div class="metric-value">${s.savingsRate.toFixed(1)}%</div><div class="metric-trend up">${s.savingsRate > 30 ? 'Healthy' : 'Building'}</div></div>
+    </section>
+    <section class="card-3d-section">
+      <div class="card-3d-wrap">${render3DCard()}</div>
+      <div class="quick-actions"><h4>Quick Actions</h4><div class="action-grid">${renderQuickActions()}</div></div>
+    </section>
+    ${isEmpty ? `
+      <section style="margin-bottom:20px">
+        <div class="empty-state">
+          <div class="icon">${ICONS.sparkles}</div>
+          <h4>Welcome to Wealthy!</h4>
+          <p>Your dashboard is empty. Add your first transaction to start seeing insights.</p>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+            <button class="cta-primary" style="max-width:180px" onclick="openModal()">Add Transaction</button>
+            <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openImportModal()">Import CSV</button>
+          </div>
+        </div>
+      </section>` : `
+      <section class="charts-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div><div class="section-title">Income vs Expense</div><div class="section-subtitle">Current period overview</div></div>
+          </div>
+          ${renderEnhancedChart()}
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div><div class="section-title">Savings Rate</div><div class="section-subtitle">Current period</div></div></div>
+          <div class="ring-container">
+            <div class="ring"><svg width="100" height="100" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="50"/><circle class="ring-progress" cx="60" cy="60" r="50" style="stroke-dashoffset:${314 * (1 - Math.min(1, s.savingsRate/100))}"/></svg><div class="ring-center"><div class="ring-value">${s.savingsRate.toFixed(0)}%</div></div></div>
+            <div style="flex:1;min-width:130px"><div style="font-size:11px;color:var(--text-secondary);margin-bottom:6px">Total saved</div><div style="font-size:20px;font-weight:800">₹${fmtINR(s.savings)}</div></div>
+          </div>
+        </div>
+      </section>
+      <section style="margin-bottom:20px">
+        <div class="section-header"><div><div class="section-title">Recent Transactions</div></div><a class="section-link" onclick="nav('transactions')">View All ${ICONS.arrowRight}</a></div>
+        <div class="tx-list">${renderTxTable(recent)}</div>
+      </section>
+    `}`;
+}
+function pageTransactions() {
+  const filtered = getFilteredTx();
+  const filters = [
+    { id: 'all', label: 'All' }, { id: 'income', label: 'Income' }, { id: 'expense', label: 'Expenses' },
+    { id: 'upi', label: 'UPI' }, { id: 'cards', label: 'Cards' }, { id: 'cash', label: 'Cash' }, { id: 'bank', label: 'Bank' }
+  ];
+  return `
+    <section class="hero"><div class="hero-greeting">Money Movement</div><h2>Transactions</h2><p>Every payment, transfer and deposit in one calm ledger.</p></section>
+    <div class="filter-pills">${filters.map(f => `<button class="filter-pill ${state.filter === f.id ? 'active' : ''}" onclick="setFilter('${f.id}')">${f.label}</button>`).join('')}</div>
+    <div class="section-header" style="margin-bottom:12px">
+      <div style="font-size:12px;color:var(--text-secondary)">${filtered.length} transaction${filtered.length !== 1 ? 's' : ''}${state.search ? ' for "' + state.search + '"' : ''}</div>
+      <div style="display:flex;gap:6px">
+        <button class="btn-ghost" style="padding:8px 12px;font-size:11px;border:1px solid var(--border)" onclick="openExportModal()">${ICONS.download} Export</button>
+        <button class="btn-ghost" style="padding:8px 12px;font-size:11px;border:1px solid var(--border)" onclick="openImportModal()">${ICONS.upload} Import</button>
+        <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openModal()">${ICONS.plus} Add</button>
+      </div>
+    </div>
+    <div class="tx-list" id="txListContainer">${renderTxTable(filtered)}</div>`;
+}
+function getFilteredTx() {
+  let rows = [...state.transactions];
+  if (state.search) {
+    const s = state.search.toLowerCase();
+    rows = rows.filter(t => (t.merchant||'').toLowerCase().includes(s) || (t.category||'').toLowerCase().includes(s));
+  }
+  if (state.filter && state.filter !== 'all') {
+    const f = state.filter;
+    rows = rows.filter(t => {
+      const m = (t.method || '').toLowerCase();
+      if (f === 'income') return t.type === 'income';
+      if (f === 'expense') return t.type === 'expense';
+      if (f === 'upi') return m.includes('upi');
+      if (f === 'cards') return m.includes('card');
+      if (f === 'cash') return m.includes('cash');
+      if (f === 'bank') return m.includes('bank') || m.includes('hdfc') || m.includes('icici');
+      return true;
+    });
+  }
+  return rows;
+}
+function setFilter(f) { state.filter = f; nav('transactions'); }
+function onSearch(v) {
+  state.search = v;
+  if (state.currentPage === 'transactions') {
+    const c = document.getElementById('txListContainer');
+    if (c) c.innerHTML = renderTxTable(getFilteredTx());
+  } else if (v) nav('transactions');
+}
+function pageAnalysis() {
+  const s = state.summary;
+  const cats = {};
+  state.transactions.filter(t => t.type === 'expense').forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+  const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+  const total = sorted.reduce((sum, [, v]) => sum + v, 0);
+  return `
+    <section class="hero"><div class="hero-greeting">Ledger Analytics</div><h2>Financial Analysis</h2><p>Understand where your money is going.</p></section>
+    <section class="metrics-grid">
+      <div class="metric"><div class="metric-head"><div class="metric-ico up">${ICONS.trendingUp}</div><div class="metric-label">Income</div></div><div class="metric-value">₹${fmtINR(s.income)}</div><div class="metric-trend up">Total</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico down">${ICONS.trendingDown}</div><div class="metric-label">Expense</div></div><div class="metric-value">₹${fmtINR(s.expense)}</div><div class="metric-trend down">Total</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico blue">${ICONS.savings}</div><div class="metric-label">Savings</div></div><div class="metric-value">₹${fmtINR(s.savings)}</div><div class="metric-trend up">Surplus</div></div>
+      <div class="metric"><div class="metric-head"><div class="metric-ico purple">${ICONS.analysis}</div><div class="metric-label">Rate</div></div><div class="metric-value">${s.savingsRate.toFixed(1)}%</div><div class="metric-trend up">Savings rate</div></div>
+    </section>
+    <div class="chart-card">
+      <div class="section-header"><div><div class="section-title">Category Breakdown</div><div class="section-subtitle">By spending</div></div></div>
+      ${sorted.length === 0 ? '<div class="empty-state" style="border:none;padding:24px 0"><p>No expense data yet</p></div>' :
+      sorted.map(([name, amt]) => { const pct = (amt/total)*100; return `<div class="budget-item"><div class="budget-header"><span class="name">${name}</span><span class="amount">₹${fmtINR(amt)} · ${pct.toFixed(1)}%</span></div><div class="budget-track"><div class="budget-fill healthy" style="width:${pct}%"></div></div></div>`; }).join('')}
+    </div>`;
+}
+let calendarMonth = new Date().getMonth();
+let calendarYear = new Date().getFullYear();
+function changeMonth(dir) {
+  calendarMonth += dir;
+  if (calendarMonth < 0) { calendarMonth = 11; calendarYear--; }
+  if (calendarMonth > 11) { calendarMonth = 0; calendarYear++; }
+  nav('calendar');
+}
+function pageCalendar() {
+  const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  const now = new Date();
+  const y = calendarYear, m = calendarMonth;
+  const firstDay = new Date(y, m, 1);
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const cells = [];
+  for (let i = 0; i < startOffset; i++) { const d = new Date(y, m, -startOffset + i + 1); cells.push({ d, other: true }); }
+  for (let i = 1; i <= daysInMonth; i++) cells.push({ d: new Date(y, m, i), other: false });
+  while (cells.length % 7 !== 0) { const last = cells[cells.length - 1].d; cells.push({ d: new Date(last.getFullYear(), last.getMonth(), last.getDate() + 1), other: true }); }
+  const txsByDate = {};
+  state.transactions.forEach(t => { const key = t.date; if (!txsByDate[key]) txsByDate[key] = []; txsByDate[key].push(t); });
+  const monthName = firstDay.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+  return `
+    <section class="hero"><div class="hero-greeting">Cash Flow Radar</div><h2>Money Calendar</h2><p>Click any day to see that day's transactions.</p></section>
+    <div class="calendar">
+      <div class="cal-header">
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="icon-btn" style="width:30px;height:30px" onclick="changeMonth(-1)">←</button>
+          <div class="section-title" style="min-width:140px;text-align:center">${monthName}</div>
+          <button class="icon-btn" style="width:30px;height:30px" onclick="changeMonth(1)">→</button>
+        </div>
+        <button class="btn-ghost" style="padding:6px 12px;font-size:11px;border:1px solid var(--border)" onclick="calendarMonth=new Date().getMonth();calendarYear=new Date().getFullYear();nav('calendar')">Today</button>
+      </div>
+      <div class="cal-grid">
+        ${days.map(d => `<div class="cal-day-label">${d}</div>`).join('')}
+        ${cells.map(c => {
+          const iso = c.d.toISOString().split('T')[0];
+          const dayTxs = txsByDate[iso] || [];
+          const income = dayTxs.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+          const expense = dayTxs.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+          const net = income - expense;
+          const isToday = c.d.toDateString() === now.toDateString();
+          const hasTx = dayTxs.length > 0 && !c.other;
+          return `<div class="cal-day ${c.other ? 'other-month' : ''} ${isToday ? 'today' : ''} ${hasTx ? 'has-tx' : ''}" onclick="openDayDetail('${iso}')">
+            <div class="day-num">${c.d.getDate()}</div>
+            ${hasTx ? `<div class="day-amount ${net >= 0 ? 'pos' : 'neg'}">${net >= 0 ? '+' : '−'}₹${fmtINR(Math.abs(net))}</div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+function openDayDetail(iso) {
+  const txs = state.transactions.filter(t => t.date === iso);
+  const dateStr = new Date(iso).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const income = txs.filter(t => t.type === 'income').reduce((s,t) => s + t.amount, 0);
+  const expense = txs.filter(t => t.type === 'expense').reduce((s,t) => s + t.amount, 0);
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><div><h3>${dateStr}</h3></div><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div style="display:flex;gap:12px;margin-bottom:16px">
+      <div style="flex:1;padding:12px;background:var(--green-soft);border-radius:10px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase">Income</div><div style="font-size:16px;font-weight:800;color:var(--green);margin-top:2px">+₹${fmtINR(income)}</div></div>
+      <div style="flex:1;padding:12px;background:var(--red-soft);border-radius:10px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase">Expense</div><div style="font-size:16px;font-weight:800;color:var(--red);margin-top:2px">−₹${fmtINR(expense)}</div></div>
+    </div>
+    <div style="max-height:50vh;overflow-y:auto">
+      ${txs.length === 0 ? '<div style="padding:20px;text-align:center;color:var(--text-tertiary);font-size:12px">No transactions on this day</div>' :
+      txs.map(t => `<div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--border-soft)"><div><div style="font-size:13px;font-weight:600">${t.merchant}</div><div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">${t.category} · ${t.method}</div></div><div style="font-size:14px;font-weight:700;color:${t.type === 'income' ? 'var(--green)' : 'var(--red)'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</div></div>`).join('')}
+    </div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" onclick="closeModal();openModal()">${ICONS.plus} Add Transaction</button>`;
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function pageAccounts() {
+  const cards = state.cards;
+  const linkedCard = state.user?.card_number ? {
+    name: 'Profile Card',
+    last4: state.user.card_number.replace(/\s/g,'').slice(-4),
+    color: state.settings.card_color || 'black',
+    holder: state.user.card_holder || state.user.name,
+    expiry: state.user.card_expiry || 'MM/YY',
+    limit_amount: 0, used: 0, linked: true
+  } : null;
+  const allCards = linkedCard ? [linkedCard, ...cards] : cards;
+  return `
+    <section class="hero"><div class="hero-greeting">Vault & Treasury</div><h2>Accounts & Cards</h2><p>Your profile card and additional cards appear here.</p></section>
+    <div class="section-header"><div class="section-title">Your Cards</div><button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openCardModal()">${ICONS.plus} Add Card</button></div>
+    ${allCards.length === 0 ? `<div class="empty-state" style="margin-bottom:20px"><div class="icon">${ICONS.card}</div><h4>No cards yet</h4><p>Add your card number in Profile or add a new card here</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="cta-primary" style="max-width:180px" onclick="nav('profile')">Go to Profile</button><button class="btn-ghost" style="border:1px solid var(--border)" onclick="openCardModal()">Add Card</button></div></div>` : `
+      <div class="metallic-carousel">
+        ${allCards.map(c => {
+          const avail = (c.limit_amount || 0) - (c.used || 0);
+          const utilized = c.limit_amount ? ((c.used / c.limit_amount) * 100).toFixed(1) : 0;
+          return `<div class="metal-card ${c.color}" ${!c.linked ? `onclick="openCardModal(${c.id})"` : `onclick="nav('profile')"`}>
+            ${!c.linked ? `<div class="card-edit-actions"><button class="card-act" onclick="event.stopPropagation();openCardModal(${c.id})">${ICONS.edit}</button><button class="card-act danger" onclick="event.stopPropagation();deleteCard(${c.id})">${ICONS.trash}</button></div>` : `<div style="position:absolute;top:10px;right:10px;font-size:9px;padding:3px 8px;background:rgba(255,255,255,.2);border-radius:4px;font-weight:700;letter-spacing:.06em">LINKED</div>`}
+            <div><div style="font-size:10px;letter-spacing:.15em;opacity:.7;font-weight:700">WEALTHY</div><div style="font-size:16px;font-weight:800;margin-top:3px">${c.name}</div></div>
+            <div><div style="font-size:11px;letter-spacing:.18em;opacity:.85;margin-bottom:6px">•••• •••• •••• ${c.last4 || '••••'}</div><div style="font-size:9px;opacity:.6">EXP: ${c.expiry || 'MM/YY'}</div></div>
+            <div><div style="font-size:8px;opacity:.5;letter-spacing:.1em">${c.linked ? 'PROFILE CARD' : 'AVAILABLE'}</div><div style="font-size:18px;font-weight:800">${c.linked ? 'Edit in Profile →' : '₹' + fmtINR(avail)}</div>${!c.linked ? `<div style="font-size:9px;margin-top:2px">${utilized}% Utilized</div>` : ''}</div>
+          </div>`;
+        }).join('')}
+      </div>`}
+    <div class="section-header" style="margin-top:16px"><div class="section-title">Connected Bank Accounts</div></div>
+    <div class="accounts-grid">
+      <div class="account-card"><div class="account-header"><div class="bank-logo">H</div><div class="account-info"><h5>HDFC Bank</h5><p>Primary · •••• 8921</p></div></div><div class="account-balance">₹94,500</div><div class="account-meta"><span>Linked</span><span style="color:var(--green);font-weight:600">● Active</span></div></div>
+      <div class="account-card"><div class="account-header"><div class="bank-logo" style="background:linear-gradient(135deg,#F97316,#EA580C)">IC</div><div class="account-info"><h5>ICICI Savings</h5><p>Reserve · •••• 4410</p></div></div><div class="account-balance">₹23,200</div><div class="account-meta"><span>Linked</span><span style="color:var(--green);font-weight:600">● Active</span></div></div>
+    </div>`;
+}
+function pageUPI() {
+  const qr = state.settings.qr_code;
+  const upiId = state.settings.upi_id;
+  return `
+    <section class="hero"><div class="hero-greeting">Unified Payments</div><h2>UPI Hub</h2><p>Your UPI ID and QR code in one place.</p></section>
+    <div class="settings-grid">
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.upi}</span>Your UPI ID</h3>
+        ${upiId ? `<div style="padding:14px;background:var(--bg);border-radius:12px;margin-bottom:12px;font-family:monospace;font-size:15px;font-weight:700;text-align:center;border:1px dashed var(--border);word-break:break-all">${upiId}</div>` : '<p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">No UPI ID added yet.</p>'}
+        <button class="btn-primary" onclick="openUPIIdModal()">${upiId ? ICONS.edit + ' Update' : ICONS.plus + ' Add UPI ID'}</button>
+      </div>
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.qr}</span>Payment QR Code</h3>
+        ${qr ? `<div style="text-align:center;margin-bottom:12px"><div class="qr-display"><img src="${qr}" alt="QR"/></div></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+            <button class="btn-primary" onclick="downloadQR()">${ICONS.download} Download</button>
+            <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openQRModal()">${ICONS.edit} Change</button>
+            <button class="btn-ghost" style="color:var(--red);border:1px solid var(--border)" onclick="removeQR()">${ICONS.trash} Remove</button>
+          </div>` : `<p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload your UPI QR code to receive payments</p>
+          <button class="btn-primary" onclick="openQRModal()">${ICONS.upload} Upload QR</button>`}
+      </div>
+    </div>`;
+}
+function pageCashFlow() {
+  const s = state.summary;
+  return `
+    <section class="hero"><div class="hero-greeting">Routing Liquidity</div><h2>Cash Flow</h2><p>Money In → Money Out → Net Cash Flow.</p></section>
+    <div class="chart-card" style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="text-align:center;flex:1;min-width:90px"><div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#22C55E,#0F7A4D);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800">+₹</div><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Money In</div><div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--green)">₹${fmtINR(s.income)}</div></div>
+        <div style="font-size:18px;color:var(--text-tertiary)">→</div>
+        <div style="text-align:center;flex:1;min-width:90px"><div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#EF4444,#991B1B);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800">−₹</div><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Money Out</div><div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--red)">₹${fmtINR(s.expense)}</div></div>
+        <div style="font-size:18px;color:var(--text-tertiary)">=</div>
+        <div style="text-align:center;flex:1;min-width:90px"><div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#1A1A1A,#000);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800;border:2px solid var(--green)">=₹</div><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Net Flow</div><div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--green)">₹${fmtINR(s.savings)}</div></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="section-header"><div><div class="section-title">Flow Breakdown</div></div></div>
+      <div class="report-row"><span class="label">Total Income</span><span class="value" style="color:var(--green)">+₹${fmtINR(s.income)}</span></div>
+      <div class="report-row"><span class="label">Total Expense</span><span class="value" style="color:var(--red)">−₹${fmtINR(s.expense)}</span></div>
+      <div class="report-row total"><span class="label">Net Cash Flow</span><span class="value">+₹${fmtINR(s.savings)}</span></div>
+    </div>`;
+}
+function pageBills() {
+  return `
+    <section class="hero"><div class="hero-greeting">Subscriptions & Autopays</div><h2>Bills & Payments</h2><p>Track upcoming and recurring bills.</p></section>
+    <div class="section-header" style="margin-bottom:12px"><div class="section-title">Your Bills</div><button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBillModal()">${ICONS.plus} Add Bill</button></div>
+    ${state.bills.length === 0 ? `<div class="empty-state"><div class="icon">${ICONS.bills}</div><h4>No bills yet</h4><p>Add your first bill to track upcoming payments</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBillModal()">Add Bill</button></div>` : `
+      <div class="bills-grid">
+        ${state.bills.map(b => `
+          <div class="bill-card ${b.status}">
+            <div class="card-edit-actions">
+              <button class="card-act" onclick="openBillModal(${b.id})">${ICONS.edit}</button>
+              <button class="card-act danger" onclick="deleteBill(${b.id})">${ICONS.trash}</button>
+            </div>
+            <div class="bill-header">
+              <div class="bill-icon">${ICONS[b.icon] || ICONS.bill}</div>
+              <div class="bill-info"><h5>${b.name}</h5><p>${b.due_date ? new Date(b.due_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' }) : 'No date'}</p></div>
+            </div>
+            <div class="bill-amount">₹${fmtINR(b.amount)}</div>
+            <span class="bill-meta ${b.status}">${b.status === 'paid' ? '✓ PAID' : b.status === 'overdue' ? '⚠ OVERDUE' : '⏰ UPCOMING'}</span>
+            <div class="bill-barcode"></div>
+          </div>`).join('')}
+      </div>`}`;
+}
+function pageBudgets() {
+  return `
+    <section class="hero"><div class="hero-greeting">Plan with Clarity</div><h2>Budgets</h2><p>Stay ahead of spending with monthly budgets.</p></section>
+    <div class="section-header" style="margin-bottom:12px"><div class="section-title">Monthly Budgets</div><button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBudgetModal()">${ICONS.plus} Add Budget</button></div>
+    ${state.budgets.length === 0 ? `<div class="empty-state"><div class="icon">${ICONS.budgets}</div><h4>No budgets set</h4><p>Create your first budget to control spending</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBudgetModal()">Create Budget</button></div>` : `
+      <div class="chart-card">
+        ${state.budgets.map(b => {
+          const pct = b.limit_amount ? (b.spent / b.limit_amount) * 100 : 0;
+          const cls = pct > 90 ? 'danger' : pct > 70 ? 'warning' : 'healthy';
+          return `<div class="budget-item">
+            <div class="budget-header">
+              <span class="name">${b.name}</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="amount">₹${fmtINR(b.spent)} / ₹${fmtINR(b.limit_amount)}</span>
+                <button class="card-act" onclick="openBudgetModal(${b.id})">${ICONS.edit}</button>
+                <button class="card-act danger" onclick="deleteBudget(${b.id})">${ICONS.trash}</button>
+              </div>
+            </div>
+            <div class="budget-track"><div class="budget-fill ${cls}" style="width:${Math.min(pct, 100)}%"></div></div>
+          </div>`;
+        }).join('')}
+      </div>`}`;
+}
+function pageSavings() {
+  const total = state.goals.reduce((s, g) => s + (g.saved || 0), 0);
+  const colorMap = { green: 'var(--green)', blue: 'var(--blue)', purple: 'var(--purple)', yellow: 'var(--yellow)' };
+  return `
+    <section class="hero"><div class="hero-greeting">Future You</div><h2>Savings Goals</h2><p>Track every goal, celebrate every milestone.</p></section>
+    ${state.goals.length > 0 ? `<div class="savings-hero"><div><div class="label">Total saved across goals</div><div class="amount">₹${fmtINR(total)}</div><div class="sub">${state.goals.length} active goal${state.goals.length !== 1 ? 's' : ''}</div></div></div>` : ''}
+    <div class="section-header" style="margin-bottom:12px"><div class="section-title">Your Goals</div><button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openGoalModal()">${ICONS.plus} Add Goal</button></div>
+    ${state.goals.length === 0 ? `<div class="empty-state"><div class="icon">${ICONS.savings}</div><h4>No savings goals yet</h4><p>Set your first goal — laptop, travel, emergency fund</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openGoalModal()">Create First Goal</button></div>` : `
+      <div class="insights-grid">
+        ${state.goals.map(g => {
+          const pct = g.target ? (g.saved / g.target) * 100 : 0;
+          const color = colorMap[g.color] || 'var(--green)';
+          return `<div class="insight" style="align-items:center;gap:16px">
+            <div class="goal-ring">
+              <svg width="76" height="76" viewBox="0 0 90 90"><circle class="ring-bg" cx="45" cy="45" r="38" fill="none"/><circle class="ring-progress" cx="45" cy="45" r="38" fill="none" stroke="${color}" stroke-dasharray="239" stroke-dashoffset="${239 * (1 - Math.min(1, pct/100))}" style="transform:rotate(-90deg);transform-origin:center"/></svg>
+              <div class="center">${pct.toFixed(0)}%</div>
+            </div>
+            <div class="insight-content" style="flex:1;min-width:0">
+              <h5>${g.name}</h5>
+              <p>₹${fmtINR(g.saved)} / ₹${fmtINR(g.target)}</p>
+              <div style="display:flex;gap:6px;margin-top:10px">
+                <button class="btn-ghost" style="padding:5px 10px;font-size:11px;border:1px solid var(--border)" onclick="openGoalModal(${g.id})">${ICONS.edit} Edit</button>
+                <button class="btn-ghost" style="padding:5px 10px;font-size:11px;color:var(--red);border:1px solid var(--border)" onclick="deleteGoal(${g.id})">${ICONS.trash}</button>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`}`;
+}
+
+/* ============ AI CHAT ============ */
+function pageAI() {
+  return `
+    <section class="hero" style="margin-bottom:16px">
+      <div class="hero-greeting">AI Assistant</div>
+      <h2>Your Personal Financial Guide</h2>
+      <p>Ask anything about your money. Get smart insights and plans.</p>
+    </section>
+    <div class="ai-header">
+      <div class="ai-header-avatar">${ICONS.bot}</div>
+      <div class="ai-header-text">
+        <h3>Wealthy AI</h3>
+        <p><span class="status-dot"></span>Online · Ready to help</p>
+      </div>
+    </div>
+    <div class="ai-chat">
+      <div class="ai-messages" id="chatMessages"></div>
+      <div class="ai-suggestions" id="chatSuggestions">
+        <div class="ai-chip" onclick="aiSend('Budget plan banao')">💰 Budget plan</div>
+        <div class="ai-chip" onclick="aiSend('Monthly summary')">📊 Monthly summary</div>
+        <div class="ai-chip" onclick="aiSend('Kaha save karu?')">💡 Where to save</div>
+        <div class="ai-chip" onclick="aiSend('Emergency fund')">🚨 Emergency fund</div>
+        <div class="ai-chip" onclick="aiSend('Top spending')">📈 Top spending</div>
+        <div class="ai-chip" onclick="aiSend('Savings rate')">💵 Savings rate</div>
+      </div>
+      <div class="ai-input-row">
+        <textarea id="aiInput" placeholder="Ask anything about your money..." rows="1" onkeydown="handleAiKey(event)"></textarea>
+        <button class="ai-send-btn" id="aiSendBtn" onclick="aiSend()">${ICONS.arrowUp}</button>
+      </div>
+    </div>`;
+}
+function handleAiKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); aiSend(); }
+}
+function aiSend(prefill) {
+  const input = document.getElementById('aiInput');
+  const msg = prefill || (input ? input.value.trim() : '');
+  if (!msg) return toast('Type something first', 'error');
+  if (input && !prefill) input.value = '';
+  state.chatMessages.push({ role: 'user', text: msg });
+  renderChat();
+  const sendBtn = document.getElementById('aiSendBtn');
+  if (sendBtn) sendBtn.disabled = true;
+  setTimeout(() => {
+    const reply = generateAIResponse(msg);
+    state.chatMessages.push({ role: 'bot', text: reply });
+    renderChat();
+    if (sendBtn) sendBtn.disabled = false;
+  }, 600 + Math.random() * 700);
+}
+function renderChat() {
+  const container = document.getElementById('chatMessages');
+  if (!container) return;
+  if (state.chatMessages.length === 0) {
+    const userName = (state.user?.name || 'there').split(' ')[0];
+    container.innerHTML = `
+      <div class="ai-msg bot">
+        <div class="avatar bot">${ICONS.bot}</div>
+        <div class="ai-bubble">Hi ${userName} 👋
+I'm <strong>Wealthy AI</strong> — your personal finance assistant.
+
+I can help you with:
+• 💰 Budget planning
+• 📊 Monthly summaries
+• 💡 Savings suggestions
+• 🚨 Emergency fund advice
+• 📈 Spending analysis
+
+Tap a suggestion below or type your question.</div>
+      </div>`;
+    return;
+  }
+  let html = '';
+  state.chatMessages.forEach(m => {
+    if (m.role === 'user') {
+      html += `<div class="ai-msg user"><div class="avatar user">${initials(state.user?.name)}</div><div class="ai-bubble">${escapeHtml(m.text)}</div></div>`;
+    } else {
+      html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="ai-bubble">${m.text}</div></div>`;
+    }
+  });
+  if (state.chatMessages[state.chatMessages.length - 1]?.role === 'user') {
+    html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+  }
+  container.innerHTML = html;
+  container.scrollTop = container.scrollHeight;
+}
+function escapeHtml(t) { return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ============ AI RESPONSE ENGINE (English + Hinglish detection) ============ */
+function detectLanguage(text) {
+  const hinglish = /\b(kya|kaise|kaha|kitna|kitne|banao|bana|do|chahiye|hai|hu|ho|ka|ki|ke|mera|meri|mera|paise|paisa|kharch|kharcha|bacha|bachao|salary|mahine|mahina|savings|budget|bhai|yaar|nhi|nahi|abhi|kab|kaun|kyun|kyu|de|dedo|bata|batao|dikha|dikhao|mil|milega|hoga|hogi|raha|rahi|rahe|gaya|gayi|gaye)\b/i;
+  const hindiScript = /[\u0900-\u097F]/;
+  return hinglish.test(text) || hindiScript.test(text) ? 'hinglish' : 'english';
+}
+
+function generateAIResponse(rawQ) {
+  const lang = detectLanguage(rawQ);
+  const t = (en, hi) => lang === 'hinglish' ? hi : en;
+  const q = rawQ.toLowerCase().trim();
+  const s = state.summary;
+  const txs = state.transactions;
+  const incomes = txs.filter(t => t.type === 'income');
+  const expenses = txs.filter(t => t.type === 'expense');
+  const fmt = v => '₹' + fmtINR(Math.round(v));
+
+  if (txs.length === 0 && !q.includes('how') && !q.includes('kaise') && !q.includes('start') && !q.includes('shuru')) {
+    return t(
+`You don't have any transactions yet 📝
+
+**To get started:**
+1. Click **"+ Add Transaction"** in the sidebar
+2. Add your salary or first expense
+3. Then ask me — I'll analyze your finances
+
+**Suggestions:**
+• Add monthly income
+• Track every expense (Swiggy, Uber, bills)
+• After 10-15 transactions, I can give real insights`,
+`Aapke paas abhi koi transaction nahi hai 📝
+
+**Shuru karne ke liye:**
+1. Sidebar mein **"+ Add Transaction"** click karo
+2. Apni salary ya pehla expense add karo
+3. Phir mujhse poocho — main poora analysis kar dunga
+
+**Suggestions:**
+• Monthly income add karo
+• Har expense track karo (Swiggy, Uber, bills)
+• 10-15 transactions ke baad main real insights dunga`
+    );
+  }
+
+  // Budget plan
+  if (q.includes('budget') || q.includes('plan banao') || q.includes('plan bana') || q.includes('plan')) {
+    const monthlyIncome = s.income > 0 ? s.income : 50000;
+    const needs = monthlyIncome * 0.5;
+    const wants = monthlyIncome * 0.3;
+    const savings = monthlyIncome * 0.2;
+    return t(
+`📊 **Your Budget Plan (50-30-20 Rule)**
+
+Monthly income: <strong>${fmt(monthlyIncome)}</strong>
+
+**🏠 Needs (50%) — ${fmt(needs)}**
+• Rent / EMI
+• Groceries & food
+• Utilities (electricity, water, internet)
+• Transport / fuel
+• Insurance
+
+**🎬 Wants (30%) — ${fmt(wants)}**
+• Dining out, movies
+• Shopping
+• Subscriptions (Netflix, Spotify)
+• Travel & entertainment
+
+**💰 Savings (20%) — ${fmt(savings)}**
+• Emergency fund (6 months of expenses)
+• SIP / mutual funds
+• Goal-based savings
+
+---
+
+**Your current situation:**
+• Income: ${fmt(s.income)}
+• Expense: ${fmt(s.expense)}
+• Savings: ${fmt(s.savings)}
+• Rate: ${s.savingsRate.toFixed(1)}%
+
+${s.savingsRate >= 20 ? '✅ You are saving 20%+ — excellent!' : '⚠️ Saving less than 20%. Try to reduce spending.'}
+
+**Next step:** Go to Budgets page and set monthly limits per category.`,
+`📊 **Aapka Budget Plan (50-30-20 Rule)**
+
+Aapki monthly income: <strong>${fmt(monthlyIncome)}</strong>
+
+**🏠 Needs (50%) — ${fmt(needs)}**
+• Rent / EMI
+• Groceries & khana
+• Utilities (bijli, paani, internet)
+• Transport / fuel
+• Insurance
+
+**🎬 Wants (30%) — ${fmt(wants)}**
+• Bahar khana, movies
+• Shopping
+• Subscriptions (Netflix, Spotify)
+• Travel & entertainment
+
+**💰 Savings (20%) — ${fmt(savings)}**
+• Emergency fund (6 months ka expense)
+• SIP / mutual funds
+• Goal savings
+
+---
+
+**Aapki current situation:**
+• Income: ${fmt(s.income)}
+• Expense: ${fmt(s.expense)}
+• Savings: ${fmt(s.savings)}
+• Rate: ${s.savingsRate.toFixed(1)}%
+
+${s.savingsRate >= 20 ? '✅ Aap 20%+ save kar rahe ho — bahut acha!' : '⚠️ 20% se kam save ho raha hai. Kharcha thoda kam karo.'}
+
+**Next step:** Budgets page pe jaake har category ka limit set karo.`
+    );
+  }
+
+  // Monthly summary
+  if (q.includes('summary') || q.includes('report') || q.includes('monthly') || q.includes('mahine')) {
+    return t(
+`📊 **Monthly Summary**
+
+**💰 Income:** ${fmt(s.income)}
+**💸 Expense:** ${fmt(s.expense)}
+**🏦 Savings:** ${fmt(s.savings)}
+**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%
+
+**Transactions:** ${txs.length}
+• Income entries: ${incomes.length}
+• Expense entries: ${expenses.length}
+
+${s.savings >= 0 
+  ? `✅ **Surplus of ${fmt(s.savings)}** — great job! Put it into a savings goal.`
+  : `⚠️ **Deficit of ${fmt(Math.abs(s.savings))}** — spending more than earning.`}
+
+${s.savingsRate > 30 ? '🎯 You are in the healthy tier!' : s.savingsRate > 20 ? '👍 Decent, aim for 30%.' : '📉 Target 30%+ savings rate.'}`,
+`📊 **Monthly Summary**
+
+**💰 Income:** ${fmt(s.income)}
+**💸 Expense:** ${fmt(s.expense)}
+**🏦 Savings:** ${fmt(s.savings)}
+**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%
+
+**Total Transactions:** ${txs.length}
+• Income entries: ${incomes.length}
+• Expense entries: ${expenses.length}
+
+${s.savings >= 0 
+  ? `✅ **${fmt(s.savings)} ka surplus** — bahut acha! Isko savings goal mein daalo.`
+  : `⚠️ **${fmt(Math.abs(s.savings))} ka deficit** — income se zyada kharch ho raha hai.`}
+
+${s.savingsRate > 30 ? '🎯 Aap healthy tier mein ho!' : s.savingsRate > 20 ? '👍 Decent, but 30% target rakho.' : '📉 30%+ savings rate target karo.'}`
+    );
+  }
+
+  // Where to save
+  if (q.includes('save') || q.includes('bacha') || q.includes('saving') || q.includes('kaha')) {
+    const cats = {};
+    expenses.forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+    const sorted = Object.entries(cats).sort((a,b) => b[1] - a[1]).slice(0, 3);
+    const topCat = sorted[0];
+    const saveTarget = topCat ? topCat[1] * 0.2 : 0;
+    return t(
+`💡 **Where to Save**
+
+Your top spending category: **${topCat ? topCat[0] : 'N/A'}**
+Amount: ${topCat ? fmt(topCat[1]) : '—'}
+
+**💡 3 immediate savings tips:**
+
+1. **Cut ${topCat ? topCat[0] : 'spending'} by 20%**
+   • 20% reduction → save ${fmt(saveTarget)} every month
+   • That's ${fmt(saveTarget * 12)} per year
+
+2. **Review subscriptions**
+   • Cancel unused Netflix, Spotify, Disney+
+   • Average savings: ${fmt(1500)}/month
+
+3. **Reduce food delivery**
+   • Eat out twice a week only
+   • Home cooking is 3x cheaper
+
+**Your top 3 categories:**
+${sorted.map(([n, v], i) => `${i+1}. ${n} → ${fmt(v)}`).join('\n')}
+
+**🏦 Auto-save trick:** On salary day, move 20% to a separate account. Live on the rest.`,
+`💡 **Kaha Save Karu**
+
+Aapki top spending category: **${topCat ? topCat[0] : 'N/A'}**
+Amount: ${topCat ? fmt(topCat[1]) : '—'}
+
+**💡 Turant savings ke 3 tarike:**
+
+1. **${topCat ? topCat[0] + ' cut karo' : 'Kharch cut karo'}**
+   • 20% reduce karo → ${fmt(saveTarget)} bachega har mahine
+   • Saal mein ${fmt(saveTarget * 12)}
+
+2. **Subscriptions review karo**
+   • Netflix, Spotify, Disney+ unused hata do
+   • Average ${fmt(1500)}/month bachta hai
+
+3. **Food delivery kam karo**
+   • Bahar khana hafte mein 2 baar
+   • Cooking at home 3x sasta
+
+**Aapki top 3 categories:**
+${sorted.map(([n, v], i) => `${i+1}. ${n} → ${fmt(v)}`).join('\n')}
+
+**🏦 Auto-save trick:** Salary aane ke 1st din 20% alag account mein daal do. Baaki 80% se chalao.`
+    );
+  }
+
+  // Emergency fund
+  if (q.includes('emergency') || q.includes('fund') || q.includes('safety')) {
+    const monthlyExp = s.expense > 0 ? s.expense : 30000;
+    const fund3 = monthlyExp * 3;
+    const fund6 = monthlyExp * 6;
+    return t(
+`🚨 **Emergency Fund Guide**
+
+Emergency fund = 3 to 6 months of expenses
+
+**Your monthly expense:** ${fmt(monthlyExp)}
+
+**📊 Recommended:**
+• **Minimum (3 months):** ${fmt(fund3)}
+• **Ideal (6 months):** ${fmt(fund6)}
+
+**Why you need it:**
+• Job loss
+• Medical emergency
+• Family crisis
+• Sudden repairs
+
+**Where to keep:**
+✅ Savings account (instant access)
+✅ Liquid mutual fund (1-day withdrawal)
+❌ Stocks / FD (locked)
+
+**Build plan:**
+• Save ${fmt(fund6 / 12)} monthly → ready in 1 year
+• Or ${fmt(fund6 / 6)} → ready in 6 months
+
+Create a goal named **"Emergency Fund"** in Savings Goals page!`,
+`🚨 **Emergency Fund Guide**
+
+Emergency fund = 3 se 6 months ka kharcha
+
+**Aapka monthly expense:** ${fmt(monthlyExp)}
+
+**📊 Recommended:**
+• **Minimum (3 months):** ${fmt(fund3)}
+• **Ideal (6 months):** ${fmt(fund6)}
+
+**Kyun zaroori hai:**
+• Job loss
+• Medical emergency
+• Family crisis
+• Sudden repairs
+
+**Kaha rakhein:**
+✅ Savings account (instant access)
+✅ Liquid mutual fund (1 day withdrawal)
+❌ Stocks / FD (locked)
+
+**Build karne ka plan:**
+• Har mahine ${fmt(fund6 / 12)} save karo → 1 saal mein ready
+• Ya ${fmt(fund6 / 6)} → 6 mahine mein
+
+Savings Goals page pe **"Emergency Fund"** goal banao!`
+    );
+  }
+
+  // Top spending
+  if (q.includes('category') || q.includes('top spend') || q.includes('kaha kharch') || q.includes('top')) {
+    const cats = {};
+    expenses.forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+    const sorted = Object.entries(cats).sort((a,b) => b[1] - a[1]);
+    if (sorted.length === 0) return t('📊 No expense data yet. Add some transactions first.', '📊 Abhi koi expense nahi. Pehle transactions add karo.');
+    const total = sorted.reduce((sum, [, v]) => sum + v, 0);
+    return t(
+`📈 **Your Top Spending Categories**
+
+${sorted.map(([n, v], i) => {
+  const pct = (v/total)*100;
+  const bar = '█'.repeat(Math.round(pct/5)) + '░'.repeat(20 - Math.round(pct/5));
+  return `${i+1}. **${n}**
+   ${bar} ${pct.toFixed(1)}%
+   Amount: ${fmt(v)}`;
+}).join('\n\n')}
+
+**Total:** ${fmt(total)}
+
+💡 **Tip:** Focus on top 2 categories. Cutting 20% saves ${fmt(((sorted[0]?.[1]||0) + (sorted[1]?.[1]||0)) * 0.2)}.`,
+`📈 **Aapki Top Spending Categories**
+
+${sorted.map(([n, v], i) => {
+  const pct = (v/total)*100;
+  const bar = '█'.repeat(Math.round(pct/5)) + '░'.repeat(20 - Math.round(pct/5));
+  return `${i+1}. **${n}**
+   ${bar} ${pct.toFixed(1)}%
+   Amount: ${fmt(v)}`;
+}).join('\n\n')}
+
+**Total:** ${fmt(total)}
+
+💡 **Tip:** Top 2 categories pe focus karo. 20% cut karne se ${fmt(((sorted[0]?.[1]||0) + (sorted[1]?.[1]||0)) * 0.2)} bachega.`
+    );
+  }
+
+  // Savings rate
+  if (q.includes('rate') || q.includes('kitna bacha') || q.includes('savings rate')) {
+    return t(
+`💵 **Your Savings Rate**
+
+**Current rate:** ${s.savingsRate.toFixed(1)}%
+**Total saved:** ${fmt(s.savings)}
+
+**Benchmarks:**
+• 🔴 Below 10% — needs improvement
+• 🟡 10-20% — getting there
+• 🟢 20-30% — good
+• 🏆 30%+ — excellent
+
+**Your status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Good' : s.savingsRate >= 10 ? '🟡 Getting there' : '🔴 Needs improvement'}
+
+**To increase:**
+• Reduce top 2 expense categories by 20%
+• Cancel unused subscriptions
+• Cook at home more often`,
+`💵 **Aapka Savings Rate**
+
+**Current rate:** ${s.savingsRate.toFixed(1)}%
+**Total saved:** ${fmt(s.savings)}
+
+**Benchmarks:**
+• 🔴 10% se kam — improve karo
+• 🟡 10-20% — theek hai
+• 🟢 20-30% — acha hai
+• 🏆 30%+ — excellent
+
+**Aapka status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Acha' : s.savingsRate >= 10 ? '🟡 Theek hai' : '🔴 Improve karo'}
+
+**Badhane ke liye:**
+• Top 2 categories 20% cut karo
+• Unused subscriptions band karo
+• Ghar pe khana banao`
+    );
+  }
+
+  // Overspending
+  if (q.includes('overspend') || q.includes('control') || q.includes('zyada')) {
+    const flagged = state.budgets.filter(b => b.spent > b.limit_amount);
+    if (state.budgets.length === 0) return t('⚠️ You haven\'t set any budgets yet. Go to Budgets page to set limits.', '⚠️ Aapne abhi koi budget set nahi kiya. Budgets page pe jaake limits set karo.');
+    return t(
+`📊 **Overspending Check**
+
+${flagged.length > 0 ? `🔴 **Over budget (${flagged.length}):**
+${flagged.map(b => `• ${b.name}: ${fmt(b.spent)} / ${fmt(b.limit_amount)}`).join('\n')}` : '✅ No category is over budget!'}
+
+**Action plan:**
+• Zero spending in overspent categories this week
+• Set daily limits for remaining days
+• Use cash for better control`,
+`📊 **Overspending Check**
+
+${flagged.length > 0 ? `🔴 **Budget se zyada (${flagged.length}):**
+${flagged.map(b => `• ${b.name}: ${fmt(b.spent)} / ${fmt(b.limit_amount)}`).join('\n')}` : '✅ Koi category over budget nahi hai!'}
+
+**Action plan:**
+• Overspent categories mein is hafte ₹0 kharch
+• Remaining days ke hisaab se daily limit set karo
+• Cash use karo — control better hota hai`
+    );
+  }
+
+  // UPI
+  if (q.includes('upi')) {
+    const upiTx = txs.filter(t => (t.method||'').toLowerCase().includes('upi'));
+    const upiTotal = upiTx.reduce((s, t) => s + t.amount, 0);
+    return t(
+`📱 **UPI Analysis**
+
+**Transactions via UPI:** ${upiTx.length}
+**Total amount:** ${fmt(upiTotal)}
+**Average per transaction:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}
+
+${upiTx.length > 0 ? `**Recent UPI transactions:**
+${upiTx.slice(0, 5).map(t => `• ${t.merchant} — ${fmt(t.amount)}`).join('\n')}` : 'No UPI transactions yet.'}
+
+**UPI Hub page:**
+• Add your UPI ID
+• Upload QR code
+• Get ready to receive payments`,
+`📱 **UPI Analysis**
+
+**UPI Transactions:** ${upiTx.length}
+**Total via UPI:** ${fmt(upiTotal)}
+**Average per transaction:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}
+
+${upiTx.length > 0 ? `**Recent UPI transactions:**
+${upiTx.slice(0, 5).map(t => `• ${t.merchant} — ${fmt(t.amount)}`).join('\n')}` : 'Abhi koi UPI transaction nahi hai.'}
+
+**UPI Hub page pe:**
+• Apna UPI ID add karo
+• QR code upload karo
+• Receive payments ke liye ready ho jao`
+    );
+  }
+
+  // Card
+  if (q.includes('card') || q.includes('credit')) {
+    return t(
+`💳 **Card Management**
+
+**Your cards:** ${state.cards.length}
+
+${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}
+  Limit: ${fmt(c.limit_amount)}
+  Used: ${fmt(c.used)}
+  Available: ${fmt((c.limit_amount||0) - (c.used||0))}`).join('\n\n') : 'No cards added yet.'}
+
+**To add a card:**
+1. Go to **Accounts & Cards**
+2. Click **"+ Add Card"**
+3. Fill details — name, last 4, limit
+
+**Credit card tip:**
+• Keep utilization below 30%
+• Pay full balance to avoid interest
+• Track rewards`,
+`💳 **Card Management**
+
+**Aapke cards:** ${state.cards.length}
+
+${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}
+  Limit: ${fmt(c.limit_amount)}
+  Used: ${fmt(c.used)}
+  Available: ${fmt((c.limit_amount||0) - (c.used||0))}`).join('\n\n') : 'Abhi koi card nahi hai.'}
+
+**Card kaise add karo:**
+1. **Accounts & Cards** page kholo
+2. **"+ Add Card"** click karo
+3. Details bharo — naam, last 4, limit
+
+**Credit card tip:**
+• 30% se zyada utilization mat karo
+• Full payment karo — interest bachao`
+    );
+  }
+
+  // Bills
+  if (q.includes('bill') || q.includes('due')) {
+    const upcoming = state.bills.filter(b => b.status === 'upcoming');
+    const overdue = state.bills.filter(b => b.status === 'overdue');
+    return t(
+`🧾 **Bills Status**
+
+**Upcoming:** ${upcoming.length}
+**Overdue:** ${overdue.length}
+
+${overdue.length > 0 ? `⚠️ **Pay now:**
+${overdue.map(b => `• ${b.name}: ${fmt(b.amount)} — ${b.due_date}`).join('\n')}` : '✅ No overdue bills!'}
+
+${upcoming.length > 0 ? `**Coming up:**
+${upcoming.slice(0, 5).map(b => `• ${b.name}: ${fmt(b.amount)} — ${b.due_date}`).join('\n')}` : ''}`,
+`🧾 **Bills Status**
+
+**Upcoming:** ${upcoming.length}
+**Overdue:** ${overdue.length}
+
+${overdue.length > 0 ? `⚠️ **Turant pay karo:**
+${overdue.map(b => `• ${b.name}: ${fmt(b.amount)} — ${b.due_date}`).join('\n')}` : '✅ Koi overdue nahi hai!'}
+
+${upcoming.length > 0 ? `**Aane wale:**
+${upcoming.slice(0, 5).map(b => `• ${b.name}: ${fmt(b.amount)} — ${b.due_date}`).join('\n')}` : ''}`
+    );
+  }
+
+  // How to start
+  if (q.includes('kaise shuru') || q.includes('how to start') || q.includes('get started')) {
+    return t(
+`🚀 **How to Use Wealthy**
+
+**Week 1: Setup**
+1. Add your salary income
+2. Add rent / EMI / monthly bills
+3. Create emergency fund goal
+
+**Week 2: Track**
+1. Add every expense
+2. Choose right categories
+3. Update daily (1 min)
+
+**Week 3: Analyze**
+1. Open Analysis page
+2. Check top categories
+3. Set budgets
+
+**Week 4: Optimize**
+1. Cut overspending
+2. Improve savings rate
+3. Set monthly goal amounts
+
+**Pro tip:** Review every month on the 1st!`,
+`🚀 **Wealthy Kaise Use Kare**
+
+**Week 1: Setup**
+1. Salary income add karo
+2. Rent / EMI / monthly bills add karo
+3. Emergency fund goal banao
+
+**Week 2: Track**
+1. Har expense add karo
+2. Categories sahi choose karo
+3. Daily 1 min mein update
+
+**Week 3: Analyze**
+1. Analysis page kholo
+2. Top categories dekho
+3. Budgets set karo
+
+**Week 4: Optimize**
+1. Overspending cut karo
+2. Savings rate improve karo
+3. Goals ke liye monthly amount set karo`
+    );
+  }
+
+  // Default
+  return t(
+`I'm here to help with your money! 💰
+
+**You can ask me:**
+• "Budget plan" — get a 50-30-20 plan
+• "Monthly summary" — see your numbers
+• "Where to save" — find savings opportunities
+• "Emergency fund" — how much you need
+• "Top spending" — your biggest categories
+• "Savings rate" — how you're doing
+• "How to start" — setup guide
+
+Tap a suggestion below or type your question.`,
+`Main aapki help kar sakti hoon! 💰
+
+**Aap pooch sakte ho:**
+• "Budget plan banao" — 50-30-20 plan
+• "Monthly summary" — apne numbers dekho
+• "Kaha save karu?" — savings ka mauka
+• "Emergency fund" — kitna chahiye
+• "Top spending" — sabse zyada kharch
+• "Savings rate" — kaisa chal raha hai
+• "Kaise shuru karu?" — setup guide
+
+Neeche suggestions pe click karo ya apna sawaal likho.`
+  );
+}
+
+function pageReports() {
+  const s = state.summary;
+  const cats = {};
+  state.transactions.filter(t => t.type === 'expense').forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+  const topCat = Object.entries(cats).sort((a,b) => b[1] - a[1])[0];
+  return `
+    <section class="hero"><div class="hero-greeting">Financial Reports</div><h2>Reports</h2><p>Download detailed PDF and CSV reports.</p></section>
+    <div class="report-card">
+      <div class="section-header"><div><div class="section-title">Monthly Report</div><div class="section-subtitle">${new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</div></div>
+        <div class="export-btns">
+          <button class="export-btn" onclick="openExportModal()">${ICONS.download} Export</button>
+        </div>
+      </div>
+      <div class="report-row"><span class="label">Total Income</span><span class="value" style="color:var(--green)">+₹${fmtINR(s.income)}</span></div>
+      <div class="report-row"><span class="label">Total Expense</span><span class="value" style="color:var(--red)">−₹${fmtINR(s.expense)}</span></div>
+      <div class="report-row"><span class="label">Total Savings</span><span class="value">₹${fmtINR(s.savings)}</span></div>
+      <div class="report-row"><span class="label">Savings Rate</span><span class="value">${s.savingsRate.toFixed(1)}%</span></div>
+      <div class="report-row"><span class="label">Transactions</span><span class="value">${state.transactions.length}</span></div>
+      <div class="report-row"><span class="label">Top Category</span><span class="value">${topCat ? topCat[0] + ' (₹' + fmtINR(topCat[1]) + ')' : '—'}</span></div>
+      <div class="report-row total"><span class="label">Net Worth Change</span><span class="value">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</span></div>
+    </div>`;
+}
+function pageProfile() {
+  return `
+    <section class="hero"><div class="hero-greeting">Personal Info</div><h2>My Profile</h2><p>Manage your personal details and card information.</p></section>
+    <div class="settings-grid">
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.user}</span>Personal Details</h3>
+        <div class="form-group"><label>Full Name</label><input id="pName" value="${state.user?.name || ''}"/></div>
+        <div class="form-group"><label>Email</label><input id="pEmail" value="${state.user?.email || ''}" disabled/></div>
+      </div>
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.card}</span>Card Details</h3>
+        <div class="form-group"><label>Card Number</label><input id="pCardNumber" value="${state.user?.card_number || ''}" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Cardholder</label><input id="pCardHolder" value="${state.user?.card_holder || ''}" placeholder="NAME ON CARD"/></div>
+          <div class="form-group"><label>Expiry</label><input id="pCardExpiry" value="${state.user?.card_expiry || ''}" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/></div>
+        </div>
+        <p style="font-size:10px;color:var(--text-tertiary);margin-top:4px">Just type digits — slash adds automatically</p>
+      </div>
+    </div>
+    <div class="save-changes-bar">
+      <button class="btn-ghost" onclick="logout()" style="color:var(--red)">Logout</button>
+      <button class="btn-primary" id="saveProfileBtn" onclick="saveProfile()">${ICONS.check} Save Changes</button>
+    </div>`;
+}
+function formatCardNumber(el) { let v = el.value.replace(/\s/g, '').replace(/[^0-9]/g, '').slice(0, 16); el.value = v.replace(/(.{4})/g, '$1 ').trim(); }
+function formatExpiry(el) { let v = el.value.replace(/[^0-9]/g, '').slice(0, 4); if (v.length >= 3) el.value = v.slice(0, 2) + '/' + v.slice(2); else el.value = v; }
+async function saveProfile() {
+  const btn = document.getElementById('saveProfileBtn');
+  const name = document.getElementById('pName').value.trim();
+  const card_number = document.getElementById('pCardNumber').value.trim();
+  const card_holder = document.getElementById('pCardHolder').value.trim();
+  const card_expiry = document.getElementById('pCardExpiry').value.trim();
+  btn.disabled = true; btn.innerHTML = 'Saving...';
+  try { const res = await api('/auth/profile', { method: 'PUT', body: { name, card_number, card_holder, card_expiry } }); state.user = { ...state.user, ...res }; updateUserChip(); toast('Profile saved'); nav('profile'); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = ICONS.check + ' Save Changes'; }
+}
+function pageSettings() {
+  const c = state.settings.card_color || 'black'; const t = state.settings.theme || 'light';
+  return `
+    <section class="hero"><div class="hero-greeting">Preferences</div><h2>Settings</h2><p>Customize your Wealthy experience.</p></section>
+    <div class="settings-grid">
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.palette}</span>Appearance</h3>
+        <div class="form-group"><label>Theme</label><select id="setTheme"><option value="light" ${t === 'light' ? 'selected' : ''}>Light</option><option value="dark" ${t === 'dark' ? 'selected' : ''}>Dark</option></select></div>
+        <div class="form-group"><label>Card Color</label><div class="color-swatches" id="cardSwatches">${Object.keys(CARD_COLORS).map(color => `<button class="color-swatch ${c === color ? 'active' : ''}" data-color="${color}" onclick="previewCardColor('${color}')" style="background:${CARD_COLORS[color].bg}"></button>`).join('')}</div></div>
+      </div>
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.user}</span>Currency</h3>
+        <div class="form-group"><label>Default Currency</label><select id="setCurrency"><option value="INR" ${state.settings.currency === 'INR' ? 'selected' : ''}>₹ Indian Rupee (INR)</option><option value="USD">$ US Dollar (USD)</option><option value="EUR">€ Euro (EUR)</option><option value="GBP">£ British Pound (GBP)</option><option value="AED">د.إ UAE Dirham (AED)</option></select></div>
+      </div>
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.bell}</span>Notifications</h3>
+        <div class="switch-row"><label>Bill Reminders</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="switch-row"><label>Budget Alerts</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="switch-row"><label>Weekly Summary</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <div class="settings-card"><h3><span class="icon-wrap">${ICONS.lock}</span>Security</h3>
+        <div class="report-row"><span class="label">2FA</span><span class="value" style="color:var(--green)">Enabled</span></div>
+        <div class="report-row"><span class="label">Encryption</span><span class="value" style="color:var(--green)">AES-256</span></div>
+      </div>
+    </div>
+    <div class="save-changes-bar">
+      <button class="btn-ghost" onclick="nav('settings')">Cancel</button>
+      <button class="btn-primary" id="saveSettingsBtn" onclick="saveSettings()">${ICONS.check} Save Changes</button>
+    </div>`;
+}
+function pageHelp() {
+  return `
+    <section class="hero"><div class="hero-greeting">Support Center</div><h2>Help & Support</h2><p>We're here to help you 24/7.</p></section>
+    <div class="insights-grid">
+      <div class="insight"><div class="insight-icon">${ICONS.help}</div><div class="insight-content"><h5>Getting Started</h5><p>Add transactions to unlock live insights.</p></div></div>
+      <div class="insight"><div class="insight-icon blue">${ICONS.shield}</div><div class="insight-content"><h5>Security</h5><p>Bank-grade encryption, no PIN/CVV stored.</p></div></div>
+      <div class="insight"><div class="insight-icon purple">${ICONS.upi}</div><div class="insight-content"><h5>UPI Hub</h5><p>Add UPI ID and QR code for payments.</p></div></div>
+      <div class="insight"><div class="insight-icon yellow">${ICONS.download}</div><div class="insight-content"><h5>Reports</h5><p>Download PDF, CSV, JSON reports.</p></div></div>
+    </div>
+    <div class="chart-card" style="margin-top:16px">
+      <div class="section-title" style="margin-bottom:12px">Contact Support</div>
+      <div class="report-row"><span class="label">Email</span><span class="value">support@wealthy.in</span></div>
+      <div class="report-row"><span class="label">Owner</span><span class="value">SANJEEV SHEKHAR</span></div>
+      <div class="report-row"><span class="label">Parent</span><span class="value">D2C Ventures</span></div>
+      <div class="report-row"><span class="label">Status</span><span class="value" style="color:var(--green)">● Online</span></div>
+    </div>`;
+}
+
+/* MODALS */
+function openModal(type = 'expense') {
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Add Transaction</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="modal-toggle"><button class="${type === 'expense' ? 'active' : ''}" data-type="expense">Money Out</button><button class="${type === 'income' ? 'active' : ''}" data-type="income">Money In</button></div>
+    <div class="amount-input"><span class="currency">₹</span><input type="text" placeholder="0" id="txAmount" inputmode="decimal"/></div>
+    <div class="form-group"><label>Merchant</label><input id="txMerchant" placeholder="e.g. Swiggy"/></div>
+    <div class="form-group"><label>Category</label><select id="txCategory"><option>Food & Dining</option><option>Shopping</option><option>Transport</option><option>Utilities</option><option>Entertainment</option><option>Health</option><option>Salary</option><option>Other</option></select></div>
+    <div class="form-group"><label>Payment Method</label><select id="txMethod"><option>UPI · Google Pay</option><option>UPI · PhonePe</option><option>Credit Card</option><option>Debit Card</option><option>Bank Transfer</option><option>Cash</option></select></div>
+    <div class="form-row"><div class="form-group"><label>Date</label><input type="date" id="txDate"/></div><div class="form-group"><label>Notes</label><input id="txNotes" placeholder="Optional"/></div></div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveTxBtn" onclick="saveTransaction()">Save Transaction</button>`;
+  document.querySelectorAll('.modal-toggle button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.modal-toggle button').forEach(x => x.classList.remove('active')); b.classList.add('active'); }));
+  document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('txAmount')?.focus(), 100);
+}
+function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+async function saveTransaction() {
+  const btn = document.getElementById('saveTxBtn');
+  const type = document.querySelector('.modal-toggle button.active')?.dataset.type || 'expense';
+  const amount = parseFloat(document.getElementById('txAmount').value);
+  const merchant = document.getElementById('txMerchant').value.trim() || 'Untitled';
+  const category = document.getElementById('txCategory').value;
+  const method = document.getElementById('txMethod').value;
+  const date = document.getElementById('txDate').value;
+  const notes = document.getElementById('txNotes').value;
+  if (!amount || amount <= 0) return toast('Enter valid amount', 'error');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try { await api('/transactions', { method: 'POST', body: { merchant, category, method, amount, type, date, notes } }); toast('Transaction added'); closeModal(); await loadData(); nav(state.currentPage); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Save Transaction'; }
+}
+async function editTx(id) {
+  const t = state.transactions.find(x => x.id === id); if (!t) return;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Edit Transaction</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="modal-toggle"><button class="${t.type === 'expense' ? 'active' : ''}" data-type="expense">Money Out</button><button class="${t.type === 'income' ? 'active' : ''}" data-type="income">Money In</button></div>
+    <div class="amount-input"><span class="currency">₹</span><input type="text" value="${t.amount}" id="txAmount" inputmode="decimal"/></div>
+    <div class="form-group"><label>Merchant</label><input id="txMerchant" value="${t.merchant || ''}"/></div>
+    <div class="form-group"><label>Category</label><input id="txCategory" value="${t.category || ''}"/></div>
+    <div class="form-group"><label>Method</label><input id="txMethod" value="${t.method || ''}"/></div>
+    <div class="form-row"><div class="form-group"><label>Date</label><input type="date" id="txDate" value="${t.date || ''}"/></div><div class="form-group"><label>Notes</label><input id="txNotes" value="${t.notes || ''}"/></div></div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveTxBtn" onclick="updateTx(${id})">Update</button>`;
+  document.querySelectorAll('.modal-toggle button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.modal-toggle button').forEach(x => x.classList.remove('active')); b.classList.add('active'); }));
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+async function updateTx(id) {
+  const btn = document.getElementById('saveTxBtn');
+  const type = document.querySelector('.modal-toggle button.active')?.dataset.type || 'expense';
+  const amount = parseFloat(document.getElementById('txAmount').value);
+  const merchant = document.getElementById('txMerchant').value.trim();
+  const category = document.getElementById('txCategory').value;
+  const method = document.getElementById('txMethod').value;
+  const date = document.getElementById('txDate').value;
+  const notes = document.getElementById('txNotes').value;
+  if (!amount || amount <= 0) return toast('Enter valid amount', 'error');
+  btn.disabled = true; btn.textContent = 'Updating...';
+  try { await api('/transactions/' + id, { method: 'PUT', body: { merchant, category, method, amount, type, date, notes } }); toast('Updated'); closeModal(); await loadData(); nav(state.currentPage); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Update'; }
+}
+async function deleteTx(id) {
+  if (!confirm('Delete this transaction?')) return;
+  try { await api('/transactions/' + id, { method: 'DELETE' }); toast('Deleted'); await loadData(); nav(state.currentPage); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openCardModal(id) {
+  const c = id ? state.cards.find(x => x.id === id) : {};
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>${id ? 'Edit' : 'Add'} Card</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="form-group"><label>Card Name</label><input id="cName" value="${c.name || ''}" placeholder="e.g. HDFC Regalia"/></div>
+    <div class="form-group"><label>Last 4 Digits</label><input id="cLast4" value="${c.last4 || ''}" maxlength="4" placeholder="1234"/></div>
+    <div class="form-row"><div class="form-group"><label>Holder</label><input id="cHolder" value="${c.holder || ''}" placeholder="NAME"/></div><div class="form-group"><label>Expiry</label><input id="cExpiry" value="${c.expiry || ''}" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/></div></div>
+    <div class="form-row"><div class="form-group"><label>Credit Limit</label><input id="cLimit" type="number" value="${c.limit_amount || ''}" placeholder="100000"/></div><div class="form-group"><label>Used</label><input id="cUsed" type="number" value="${c.used || 0}"/></div></div>
+    <div class="form-group"><label>Card Color</label><div class="color-swatches" id="cardColorPick">${Object.keys(CARD_COLORS).map(color => `<button class="color-swatch ${(c.color || 'black') === color ? 'active' : ''}" data-color="${color}" onclick="pickCardColor('${color}')" style="background:${CARD_COLORS[color].bg}"></button>`).join('')}</div></div>
+    <input type="hidden" id="cColor" value="${c.color || 'black'}"/>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveCardBtn" onclick="saveCard(${id || 0})">${id ? 'Update' : 'Add'} Card</button>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+function pickCardColor(color) { document.querySelectorAll('#cardColorPick .color-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color)); document.getElementById('cColor').value = color; }
+async function saveCard(id) {
+  const btn = document.getElementById('saveCardBtn');
+  const body = { name: document.getElementById('cName').value.trim(), last4: document.getElementById('cLast4').value.trim(), holder: document.getElementById('cHolder').value.trim(), expiry: document.getElementById('cExpiry').value.trim(), limit_amount: parseFloat(document.getElementById('cLimit').value) || 0, used: parseFloat(document.getElementById('cUsed').value) || 0, color: document.getElementById('cColor').value };
+  if (!body.name) return toast('Card name required', 'error');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try { if (id) await api('/cards/' + id, { method: 'PUT', body }); else await api('/cards', { method: 'POST', body }); toast('Card saved'); closeModal(); await loadData(); nav(state.currentPage); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = id ? 'Update' : 'Add Card'; }
+}
+async function deleteCard(id) {
+  if (!confirm('Delete this card?')) return;
+  try { await api('/cards/' + id, { method: 'DELETE' }); toast('Deleted'); await loadData(); nav('accounts'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openGoalModal(id) {
+  const g = id ? state.goals.find(x => x.id === id) : {};
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>${id ? 'Edit' : 'Add'} Savings Goal</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="form-group"><label>Goal Name</label><input id="gName" value="${g.name || ''}" placeholder="e.g. Laptop Fund"/></div>
+    <div class="form-row"><div class="form-group"><label>Saved So Far</label><input id="gSaved" type="number" value="${g.saved || ''}" placeholder="0"/></div><div class="form-group"><label>Target Amount</label><input id="gTarget" type="number" value="${g.target || ''}" placeholder="100000"/></div></div>
+    <div class="form-group"><label>Color</label><div class="color-swatches" id="goalColorPick">${['green','blue','purple','yellow'].map(color => `<button class="color-swatch ${(g.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickGoalColor('${color}')" style="background:${color === 'green' ? '#0F7A4D' : color === 'blue' ? '#2563EB' : color === 'purple' ? '#7C3AED' : '#EAB308'}"></button>`).join('')}</div></div>
+    <input type="hidden" id="gColor" value="${g.color || 'green'}"/>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveGoalBtn" onclick="saveGoal(${id || 0})">${id ? 'Update' : 'Add'} Goal</button>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+function pickGoalColor(color) { document.querySelectorAll('#goalColorPick .color-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color)); document.getElementById('gColor').value = color; }
+async function saveGoal(id) {
+  const btn = document.getElementById('saveGoalBtn');
+  const body = { name: document.getElementById('gName').value.trim(), saved: parseFloat(document.getElementById('gSaved').value) || 0, target: parseFloat(document.getElementById('gTarget').value) || 0, color: document.getElementById('gColor').value };
+  if (!body.name || !body.target) return toast('Name and target required', 'error');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try { if (id) await api('/goals/' + id, { method: 'PUT', body }); else await api('/goals', { method: 'POST', body }); toast('Goal saved'); closeModal(); await loadData(); nav('savings'); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = id ? 'Update' : 'Add Goal'; }
+}
+async function deleteGoal(id) {
+  if (!confirm('Delete this goal?')) return;
+  try { await api('/goals/' + id, { method: 'DELETE' }); toast('Deleted'); await loadData(); nav('savings'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openBillModal(id) {
+  const b = id ? state.bills.find(x => x.id === id) : {};
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>${id ? 'Edit' : 'Add'} Bill</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="form-group"><label>Bill Name</label><input id="bName" value="${b.name || ''}" placeholder="e.g. Electricity"/></div>
+    <div class="form-row"><div class="form-group"><label>Amount</label><input id="bAmount" type="number" value="${b.amount || ''}" placeholder="1000"/></div><div class="form-group"><label>Due Date</label><input id="bDue" type="date" value="${b.due_date || ''}"/></div></div>
+    <div class="form-group"><label>Status</label><select id="bStatus"><option value="upcoming" ${b.status === 'upcoming' ? 'selected' : ''}>Upcoming</option><option value="overdue" ${b.status === 'overdue' ? 'selected' : ''}>Overdue</option><option value="paid" ${b.status === 'paid' ? 'selected' : ''}>Paid</option></select></div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveBillBtn" onclick="saveBill(${id || 0})">${id ? 'Update' : 'Add'} Bill</button>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+async function saveBill(id) {
+  const btn = document.getElementById('saveBillBtn');
+  const body = { name: document.getElementById('bName').value.trim(), amount: parseFloat(document.getElementById('bAmount').value) || 0, due_date: document.getElementById('bDue').value, status: document.getElementById('bStatus').value, icon: 'bill' };
+  if (!body.name || !body.amount) return toast('Name and amount required', 'error');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try { if (id) await api('/bills/' + id, { method: 'PUT', body }); else await api('/bills', { method: 'POST', body }); toast('Bill saved'); closeModal(); await loadData(); nav('bills'); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = id ? 'Update' : 'Add Bill'; }
+}
+async function deleteBill(id) {
+  if (!confirm('Delete this bill?')) return;
+  try { await api('/bills/' + id, { method: 'DELETE' }); toast('Deleted'); await loadData(); nav('bills'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openBudgetModal(id) {
+  const b = id ? state.budgets.find(x => x.id === id) : {};
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>${id ? 'Edit' : 'Add'} Budget</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="form-group"><label>Category Name</label><input id="buName" value="${b.name || ''}" placeholder="e.g. Food & Dining"/></div>
+    <div class="form-row"><div class="form-group"><label>Spent</label><input id="buSpent" type="number" value="${b.spent || 0}"/></div><div class="form-group"><label>Limit</label><input id="buLimit" type="number" value="${b.limit_amount || ''}" placeholder="10000"/></div></div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveBudgetBtn" onclick="saveBudget(${id || 0})">${id ? 'Update' : 'Add'} Budget</button>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+async function saveBudget(id) {
+  const btn = document.getElementById('saveBudgetBtn');
+  const body = { name: document.getElementById('buName').value.trim(), spent: parseFloat(document.getElementById('buSpent').value) || 0, limit_amount: parseFloat(document.getElementById('buLimit').value) || 0 };
+  if (!body.name || !body.limit_amount) return toast('Name and limit required', 'error');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try { if (id) await api('/budgets/' + id, { method: 'PUT', body }); else await api('/budgets', { method: 'POST', body }); toast('Budget saved'); closeModal(); await loadData(); nav('budgets'); }
+  catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = id ? 'Update' : 'Add Budget'; }
+}
+async function deleteBudget(id) {
+  if (!confirm('Delete this budget?')) return;
+  try { await api('/budgets/' + id, { method: 'DELETE' }); toast('Deleted'); await loadData(); nav('budgets'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openUPIIdModal() {
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Your UPI ID</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <div class="form-group"><label>UPI ID</label><input id="upiIdInput" value="${state.settings.upi_id || ''}" placeholder="yourname@okhdfcbank"/></div>
+    <p style="font-size:11px;color:var(--text-secondary);margin-bottom:12px">Example: name@okhdfcbank, name@ybl, name@paytm</p>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="saveUPIId()">${ICONS.check} Save UPI ID</button>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+async function saveUPIId() {
+  const upi_id = document.getElementById('upiIdInput').value.trim();
+  try { await api('/settings', { method: 'PUT', body: { upi_id } }); state.settings.upi_id = upi_id; toast('UPI ID saved'); closeModal(); nav('upi'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function openQRModal() {
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Upload UPI QR</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload a screenshot of your UPI QR code.</p>
+    <label for="qrFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:12px;cursor:pointer;margin-bottom:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;color:var(--green)">${ICONS.upload}</div>
+      <div style="font-size:13px;font-weight:600">Tap to select QR image</div>
+      <div style="font-size:11px;color:var(--text-tertiary)">PNG, JPG up to 5MB</div>
+      <input type="file" id="qrFile" accept="image/*" style="display:none" onchange="handleQRUpload(event)"/>
+    </label>
+    <div id="qrPreview" style="text-align:center;margin-bottom:12px"></div>`;
+  document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden';
+}
+function handleQRUpload(e) {
+  const file = e.target.files[0]; if (!file) return;
+  if (file.size > 5 * 1024 * 1024) return toast('File too large (max 5MB)', 'error');
+  const reader = new FileReader();
+  reader.onload = (ev) => { const dataUrl = ev.target.result; window._qrDataUrl = dataUrl; document.getElementById('qrPreview').innerHTML = `<div class="qr-display"><img src="${dataUrl}"/></div><button class="btn-primary" style="margin-top:12px;justify-content:center;width:100%" onclick="saveQR()">${ICONS.check} Save QR Code</button>`; };
+  reader.readAsDataURL(file);
+}
+async function saveQR() {
+  const dataUrl = window._qrDataUrl; if (!dataUrl) return;
+  try { await api('/settings', { method: 'PUT', body: { qr_code: dataUrl } }); state.settings.qr_code = dataUrl; toast('QR saved'); closeModal(); nav('upi'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+async function removeQR() {
+  if (!confirm('Remove QR code?')) return;
+  try { await api('/settings', { method: 'PUT', body: { qr_code: '' } }); state.settings.qr_code = ''; toast('Removed'); nav('upi'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+function downloadQR() {
+  const qr = state.settings.qr_code; if (!qr) return;
+  const a = document.createElement('a'); a.href = qr; a.download = 'wealthy-upi-qr.png'; a.click();
+  toast('QR downloaded');
+}
+async function previewCardColor(color) {
+  document.querySelectorAll('#cardSwatches .color-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color));
+  applyCardColor(color); state.settings.card_color = color;
+}
+async function saveSettings() {
+  const btn = document.getElementById('saveSettingsBtn');
+  const theme = document.getElementById('setTheme').value;
+  const currency = document.getElementById('setCurrency').value;
+  const card_color = state.settings.card_color;
+  btn.disabled = true; btn.innerHTML = 'Saving...';
+  try {
+    await api('/settings', { method: 'PUT', body: { theme, card_color, currency } });
+    state.settings = { ...state.settings, theme, card_color, currency };
+    if (theme === 'dark' || theme === 'light') { document.body.setAttribute('data-theme', theme); document.querySelectorAll('.theme-toggle button').forEach(b => b.classList.toggle('active', b.dataset.themeBtn === theme)); }
+    toast('Settings saved');
+  } catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = ICONS.check + ' Save Changes'; }
+}
+
+/* EXPORT MODAL */
+function openExportModal() {
+  const totalCount = state.transactions.length;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Export Transactions</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Download your ${totalCount} transaction${totalCount !== 1 ? 's' : ''} in your preferred format.</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="export-option" onclick="downloadExport('csv')">
+        <div class="export-icon" style="background:var(--green-soft);color:var(--green)">${ICONS.file}</div>
+        <div class="export-info"><h5>CSV File</h5><p>Best for Excel, Google Sheets, Tally</p></div>
+        ${ICONS.arrowRight}
+      </button>
+      <button class="export-option" onclick="downloadExport('json')">
+        <div class="export-icon" style="background:var(--blue-soft);color:var(--blue)">${ICONS.code}</div>
+        <div class="export-info"><h5>JSON File</h5><p>Developer backup, easy to re-import</p></div>
+        ${ICONS.arrowRight}
+      </button>
+      <button class="export-option" onclick="downloadExport('pdf')">
+        <div class="export-icon" style="background:var(--purple-soft);color:var(--purple)">${ICONS.reports}</div>
+        <div class="export-info"><h5>PDF Report</h5><p>Printable monthly statement</p></div>
+        ${ICONS.arrowRight}
+      </button>
+    </div>`;
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+async function downloadExport(format) {
+  toast('Preparing download...', 'success');
+  try {
+    if (format === 'pdf') { closeModal(); downloadReportPDF(); return; }
+    const url = format === 'csv' ? '/api/export/csv' : '/api/export/json';
+    const res = await fetch(url, { credentials: 'include' });
+    if (!res.ok) throw new Error('Export failed');
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `wealthy-transactions-${new Date().toISOString().split('T')[0]}.${format}`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast(`${format.toUpperCase()} downloaded!`, 'success');
+    closeModal();
+  } catch (err) { toast(err.message, 'error'); }
+}
+function downloadReportPDF() {
+  const s = state.summary;
+  const user = state.user?.name || 'User';
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wealthy Report</title><style>@page{margin:20mm 15mm}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',sans-serif;color:#111;line-height:1.5}.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:3px solid #0F7A4D;margin-bottom:32px}.logo{display:flex;align-items:center;gap:12px}.logo-box{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#1A1A1A,#0A0A0A);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:26px;font-weight:800}.logo-text h1{font-size:24px;font-weight:800}.logo-text p{font-size:12px;color:#666;margin-top:2px}.meta{text-align:right;font-size:11px;color:#666}.meta strong{color:#111;display:block;font-size:13px;margin-bottom:4px}h2{font-size:16px;font-weight:700;margin:32px 0 16px;padding-left:12px;border-left:4px solid #0F7A4D}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.summary-card{padding:18px;border-radius:12px;background:#F8F9FB;border:1px solid #E8E8E8}.summary-card .label{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;margin-bottom:6px}.summary-card .value{font-size:22px;font-weight:800}.summary-card.green{background:linear-gradient(135deg,#E8F5EE,#F5FBF7)}.summary-card.green .value{color:#0F7A4D}.summary-card.red{background:linear-gradient(135deg,#FEE9E9,#FEF5F5)}.summary-card.red .value{color:#B91C1C}.summary-card.blue{background:linear-gradient(135deg,#E8EFFE,#F5F8FE)}.summary-card.blue .value{color:#1E40AF}.summary-card.purple{background:linear-gradient(135deg,#F3EBFE,#F9F5FE)}.summary-card.purple .value{color:#5B21B6}table{width:100%;border-collapse:collapse;margin-bottom:8px}thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#666;background:#F8F9FB;border-bottom:2px solid #E8E8E8}thead th:last-child,thead th:nth-child(2){text-align:right}.footer{margin-top:40px;padding-top:24px;border-top:2px solid #E8E8E8;text-align:center;font-size:10px;color:#888;line-height:1.8}.footer strong{color:#0F7A4D;font-weight:700}.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}.badge-income{background:#E8F5EE;color:#0F7A4D}.badge-expense{background:#FEE9E9;color:#B91C1C}</style></head><body><div class="header"><div class="logo"><div class="logo-box">W</div><div class="logo-text"><h1>WEALTHY</h1><p>Track. Understand. Save.</p></div></div><div class="meta"><strong>Financial Report</strong>${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}<br/>Account: ${user}</div></div><h2>Executive Summary</h2><div class="summary-grid"><div class="summary-card green"><div class="label">Total Income</div><div class="value">+₹${fmtINR(s.income)}</div></div><div class="summary-card red"><div class="label">Total Expense</div><div class="value">−₹${fmtINR(s.expense)}</div></div><div class="summary-card blue"><div class="label">Total Savings</div><div class="value">₹${fmtINR(s.savings)}</div></div><div class="summary-card purple"><div class="label">Savings Rate</div><div class="value">${s.savingsRate.toFixed(1)}%</div></div></div><h2>Transaction Ledger (${state.transactions.length})</h2><table><thead><tr><th>Date & Merchant</th><th>Type</th><th>Amount</th></tr></thead><tbody>${state.transactions.slice(0, 100).map(t => `<tr><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0"><div style="font-weight:600">${t.merchant}</div><div style="font-size:10px;color:#888;margin-top:2px">${t.date} · ${t.category} · ${t.method}</div></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right"><span class="badge ${t.type === 'income' ? 'badge-income' : 'badge-expense'}">${t.type === 'income' ? 'INCOME' : 'EXPENSE'}</span></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right;font-weight:700;color:${t.type === 'income' ? '#0F7A4D' : '#B91C1C'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</td></tr>`).join('')}</tbody></table><div class="footer"><div><strong>WEALTHY</strong> · Track. Understand. Save.</div><div>Owner: <strong>SANJEEV SHEKHAR</strong> · Email: sanjeev@wealthy.in · Parent: D2C Ventures</div><div>© 2026 Wealthy Financial Services Pvt. Ltd. · Made in India 🇮🇳</div></div></body></html>`;
+  const win = window.open('', '_blank');
+  win.document.write(html); win.document.close();
+  setTimeout(() => win.print(), 500);
+  toast('Report ready');
+}
+
+/* CSV IMPORT */
+function openImportModal() {
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header"><h3>Import Transactions</h3><button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button></div>
+    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Upload a CSV file with columns: Date, Amount, Description (optional: Type, Category)</p>
+    <label for="csvFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:12px;cursor:pointer;margin-bottom:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;color:var(--green)">${ICONS.upload}</div>
+      <div style="font-size:13px;font-weight:600">Tap to select CSV file</div>
+      <div style="font-size:11px;color:var(--text-tertiary)">CSV up to 5MB</div>
+      <input type="file" id="csvFile" accept=".csv,text/csv" style="display:none" onchange="handleCSVUpload(event)"/>
+    </label>
+    <div id="csvPreview"></div>`;
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function parseCSVLine(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (inQ && line[i+1] === '"') { cur += '"'; i++; } else inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else cur += c;
+  }
+  result.push(cur.trim());
+  return result;
+}
+function handleCSVUpload(e) {
+  const file = e.target.files[0]; if (!file) return;
+  if (file.size > 5 * 1024 * 1024) return toast('File too large (max 5MB)', 'error');
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const text = ev.target.result;
+    const lines = text.split(/\r?\n/).filter(l => l.trim());
+    if (lines.length < 2) return toast('CSV is empty or has no data rows', 'error');
+    const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase().replace(/[^a-z]/g, ''));
+    const findCol = (names) => headers.findIndex(h => names.includes(h));
+    const dateCol = findCol(['date','transactiondate','valuedate','txndate']);
+    const amountCol = findCol(['amount','amt','value','transactionamount']);
+    const descCol = findCol(['description','narration','merchant','particulars','details']);
+    const typeCol = findCol(['type','transactiontype','txntype']);
+    const categoryCol = findCol(['category','cat']);
+    if (dateCol === -1 || amountCol === -1) {
+      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--red-soft);border-radius:10px;font-size:12px;color:var(--red);text-align:center">Could not detect Date or Amount column. Please check your CSV format.</div>`;
+      return;
+    }
+    const rows = [];
+    for (let i = 1; i < Math.min(lines.length, 500); i++) {
+      const cells = parseCSVLine(lines[i]);
+      const amount = parseFloat((cells[amountCol] || '0').replace(/[^0-9.-]/g, ''));
+      if (!amount) continue;
+      let dateStr = cells[dateCol] || '';
+      // Try to parse date
+      let d = new Date(dateStr);
+      if (isNaN(d.getTime())) {
+        // Try DD/MM/YYYY
+        const m = dateStr.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+        if (m) d = new Date(`${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`);
+      }
+      if (isNaN(d.getTime())) continue;
+      const isoDate = d.toISOString().split('T')[0];
+      const type = typeCol >= 0 ? (cells[typeCol] || '').toLowerCase() : (amount >= 0 ? 'expense' : 'income');
+      rows.push({
+        date: isoDate,
+        amount: Math.abs(amount),
+        merchant: descCol >= 0 ? (cells[descCol] || 'Imported').slice(0, 60) : 'Imported',
+        category: categoryCol >= 0 ? (cells[categoryCol] || 'Other') : 'Other',
+        method: 'Bank Transfer',
+        type: type.includes('credit') || type.includes('income') ? 'income' : 'expense'
+      });
+    }
+    if (!rows.length) {
+      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--red-soft);border-radius:10px;font-size:12px;color:var(--red);text-align:center">No valid rows found in the CSV.</div>`;
+      return;
+    }
+    window._importRows = rows;
+    document.getElementById('csvPreview').innerHTML = `
+      <div style="padding:12px;background:var(--green-soft);border-radius:10px;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--green)">✓ Detected ${rows.length} transactions</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Preview of first 3 rows:</div>
+      </div>
+      <div style="max-height:240px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;margin-bottom:12px">
+        <table style="width:100%;font-size:11px;border-collapse:collapse">
+          <thead><tr style="background:var(--bg);position:sticky;top:0"><th style="padding:8px;text-align:left">Date</th><th style="padding:8px;text-align:left">Merchant</th><th style="padding:8px;text-align:right">Amount</th></tr></thead>
+          <tbody>
+            ${rows.slice(0, 3).map(r => `<tr><td style="padding:8px;border-top:1px solid var(--border-soft)">${r.date}</td><td style="padding:8px;border-top:1px solid var(--border-soft)">${r.merchant}</td><td style="padding:8px;text-align:right;border-top:1px solid var(--border-soft);color:${r.type === 'income' ? 'var(--green)' : 'var(--red)'};font-weight:700">${r.type === 'income' ? '+' : '−'}₹${fmtINR(r.amount)}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center" onclick="confirmImport()">${ICONS.check} Import ${rows.length} Transactions</button>`;
+  };
+  reader.readAsText(file);
+}
+async function confirmImport() {
+  const rows = window._importRows; if (!rows) return;
+  try {
+    const res = await api('/transactions/import', { method: 'POST', body: { transactions: rows } });
+    toast(`${res.inserted} transactions imported!`); closeModal(); await loadData(); nav('transactions');
+  } catch (err) { toast(err.message, 'error'); }
+}
+
+/* NOTIFICATIONS */
+function toggleNotif() {
+  const p = document.getElementById('notifPanel');
+  p.classList.toggle('active');
+  if (p.classList.contains('active')) loadNotifications();
+}
+function timeAgo(dt) {
+  const s = Math.floor((Date.now() - new Date(dt).getTime()) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+function loadNotifications() {
+  const list = document.getElementById('notifList');
+  if (!state.notifications.length) { list.innerHTML = '<div class="notif-empty">No notifications yet</div>'; return; }
+  list.innerHTML = state.notifications.map(n => `<div class="notif-item ${n.is_read ? '' : 'unread'}"><div class="n-icon">${ICONS.info}</div><div class="n-body"><h5>${n.title}</h5><p>${n.message}</p><div class="n-time">${timeAgo(n.created_at)}</div></div></div>`).join('');
+  updateNotifBadge();
+}
+function updateNotifBadge() {
+  const unread = state.notifications.filter(n => !n.is_read).length;
+  const badge = document.getElementById('notifBadge');
+  if (unread > 0) { badge.style.display = 'grid'; badge.textContent = unread > 9 ? '9+' : unread; }
+  else badge.style.display = 'none';
+}
+async function markAllRead() {
+  try { await api('/notifications/read-all', { method: 'PUT' }); state.notifications.forEach(n => n.is_read = 1); loadNotifications(); toast('All read'); }
+  catch (err) { toast(err.message, 'error'); }
+}
+
+/* ROUTER */
+const PAGES = {
+  overview: { title: 'Overview', render: pageOverview },
+  transactions: { title: 'Transactions', render: pageTransactions },
+  analysis: { title: 'Analysis', render: pageAnalysis },
+  calendar: { title: 'Money Calendar', render: pageCalendar },
+  accounts: { title: 'Accounts & Cards', render: pageAccounts },
+  upi: { title: 'UPI Hub', render: pageUPI },
+  cashflow: { title: 'Cash Flow', render: pageCashFlow },
+  bills: { title: 'Bills', render: pageBills },
+  budgets: { title: 'Budgets', render: pageBudgets },
+  savings: { title: 'Savings Goals', render: pageSavings },
+  ai: { title: 'AI Assistant', render: pageAI },
+  reports: { title: 'Reports', render: pageReports },
+  profile: { title: 'My Profile', render: pageProfile },
+  settings: { title: 'Settings', render: pageSettings },
+  help: { title: 'Help & Support', render: pageHelp }
+};
+function nav(page) {
+  if (!PAGES[page]) page = 'overview';
+  state.currentPage = page;
+  const container = document.getElementById('pageContainer');
+  container.innerHTML = `<div class="page active">${PAGES[page].render()}</div>`;
+  document.getElementById('pageName').textContent = PAGES[page].title;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page === page));
+  closeSidebar(); attachCardDrag();
+  if (page === 'ai') setTimeout(renderChat, 50);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function attachCardDrag() {
+  const card = document.getElementById('card360');
+  if (!card || card.dataset.bound) return;
+  card.dataset.bound = '1';
+  let dragging = false, sx = 0, sy = 0, ry = -25, rx = 8;
+  const down = (x, y) => { dragging = true; sx = x; sy = y; card.style.transition = 'none'; card.style.animation = 'none'; };
+  const move = (x, y) => { if (!dragging) return; ry += (x - sx) * 0.6; rx = Math.max(-25, Math.min(25, rx - (y - sy) * 0.4)); card.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg)`; sx = x; sy = y; };
+  const up = () => { dragging = false; card.style.transition = ''; };
+  card.addEventListener('mousedown', e => down(e.clientX, e.clientY));
+  window.addEventListener('mousemove', e => move(e.clientX, e.clientY));
+  window.addEventListener('mouseup', up);
+  card.addEventListener('touchstart', e => down(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+  window.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+  window.addEventListener('touchend', up);
+}
+document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('click', () => nav(btn.dataset.page)));
+document.addEventListener('click', e => {
+  const panel = document.getElementById('notifPanel');
+  const btn = document.getElementById('notifBtn');
+  if (panel && panel.classList.contains('active') && !panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('active');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('globalSearch')?.focus(); }
+});
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+async function loadData() {
+  try {
+    const [summary, transactions, bills, budgets, goals, cards, settings, notifications] = await Promise.all([
+      api('/summary'), api('/transactions'), api('/bills'), api('/budgets'), api('/goals'), api('/cards'), api('/settings'), api('/notifications')
+    ]);
+    state.summary = summary; state.transactions = transactions; state.bills = bills;
+    state.budgets = budgets; state.goals = goals; state.cards = cards; state.settings = settings;
+    state.notifications = notifications;
+    applyCardColor(settings.card_color || 'black'); updateNotifBadge();
+  } catch (e) { console.error(e); }
+}
+async function boot() {
+  try {
+    const { user } = await api('/auth/me');
+    state.user = user; await loadData();
+    const theme = state.settings.theme || 'light';
+    if (theme === 'dark' || theme === 'light') { document.body.setAttribute('data-theme', theme); document.querySelectorAll('.theme-toggle button').forEach(b => b.classList.toggle('active', b.dataset.themeBtn === theme)); }
+    updateUserChip();
+    document.getElementById('authScreen').classList.remove('active');
+    document.getElementById('appScreen').classList.remove('hidden');
+    nav('overview');
+  } catch (err) {
+    document.getElementById('authScreen').classList.add('active');
+    document.getElementById('appScreen').classList.add('hidden');
+  }
+}
+document.querySelectorAll('.nav-icon').forEach(el => { const k = el.dataset.icon; if (ICONS[k]) el.innerHTML = ICONS[k]; });
+boot();
+
+/* PWA Service Worker */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

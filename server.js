@@ -17,6 +17,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS budgets (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, name TEXT, spent REAL DEFAULT 0, limit_amount REAL);
   CREATE TABLE IF NOT EXISTS goals (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, name TEXT, saved REAL DEFAULT 0, target REAL, color TEXT DEFAULT 'green');
   CREATE TABLE IF NOT EXISTS cards (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, name TEXT, last4 TEXT, color TEXT, holder TEXT, expiry TEXT, limit_amount REAL, used REAL DEFAULT 0);
+  CREATE TABLE IF NOT EXISTS notifications (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, title TEXT, message TEXT, type TEXT DEFAULT 'info', is_read INTEGER DEFAULT 0, created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
 `);
 
 app.use(express.json({ limit: '10mb' }));
@@ -30,7 +31,7 @@ function auth(req, res, next) {
   catch { res.status(401).json({ error: 'Invalid token' }); }
 }
 
-/* AUTH */
+/* ============ AUTH ============ */
 app.post('/api/auth/signup', (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) return res.status(400).json({ error: 'All fields required' });
@@ -38,10 +39,16 @@ app.post('/api/auth/signup', (req, res) => {
   try {
     const hash = bcrypt.hashSync(password, 10);
     const r = db.prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)').run(name, email.toLowerCase(), hash);
-    db.prepare('INSERT INTO settings (user_id) VALUES (?)').run(r.lastInsertRowid);
-    const token = jwt.sign({ id: r.lastInsertRowid }, JWT_SECRET, { expiresIn: '30d' });
+    const uid = r.lastInsertRowid;
+    db.prepare('INSERT INTO settings (user_id) VALUES (?)').run(uid);
+    // Seed welcome notifications (not fake financial data)
+    const insN = db.prepare('INSERT INTO notifications (user_id, title, message, type) VALUES (?, ?, ?, ?)');
+    insN.run(uid, 'Welcome to Wealthy', 'Start by adding your first transaction.', 'info');
+    insN.run(uid, 'Complete your profile', 'Add your card details in My Profile.', 'tip');
+    insN.run(uid, 'Try UPI Hub', 'Add your UPI ID and QR code for quick payments.', 'tip');
+    const token = jwt.sign({ id: uid }, JWT_SECRET, { expiresIn: '30d' });
     res.cookie('token', token, { httpOnly: true, sameSite: 'lax', maxAge: 30*24*60*60*1000 });
-    res.json({ ok: true, user: { id: r.lastInsertRowid, name, email } });
+    res.json({ ok: true, user: { id: uid, name, email } });
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).json({ error: 'Email already registered' });
     res.status(500).json({ error: 'Server error' });
@@ -72,7 +79,20 @@ app.put('/api/auth/profile', auth, (req, res) => {
   res.json(db.prepare('SELECT id, name, email, card_number, card_holder, card_expiry FROM users WHERE id = ?').get(req.userId));
 });
 
-/* SUMMARY */
+/* ============ NOTIFICATIONS ============ */
+app.get('/api/notifications', auth, (req, res) => {
+  res.json(db.prepare('SELECT * FROM notifications WHERE user_id = ? ORDER BY id DESC LIMIT 30').all(req.userId));
+});
+app.put('/api/notifications/read-all', auth, (req, res) => {
+  db.prepare('UPDATE notifications SET is_read = 1 WHERE user_id = ?').run(req.userId);
+  res.json({ ok: true });
+});
+app.delete('/api/notifications/:id', auth, (req, res) => {
+  db.prepare('DELETE FROM notifications WHERE id = ? AND user_id = ?').run(req.params.id, req.userId);
+  res.json({ ok: true });
+});
+
+/* ============ SUMMARY ============ */
 app.get('/api/summary', auth, (req, res) => {
   const txs = db.prepare('SELECT * FROM transactions WHERE user_id = ?').all(req.userId);
   const income = txs.filter(t => t.type === 'income').reduce((s,t) => s + t.amount, 0);
@@ -82,7 +102,7 @@ app.get('/api/summary', auth, (req, res) => {
   res.json({ balance: savings, income, expense, savings, savingsRate: rate });
 });
 
-/* TRANSACTIONS with filter + search */
+/* ============ TRANSACTIONS ============ */
 app.get('/api/transactions', auth, (req, res) => {
   const { filter, search } = req.query;
   let rows = db.prepare('SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC, id DESC').all(req.userId);
@@ -125,7 +145,7 @@ app.delete('/api/transactions/:id', auth, (req, res) => {
   res.json({ ok: true });
 });
 
-/* BILLS */
+/* ============ BILLS ============ */
 app.get('/api/bills', auth, (req, res) => res.json(db.prepare('SELECT * FROM bills WHERE user_id = ? ORDER BY id DESC').all(req.userId)));
 app.post('/api/bills', auth, (req, res) => {
   const { name, amount, due_date, status, icon } = req.body;
@@ -139,7 +159,7 @@ app.put('/api/bills/:id', auth, (req, res) => {
 });
 app.delete('/api/bills/:id', auth, (req, res) => { db.prepare('DELETE FROM bills WHERE id=? AND user_id=?').run(req.params.id, req.userId); res.json({ ok: true }); });
 
-/* BUDGETS */
+/* ============ BUDGETS ============ */
 app.get('/api/budgets', auth, (req, res) => res.json(db.prepare('SELECT * FROM budgets WHERE user_id = ?').all(req.userId)));
 app.post('/api/budgets', auth, (req, res) => {
   const { name, limit_amount } = req.body;
@@ -153,7 +173,7 @@ app.put('/api/budgets/:id', auth, (req, res) => {
 });
 app.delete('/api/budgets/:id', auth, (req, res) => { db.prepare('DELETE FROM budgets WHERE id=? AND user_id=?').run(req.params.id, req.userId); res.json({ ok: true }); });
 
-/* GOALS */
+/* ============ GOALS ============ */
 app.get('/api/goals', auth, (req, res) => res.json(db.prepare('SELECT * FROM goals WHERE user_id = ?').all(req.userId)));
 app.post('/api/goals', auth, (req, res) => {
   const { name, saved, target, color } = req.body;
@@ -167,7 +187,7 @@ app.put('/api/goals/:id', auth, (req, res) => {
 });
 app.delete('/api/goals/:id', auth, (req, res) => { db.prepare('DELETE FROM goals WHERE id=? AND user_id=?').run(req.params.id, req.userId); res.json({ ok: true }); });
 
-/* CARDS */
+/* ============ CARDS ============ */
 app.get('/api/cards', auth, (req, res) => res.json(db.prepare('SELECT * FROM cards WHERE user_id = ?').all(req.userId)));
 app.post('/api/cards', auth, (req, res) => {
   const { name, last4, color, holder, expiry, limit_amount } = req.body;
@@ -181,7 +201,7 @@ app.put('/api/cards/:id', auth, (req, res) => {
 });
 app.delete('/api/cards/:id', auth, (req, res) => { db.prepare('DELETE FROM cards WHERE id=? AND user_id=?').run(req.params.id, req.userId); res.json({ ok: true }); });
 
-/* SETTINGS (incl. UPI) */
+/* ============ SETTINGS ============ */
 app.get('/api/settings', auth, (req, res) => {
   let s = db.prepare('SELECT * FROM settings WHERE user_id = ?').get(req.userId);
   if (!s) { db.prepare('INSERT INTO settings (user_id) VALUES (?)').run(req.userId); s = db.prepare('SELECT * FROM settings WHERE user_id = ?').get(req.userId); }

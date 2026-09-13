@@ -405,11 +405,13 @@ function renderTxTable(txs) {
         <div class="tx-method">${t.method}</div>
         <div class="tx-date">${fmtDate(t.date)}</div>
         <div class="tx-amount ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</div>
-        <div class="tx-actions">
-          <button class="tx-act" onclick="editTx(${t.id})">${ICONS.edit}</button>
-          <button class="tx-act danger" onclick="deleteTx(${t.id})">${ICONS.trash}</button>
-        </div>
-      </div>
+        
+      </div><div class="tx-actions">
+  <button class="tx-act" title="View" onclick="event.stopPropagation();viewTx(${t.id})">${ICONS.info}</button>
+  <button class="tx-act" title="Edit" onclick="event.stopPropagation();editTx(${t.id})">${ICONS.edit}</button>
+  <button class="tx-act duplicate" title="Duplicate" onclick="event.stopPropagation();duplicateTx(${t.id})">${ICONS.copy}</button>
+  <button class="tx-act danger" title="Delete" onclick="event.stopPropagation();confirmDeleteTx(${t.id})">${ICONS.trash}</button>
+</div>
     `).join('')}`;
 }
 function renderEnhancedChart() {

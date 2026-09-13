@@ -203,6 +203,39 @@ app.put('/api/settings', auth, (req, res) => {
   db.prepare('UPDATE settings SET theme=COALESCE(?,theme), accent=COALESCE(?,accent), card_color=COALESCE(?,card_color), currency=COALESCE(?,currency), upi_id=COALESCE(?,upi_id), qr_code=COALESCE(?,qr_code) WHERE user_id=?').run(theme, accent, card_color, currency, upi_id, qr_code, req.userId);
   res.json(db.prepare('SELECT * FROM settings WHERE user_id = ?').get(req.userId));
 });
+/* ============ EXPORT ENDPOINTS ============ */
+app.get('/api/export/transactions', auth, (req, res) => {
+  const txs = db.prepare('SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC').all(req.userId);
+  const user = db.prepare('SELECT name, email FROM users WHERE id = ?').get(req.userId);
+  res.json({
+    exportedAt: new Date().toISOString(),
+    exportedBy: user,
+    count: txs.length,
+    transactions: txs
+  });
+});
 
+app.get('/api/export/csv', auth, (req, res) => {
+  const txs = db.prepare('SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC').all(req.userId);
+  const user = db.prepare('SELECT name, email FROM users WHERE id = ?').get(req.userId);
+  
+  let csv = `Wealthy Export - Transactions\n`;
+  csv += `Exported By,${user.name} (${user.email})\n`;
+  csv += `Exported At,${new Date().toLocaleString('en-IN')}\n`;
+  csv += `Total Records,${txs.length}\n\n`;
+  csv += `Date,Merchant,Category,Method,Type,Amount,Notes\n`;
+  
+  txs.forEach(t => {
+    const safeMerchant = `"${(t.merchant || '').replace(/"/g, '""')}"`;
+    const safeCategory = `"${(t.category || '').replace(/"/g, '""')}"`;
+    const safeMethod = `"${(t.method || '').replace(/"/g, '""')}"`;
+    const safeNotes = `"${(t.notes || '').replace(/"/g, '""')}"`;
+    csv += `${t.date},${safeMerchant},${safeCategory},${safeMethod},${t.type},${t.amount},${safeNotes}\n`;
+  });
+  
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', `attachment; filename="wealthy-transactions-${new Date().toISOString().split('T')[0]}.csv"`);
+  res.send(csv);
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Wealthy running at http://localhost:${PORT}`));2

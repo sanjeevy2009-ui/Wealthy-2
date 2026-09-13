@@ -1,0 +1,20 @@
+{
+  "name": "wealthy",
+  "version": "1.0.0",
+  "description": "Wealthy — Track. Understand. Save. Full-stack fintech SaaS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["fintech", "personal-finance", "india", "upi", "3d-card"],
+  "author": "Sanjeev",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "better-sqlite3": "^11.3.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6"
+  }
+}

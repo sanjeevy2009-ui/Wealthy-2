@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<!-- ============ AUTH SCREEN ============ -->
+<!-- AUTH SCREEN -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-bg">
     <div class="orb orb-1"></div>
@@ -37,40 +37,25 @@
     </div>
     <div class="auth-error" id="authError"></div>
     <form id="signinForm" onsubmit="handleSignin(event)">
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="signinEmail" placeholder="you@example.com" required autocomplete="email" />
-      </div>
-      <div class="auth-field">
-        <label>Password</label>
-        <input type="password" id="signinPassword" placeholder="Enter your password" required autocomplete="current-password" />
-      </div>
+      <div class="auth-field"><label>Email</label><input type="email" id="signinEmail" placeholder="you@example.com" required autocomplete="email" /></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="signinPassword" placeholder="Enter your password" required autocomplete="current-password" /></div>
       <button type="submit" class="auth-btn" id="signinBtn">Sign In</button>
       <div class="auth-footer">New to Wealthy? <a onclick="switchAuth('signup',document.querySelectorAll('.auth-toggle button')[1])">Create account</a></div>
     </form>
     <form id="signupForm" style="display:none" onsubmit="handleSignup(event)">
-      <div class="auth-field">
-        <label>Full Name</label>
-        <input type="text" id="signupName" placeholder="Your full name" required autocomplete="name" />
-      </div>
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" />
-      </div>
-      <div class="auth-field">
-        <label>Password</label>
-        <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password" />
-      </div>
+      <div class="auth-field"><label>Full Name</label><input type="text" id="signupName" placeholder="Your full name" required autocomplete="name" /></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" /></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password" /></div>
       <button type="submit" class="auth-btn" id="signupBtn">Create Account</button>
       <div class="auth-footer">Already registered? <a onclick="switchAuth('signin',document.querySelectorAll('.auth-toggle button')[0])">Sign in</a></div>
     </form>
   </div>
 </div>
 
-<!-- ============ APP SCREEN ============ -->
+<!-- APP SCREEN -->
 <div class="app hidden" id="appScreen">
   <div class="overlay-backdrop" id="backdrop" onclick="closeSidebar()"></div>
-
+  
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-logo">
@@ -83,17 +68,17 @@
         <p>Track. Understand. Save.</p>
       </div>
     </div>
-
+    
     <button class="cta-primary" onclick="openModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
       Add Transaction
     </button>
-
+    
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input placeholder="Search transactions..." id="globalSearch" oninput="onSearch(this.value)" />
     </div>
-
+    
     <nav class="nav-section">
       <div class="nav-label">Main</div>
       <button class="nav-item active" data-page="overview"><span class="nav-icon" data-icon="overview"></span>Overview</button>
@@ -102,7 +87,7 @@
       <button class="nav-item" data-page="analysis"><span class="nav-icon" data-icon="analysis"></span>Analysis</button>
       <button class="nav-item" data-page="calendar"><span class="nav-icon" data-icon="calendar"></span>Money Calendar</button>
     </nav>
-
+    
     <nav class="nav-section">
       <div class="nav-label">Money & Rails</div>
       <button class="nav-item" data-page="upi"><span class="nav-icon" data-icon="upi"></span>UPI Hub</button>
@@ -110,7 +95,7 @@
       <button class="nav-item" data-page="bills"><span class="nav-icon" data-icon="bills"></span>Bills</button>
       <button class="nav-item" data-page="subscriptions"><span class="nav-icon" data-icon="reports"></span>Subscriptions</button>
     </nav>
-
+    
     <nav class="nav-section">
       <div class="nav-label">Goals & Growth</div>
       <button class="nav-item" data-page="budgets"><span class="nav-icon" data-icon="budgets"></span>Budgets</button>
@@ -120,14 +105,14 @@
       <button class="nav-item" data-page="ai"><span class="nav-icon" data-icon="sparkles"></span>AI Assistant</button>
       <button class="nav-item" data-page="reports"><span class="nav-icon" data-icon="reports"></span>Reports</button>
     </nav>
-
+    
     <nav class="nav-section">
       <div class="nav-label">System</div>
       <button class="nav-item" data-page="profile"><span class="nav-icon" data-icon="user"></span>My Profile</button>
       <button class="nav-item" data-page="settings"><span class="nav-icon" data-icon="settings"></span>Settings</button>
       <button class="nav-item" data-page="help"><span class="nav-icon" data-icon="help"></span>Help</button>
     </nav>
-
+    
     <div class="sidebar-footer">
       <div class="user-chip" onclick="nav('profile')">
         <div class="avatar-sm" id="userAvatar">U</div>
@@ -139,7 +124,7 @@
       </div>
     </div>
   </aside>
-
+  
   <main class="main">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
@@ -158,9 +143,9 @@
         <div class="avatar-sm" id="topbarAvatar" onclick="nav('profile')" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#22C55E,#0F7A4D);display:grid;place-items:center;color:#FFF;font-weight:700;font-size:12px;cursor:pointer">U</div>
       </div>
     </div>
-
+    
     <div id="pageContainer"></div>
-
+    
     <div class="footer-note">
       <div class="owner-info">
         <span>Owner: <strong>SANJEEV SHEKHAR</strong></span>
@@ -172,107 +157,139 @@
   </main>
 </div>
 
-<!-- ============ NOTIFICATION PANEL ============ -->
+<!-- NOTIFICATION PANEL -->
 <div class="notif-panel" id="notifPanel">
   <div class="notif-header"><h4>Notifications</h4><button onclick="markAllRead()">Mark all read</button></div>
   <div class="notif-list" id="notifList"></div>
 </div>
 
-<!-- ============ MODAL ============ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal" id="modalContent"></div>
 </div>
 
+<!-- TOAST -->
 <div class="toast-container" id="toastContainer"></div>
-/* ============ ICONS ============ */
+
+<script>
+  /* ============================================
+   ICONS - Complete SVG Library
+   ============================================ */
 const ICONS = {
-  overview:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`,
-  transactions:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>`,
-  analysis:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
-  calendar:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
-  accounts:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>`,
-  upi:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
-  cashflow:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
-  bills:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
-  budgets:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
-  savings:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>`,
-  reports:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>`,
-  settings:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 4.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 11.5 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 19.4 11a2 2 0 1 1 0 4z"/></svg>`,
-  help:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>`,
-  user:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
-  plus:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`,
-  minus:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>`,
-  transfer:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
-  cash:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>`,
-  card:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>`,
-  bill:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
-  bolt:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg>`,
-  shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-  trendingUp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
-  trendingDown:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M17 17H7V7"/></svg>`,
-  arrowRight:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
-  arrowUp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`,
-  play:`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>`,
-  pause:`<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`,
-  edit:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
-  trash:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
-  download:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
-  upload:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>`,
-  check:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>`,
-  x:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>`,
-  sparkles:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg>`,
-  bell:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>`,
-  lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
-  palette:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
-  qr:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
-  info:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>`,
-  bot:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>`,
-  file:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>`,
-  code:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
-  copy:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
-  filter:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>`,
-  sort:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>`
+  overview: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`,
+  transactions: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>`,
+  analysis: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+  calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
+  accounts: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>`,
+  upi: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
+  cashflow: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
+  bills: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
+  budgets: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+  savings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>`,
+  reports: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>`,
+  settings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 4.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 11.5 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 19.4 11a2 2 0 1 1 0 4z"/></svg>`,
+  help: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>`,
+  user: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`,
+  minus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>`,
+  transfer: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v3M17 17H7v-3"/><path d="M17 10l3 3-3 3M7 14l-3-3 3-3"/></svg>`,
+  cash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>`,
+  card: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>`,
+  bill: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>`,
+  bolt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  trendingUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+  trendingDown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M17 17H7V7"/></svg>`,
+  arrowRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  arrowUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`,
+  play: `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>`,
+  pause: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`,
+  edit: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+  download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
+  upload: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>`,
+  x: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>`,
+  sparkles: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg>`,
+  bell: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>`,
+  lock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+  palette: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
+  qr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M20 20h1M17 20h1"/></svg>`,
+  info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>`,
+  bot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>`,
+  file: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>`,
+  code: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
+  filter: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>`,
+  sort: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>`
 };
 
+/* ============================================
+   CARD COLORS
+   ============================================ */
 const CARD_COLORS = {
-  black:{bg:'linear-gradient(135deg,#1F1F1F 0%,#0A0A0A 45%,#151515 100%)',text:'#FFF',muted:'rgba(255,255,255,0.5)',glow:'rgba(22,163,74,0.35)'},
-  gunmetal:{bg:'linear-gradient(135deg,#2A2A2A 0%,#1A1A1A 50%,#3A3A3A 100%)',text:'#FFF',muted:'rgba(255,255,255,0.5)',glow:'rgba(148,163,184,0.3)'},
-  silver:{bg:'linear-gradient(135deg,#F0F0F0 0%,#B0B0B0 50%,#E8E8E8 100%)',text:'#111',muted:'rgba(0,0,0,0.5)',glow:'rgba(148,163,184,0.4)'},
-  gold:{bg:'linear-gradient(135deg,#E5C158 0%,#8B6914 50%,#D4AF37 100%)',text:'#1A1400',muted:'rgba(26,20,0,0.55)',glow:'rgba(212,175,55,0.4)'},
-  blue:{bg:'linear-gradient(135deg,#1E40AF 0%,#0F1E4D 50%,#1E3A8A 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(37,99,235,0.4)'},
-  red:{bg:'linear-gradient(135deg,#B91C1C 0%,#4D0D0D 50%,#991B1B 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(220,38,38,0.4)'},
-  green:{bg:'linear-gradient(135deg,#16A34A 0%,#064D2E 50%,#0F7A4D 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(34,197,94,0.4)'},
-  purple:{bg:'linear-gradient(135deg,#7C3AED 0%,#2D0F5E 50%,#5B21B6 100%)',text:'#FFF',muted:'rgba(255,255,255,0.55)',glow:'rgba(124,58,237,0.4)'}
+  black: { bg: 'linear-gradient(135deg,#1F1F1F 0%,#0A0A0A 45%,#151515 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.5)', glow: 'rgba(22,163,74,0.35)' },
+  gunmetal: { bg: 'linear-gradient(135deg,#2A2A2A 0%,#1A1A1A 50%,#3A3A3A 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.5)', glow: 'rgba(148,163,184,0.3)' },
+  silver: { bg: 'linear-gradient(135deg,#F0F0F0 0%,#B0B0B0 50%,#E8E8E8 100%)', text: '#111', muted: 'rgba(0,0,0,0.5)', glow: 'rgba(148,163,184,0.4)' },
+  gold: { bg: 'linear-gradient(135deg,#E5C158 0%,#8B6914 50%,#D4AF37 100%)', text: '#1A1400', muted: 'rgba(26,20,0,0.55)', glow: 'rgba(212,175,55,0.4)' },
+  blue: { bg: 'linear-gradient(135deg,#1E40AF 0%,#0F1E4D 50%,#1E3A8A 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(37,99,235,0.4)' },
+  red: { bg: 'linear-gradient(135deg,#B91C1C 0%,#4D0D0D 50%,#991B1B 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(220,38,38,0.4)' },
+  green: { bg: 'linear-gradient(135deg,#16A34A 0%,#064D2E 50%,#0F7A4D 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(34,197,94,0.4)' },
+  purple: { bg: 'linear-gradient(135deg,#7C3AED 0%,#2D0F5E 50%,#5B21B6 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(124,58,237,0.4)' }
 };
 
+/* ============================================
+   ACCOUNT TYPES
+   ============================================ */
 const ACCOUNT_TYPES = [
-  { value: 'bank', label: 'Bank Account', icon: 'accounts', color: 'blue' },
-  { value: 'cash', label: 'Cash', icon: 'cash', color: 'green' },
-  { value: 'savings', label: 'Savings', icon: 'savings', color: 'purple' },
-  { value: 'upi', label: 'UPI', icon: 'upi', color: 'blue' },
-  { value: 'wallet', label: 'Wallet', icon: 'card', color: 'yellow' },
-  { value: 'credit_card', label: 'Credit Card', icon: 'card', color: 'red' },
-  { value: 'investment', label: 'Investment', icon: 'analysis', color: 'purple' },
-  { value: 'other', label: 'Other', icon: 'info', color: 'gray' }
+  { value: 'bank', label: 'Bank Account' },
+  { value: 'cash', label: 'Cash' },
+  { value: 'savings', label: 'Savings' },
+  { value: 'upi', label: 'UPI' },
+  { value: 'wallet', label: 'Wallet' },
+  { value: 'credit_card', label: 'Credit Card' },
+  { value: 'investment', label: 'Investment' },
+  { value: 'other', label: 'Other' }
 ];
 
-/* ============ STATE ============ */
+/* ============================================
+   GLOBAL STATE
+   ============================================ */
 const state = {
   user: null,
-  settings: { theme: 'light', card_color: 'black', currency: 'INR', upi_id: '', qr_code: '' },
+  settings: {
+    theme: 'light',
+    card_color: 'black',
+    currency: 'INR',
+    upi_id: '',
+    qr_code: ''
+  },
   summary: { balance: 0, income: 0, expense: 0, savings: 0, savingsRate: 0 },
   dashboardStats: null,
   healthScore: null,
   netWorth: null,
-  transactions: [], bills: [], budgets: [], goals: [], cards: [], notifications: [],
-  accounts: [], transfers: [], subscriptions: [], debts: [],
-  cardRotationPaused: false, filter: 'all', search: '', currentPage: 'overview', timeframe: 'month',
+  transactions: [],
+  bills: [],
+  budgets: [],
+  goals: [],
+  cards: [],
+  notifications: [],
+  accounts: [],
+  transfers: [],
+  subscriptions: [],
+  debts: [],
+  cardRotationPaused: false,
+  filter: 'all',
+  search: '',
+  currentPage: 'overview',
+  timeframe: 'month',
   chatMessages: [],
   advFilters: { type: '', category: '', from: '', to: '', amountMin: '', amountMax: '' },
   sort: 'date_desc'
 };
-
-  /* ============ API HELPER ============ */
+  /* ============================================
+   API HELPER
+   ============================================ */
 async function api(path, options = {}) {
   const res = await fetch('/api' + path, {
     headers: { 'Content-Type': 'application/json' },
@@ -285,7 +302,9 @@ async function api(path, options = {}) {
   return data;
 }
 
-/* ============ TOAST ============ */
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
 function toast(msg, type = 'success') {
   const el = document.createElement('div');
   el.className = `toast ${type}`;
@@ -299,7 +318,9 @@ function toast(msg, type = 'success') {
   }, 2800);
 }
 
-/* ============ HELPERS ============ */
+/* ============================================
+   FORMATTERS & HELPERS
+   ============================================ */
 const fmtINR = n => Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
 
 function fmtDate(d) {
@@ -307,8 +328,7 @@ function fmtDate(d) {
   const dt = new Date(d);
   const today = new Date();
   if (dt.toDateString() === today.toDateString()) return 'Today';
-  const y = new Date(today);
-  y.setDate(today.getDate() - 1);
+  const y = new Date(today); y.setDate(today.getDate() - 1);
   if (dt.toDateString() === y.toDateString()) return 'Yesterday';
   return dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
 }
@@ -323,10 +343,22 @@ function initials(name) {
 }
 
 function escapeHtml(t) {
-  return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  return String(t).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
-/* ============ UI TOGGLES ============ */
+function timeAgo(dt) {
+  const s = Math.floor((Date.now() - new Date(dt).getTime()) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
+
+/* ============================================
+   UI TOGGLES
+   ============================================ */
 function updateUserChip() {
   const ini = initials(state.user?.name);
   ['userAvatar', 'topbarAvatar'].forEach(id => {
@@ -355,15 +387,14 @@ function toggleNotif() {
   if (p.classList.contains('active')) loadNotifications();
 }
 
-function timeAgo(dt) {
-  const s = Math.floor((Date.now() - new Date(dt).getTime()) / 1000);
-  if (s < 60) return 'just now';
-  if (s < 3600) return Math.floor(s / 60) + 'm ago';
-  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
-  return Math.floor(s / 86400) + 'd ago';
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
-/* ============ AUTH FUNCTIONS ============ */
+/* ============================================
+   AUTH FUNCTIONS
+   ============================================ */
 function switchAuth(mode, btn) {
   document.querySelectorAll('.auth-toggle button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -426,16 +457,22 @@ async function logout() {
   location.reload();
 }
 
-/* ============ THEME ============ */
+/* ============================================
+   THEME
+   ============================================ */
 async function setTheme(theme, btn) {
   document.body.setAttribute('data-theme', theme);
   document.querySelectorAll('.theme-toggle button').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   state.settings.theme = theme;
-  try { await api('/settings', { method: 'PUT', body: { theme } }); } catch (e) {}
+  try {
+    await api('/settings', { method: 'PUT', body: { theme } });
+  } catch (e) {}
 }
 
-/* ============ CARD COLOR ============ */
+/* ============================================
+   CARD COLOR
+   ============================================ */
 function applyCardColor(color) {
   const c = CARD_COLORS[color] || CARD_COLORS.black;
   document.documentElement.style.setProperty('--card-bg', c.bg);
@@ -457,10 +494,14 @@ async function changeCardColor(color) {
   applyCardColor(color);
   document.querySelectorAll('.card-color-btn').forEach(b => b.classList.toggle('active', b.dataset.color === color));
   state.settings.card_color = color;
-  try { await api('/settings', { method: 'PUT', body: { card_color: color } }); } catch (e) {}
+  try {
+    await api('/settings', { method: 'PUT', body: { card_color: color } });
+  } catch (e) {}
 }
 
-/* ============ NOTIFICATIONS ============ */
+/* ============================================
+   NOTIFICATIONS
+   ============================================ */
 function loadNotifications() {
   const list = document.getElementById('notifList');
   if (!state.notifications.length) {
@@ -475,7 +516,8 @@ function loadNotifications() {
         <p>${escapeHtml(n.message)}</p>
         <div class="n-time">${timeAgo(n.created_at)}</div>
       </div>
-    </div>`).join('');
+    </div>
+  `).join('');
   updateNotifBadge();
 }
 
@@ -485,7 +527,9 @@ function updateNotifBadge() {
   if (unread > 0) {
     badge.style.display = 'grid';
     badge.textContent = unread > 9 ? '9+' : unread;
-  } else badge.style.display = 'none';
+  } else {
+    badge.style.display = 'none';
+  }
 }
 
 async function markAllRead() {
@@ -494,10 +538,14 @@ async function markAllRead() {
     state.notifications.forEach(n => n.is_read = 1);
     loadNotifications();
     toast('All read');
-  } catch (err) { toast(err.message, 'error'); }
+  } catch (err) {
+    toast(err.message, 'error');
+  }
 }
 
-/* ============ SEARCH ============ */
+/* ============================================
+   SEARCH
+   ============================================ */
 function onSearch(v) {
   state.search = v;
   if (state.currentPage === 'transactions') {
@@ -508,13 +556,9 @@ function onSearch(v) {
   }
 }
 
-/* ============ MODAL HELPERS ============ */
-function closeModal() {
-  document.getElementById('modal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-/* ============ DATA LOADING ============ */
+/* ============================================
+   DATA LOADING
+   ============================================ */
 async function loadData() {
   try {
     const [summary, transactions, bills, budgets, goals, cards, settings, notifications, accounts, dashboardStats, healthScore, netWorth] = await Promise.all([
@@ -531,7 +575,6 @@ async function loadData() {
       api('/health-score').catch(() => null),
       api('/net-worth').catch(() => null)
     ]);
-
     state.summary = summary;
     state.transactions = transactions;
     state.bills = bills;
@@ -544,7 +587,6 @@ async function loadData() {
     state.dashboardStats = dashboardStats;
     state.healthScore = healthScore;
     state.netWorth = netWorth;
-
     applyCardColor(settings.card_color || 'black');
     updateNotifBadge();
   } catch (e) {
@@ -552,7 +594,9 @@ async function loadData() {
   }
 }
 
-/* ============ CARD DRAG (3D) ============ */
+/* ============================================
+   CARD DRAG (3D)
+   ============================================ */
 function attachCardDrag() {
   const card = document.getElementById('card360');
   if (!card || card.dataset.bound) return;
@@ -571,7 +615,10 @@ function attachCardDrag() {
     card.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg)`;
     sx = x; sy = y;
   };
-  const up = () => { dragging = false; card.style.transition = ''; };
+  const up = () => {
+    dragging = false;
+    card.style.transition = '';
+  };
   card.addEventListener('mousedown', e => down(e.clientX, e.clientY));
   window.addEventListener('mousemove', e => move(e.clientX, e.clientY));
   window.addEventListener('mouseup', up);
@@ -579,7 +626,9 @@ function attachCardDrag() {
   window.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
   window.addEventListener('touchend', up);
 }
-    /* ============ PAGE: OVERVIEW ============ */
+  /* ============================================
+   PAGE: OVERVIEW
+   ============================================ */
 function pageOverview() {
   const s = state.summary;
   const recent = state.transactions.slice(0, 5);
@@ -661,11 +710,20 @@ function pageOverview() {
             <div><div class="section-title">Financial Health</div><div class="section-subtitle">Score out of 100</div></div>
           </div>
           <div style="text-align:center;padding:12px 0">
-            <div style="font-size:48px;font-weight:800;color:${score?.score >= 65 ? 'var(--green)' : score?.score >= 50 ? 'var(--yellow)' : 'var(--red)'}">
+            <div style="font-size:48px;font-weight:800;color:${score?.score >= 65 ? 'var(--green)' : score?.score >= 50 ? '#A16207' : 'var(--red)'}">
               ${score?.score || 0}
             </div>
             <div style="font-size:12px;color:var(--text-secondary);margin-top:4px">${score?.label || 'Building your score...'}</div>
-            ${score?.factors?.length ? `<div style="text-align:left;margin-top:12px;font-size:11px;color:var(--text-secondary);display:flex;flex-direction:column;gap:4px">${score.factors.slice(0, 4).map(f => `<div style="display:flex;justify-content:space-between"><span>${f.label}</span><span style="color:${f.delta > 0 ? 'var(--green)' : f.delta < 0 ? 'var(--red)' : 'var(--text-tertiary)'};font-weight:700">${f.delta > 0 ? '+' : ''}${f.delta}</span></div>`).join('')}</div>` : ''}
+            ${score?.factors?.length ? `
+              <div style="text-align:left;margin-top:12px;font-size:11px;color:var(--text-secondary);display:flex;flex-direction:column;gap:4px">
+                ${score.factors.slice(0, 4).map(f => `
+                  <div style="display:flex;justify-content:space-between">
+                    <span>${f.label}</span>
+                    <span style="color:${f.delta > 0 ? 'var(--green)' : f.delta < 0 ? 'var(--red)' : 'var(--text-tertiary)'};font-weight:700">${f.delta > 0 ? '+' : ''}${f.delta}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
           </div>
         </div>
       </section>
@@ -702,31 +760,53 @@ function pageOverview() {
   `;
 }
 
+/* ============================================
+   CHART HELPER
+   ============================================ */
 function renderEnhancedChart() {
   const s = state.summary;
   const max = Math.max(s.income, s.expense, Math.abs(s.savings), 1);
   const incH = Math.max((s.income / max) * 100, 4);
   const expH = Math.max((s.expense / max) * 100, 4);
   const savH = Math.max((Math.abs(s.savings) / max) * 100, 4);
+
   const gridLines = [0, 25, 50, 75, 100].map(p =>
-    `<div class="grid-line" style="top:${100 - p}%"></div><div class="grid-line-label" style="top:${100 - p}%">₹${fmtINR(Math.round(max * p / 100))}</div>`
+    `<div class="grid-line" style="top:${100 - p}%"></div>
+     <div class="grid-line-label" style="top:${100 - p}%">₹${fmtINR(Math.round(max * p / 100))}</div>`
   ).join('');
+
   return `
     <div class="bar-chart-enhanced">
       ${gridLines}
       <div class="bars-container">
-        <div class="bar-group-enhanced"><div class="bar-enhanced income" style="height:${incH}%"><div class="bar-value">+₹${fmtINR(s.income)}</div></div></div>
-        <div class="bar-group-enhanced"><div class="bar-enhanced expense" style="height:${expH}%"><div class="bar-value">−₹${fmtINR(s.expense)}</div></div></div>
-        <div class="bar-group-enhanced"><div class="bar-enhanced" style="height:${savH}%;background:linear-gradient(180deg,#2563EB,#1E40AF)"><div class="bar-value">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</div></div></div>
+        <div class="bar-group-enhanced">
+          <div class="bar-enhanced income" style="height:${incH}%">
+            <div class="bar-value">+₹${fmtINR(s.income)}</div>
+          </div>
+        </div>
+        <div class="bar-group-enhanced">
+          <div class="bar-enhanced expense" style="height:${expH}%">
+            <div class="bar-value">−₹${fmtINR(s.expense)}</div>
+          </div>
+        </div>
+        <div class="bar-group-enhanced">
+          <div class="bar-enhanced" style="height:${savH}%;background:linear-gradient(180deg,#2563EB,#1E40AF)">
+            <div class="bar-value">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="bar-labels-enhanced">
       <div class="bar-label-enhanced">Income</div>
       <div class="bar-label-enhanced">Expense</div>
       <div class="bar-label-enhanced">Net Savings</div>
-    </div>`;
+    </div>
+  `;
 }
 
+/* ============================================
+   TIMEFRAME FILTER
+   ============================================ */
 function setTimeframe(tf) {
   state.timeframe = tf;
   const now = new Date();
@@ -744,21 +824,29 @@ function setTimeframe(tf) {
 
   const disp = document.getElementById('balanceAmount');
   if (disp) disp.innerHTML = `<span class="currency">₹</span>${fmtINR(savings)}`;
+
   const lbl = document.getElementById('balanceLabel');
   if (lbl) lbl.textContent = `${tf.charAt(0).toUpperCase() + tf.slice(1)} Net Balance`;
+
   const chg = document.getElementById('balanceChange');
   if (chg) chg.innerHTML = `${ICONS.trendingUp} ${filtered.length} transactions · ${rate.toFixed(1)}% rate`;
 
   document.querySelectorAll('.balance-timeframe button').forEach(b => b.classList.toggle('active', b.dataset.tf === tf));
 }
 
-/* ============ PAGE: TRANSACTIONS ============ */
+/* ============================================
+   PAGE: TRANSACTIONS
+   ============================================ */
 function pageTransactions() {
   const filtered = getFilteredTx();
   const activeFilterCount = (state.advFilters.type ? 1 : 0) + (state.advFilters.category ? 1 : 0) + (state.advFilters.from ? 1 : 0) + (state.advFilters.to ? 1 : 0) + (state.advFilters.amountMin ? 1 : 0) + (state.advFilters.amountMax ? 1 : 0);
 
   return `
-    <section class="hero"><div class="hero-greeting">Money Movement</div><h2>Transactions</h2><p>Every payment, transfer and deposit in one calm ledger.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Money Movement</div>
+      <h2>Transactions</h2>
+      <p>Every payment, transfer and deposit in one calm ledger.</p>
+    </section>
 
     <div class="tx-toolbar">
       <div class="tx-search">
@@ -786,19 +874,30 @@ function pageTransactions() {
     ${activeFilterCount > 0 ? renderActiveFilters() : ''}
 
     <div class="section-header" style="margin-bottom:12px">
-      <div style="font-size:12px;color:var(--text-secondary)">${filtered.length} transaction${filtered.length !== 1 ? 's' : ''}${state.search ? ' for "' + state.search + '"' : ''}</div>
-      <button class="btn-ghost" style="padding:8px 12px;font-size:11px;border:1px solid var(--border)" onclick="openExportModal()">${ICONS.download} Export</button>
+      <div style="font-size:12px;color:var(--text-secondary)">
+        ${filtered.length} transaction${filtered.length !== 1 ? 's' : ''}${state.search ? ' for "' + state.search + '"' : ''}
+      </div>
+      <button class="btn-ghost" style="padding:8px 12px;font-size:11px;border:1px solid var(--border)" onclick="openExportModal()">
+        ${ICONS.download} Export
+      </button>
     </div>
+
     <div class="tx-list" id="txListContainer">${renderTxTable(filtered)}</div>
   `;
 }
 
+/* ============================================
+   FILTER LOGIC
+   ============================================ */
 function getFilteredTx() {
   let rows = [...state.transactions];
 
   if (state.search) {
     const s = state.search.toLowerCase();
-    rows = rows.filter(t => (t.merchant || '').toLowerCase().includes(s) || (t.category || '').toLowerCase().includes(s));
+    rows = rows.filter(t =>
+      (t.merchant || '').toLowerCase().includes(s) ||
+      (t.category || '').toLowerCase().includes(s)
+    );
   }
 
   if (state.filter && state.filter !== 'all') {
@@ -835,14 +934,19 @@ function getFilteredTx() {
   return rows;
 }
 
+/* ============================================
+   TRANSACTION TABLE
+   ============================================ */
 function renderTxTable(txs) {
   if (!txs.length) {
-    return `<div class="empty-state">
-      <div class="icon">${ICONS.transactions}</div>
-      <h4>No transactions yet</h4>
-      <p>Add your first transaction to see it here</p>
-      <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openModal()">Add Transaction</button>
-    </div>`;
+    return `
+      <div class="empty-state">
+        <div class="icon">${ICONS.transactions}</div>
+        <h4>No transactions yet</h4>
+        <p>Add your first transaction to see it here</p>
+        <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openModal()">Add Transaction</button>
+      </div>
+    `;
   }
   return `
     <div class="tx-header">
@@ -855,12 +959,19 @@ function renderTxTable(txs) {
     ${txs.map(t => `
       <div class="tx-row" onclick="viewTx(${t.id})">
         <div class="tx-merchant">
-          <div class="tx-icon ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? ICONS.plus : ICONS.minus}</div>
-          <div class="tx-info"><h5>${escapeHtml(t.merchant || 'Untitled')}</h5><p>${escapeHtml(t.category || 'Other')}</p></div>
+          <div class="tx-icon ${t.type === 'income' ? 'income' : 'expense'}">
+            ${t.type === 'income' ? ICONS.plus : ICONS.minus}
+          </div>
+          <div class="tx-info">
+            <h5>${escapeHtml(t.merchant || 'Untitled')}</h5>
+            <p>${escapeHtml(t.category || 'Other')}</p>
+          </div>
         </div>
         <div class="tx-method">${escapeHtml(t.method || '—')}</div>
         <div class="tx-date">${fmtDate(t.date)}</div>
-        <div class="tx-amount ${t.type === 'income' ? 'income' : 'expense'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</div>
+        <div class="tx-amount ${t.type === 'income' ? 'income' : 'expense'}">
+          ${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}
+        </div>
         <div class="tx-actions">
           <button class="tx-act" title="View" onclick="event.stopPropagation();viewTx(${t.id})">${ICONS.info}</button>
           <button class="tx-act" title="Edit" onclick="event.stopPropagation();editTx(${t.id})">${ICONS.edit}</button>
@@ -872,6 +983,9 @@ function renderTxTable(txs) {
   `;
 }
 
+/* ============================================
+   FILTER CHIPS + SORT
+   ============================================ */
 function renderActiveFilters() {
   const chips = [];
   if (state.advFilters.type) chips.push(`<span class="filter-chip">Type: ${state.advFilters.type}<button onclick="clearFilter('type')">×</button></span>`);
@@ -881,17 +995,30 @@ function renderActiveFilters() {
   if (state.advFilters.amountMin) chips.push(`<span class="filter-chip">Min: ₹${fmtINR(state.advFilters.amountMin)}<button onclick="clearFilter('amountMin')">×</button></span>`);
   if (state.advFilters.amountMax) chips.push(`<span class="filter-chip">Max: ₹${fmtINR(state.advFilters.amountMax)}<button onclick="clearFilter('amountMax')">×</button></span>`);
   if (!chips.length) return '';
-  return `<div class="filter-chips">${chips.join('')}<button class="filter-chip" style="background:var(--bg);color:var(--text-secondary);cursor:pointer" onclick="clearAllFilters()">Clear all</button></div>`;
+  return `
+    <div class="filter-chips">
+      ${chips.join('')}
+      <button class="filter-chip" style="background:var(--bg);color:var(--text-secondary);cursor:pointer" onclick="clearAllFilters()">Clear all</button>
+    </div>
+  `;
 }
 
-function clearFilter(key) { state.advFilters[key] = ''; nav('transactions'); }
-function clearAllFilters() { state.advFilters = { type: '', category: '', from: '', to: '', amountMin: '', amountMax: '' }; nav('transactions'); }
+function clearFilter(key) {
+  state.advFilters[key] = '';
+  nav('transactions');
+}
+
+function clearAllFilters() {
+  state.advFilters = { type: '', category: '', from: '', to: '', amountMin: '', amountMax: '' };
+  nav('transactions');
+}
 
 function toggleSortMenu(e) {
   e.stopPropagation();
   const dd = document.getElementById('sortDropdown');
   if (dd) dd.classList.toggle('active');
 }
+
 function setSort(sort) {
   state.sort = sort;
   const dd = document.getElementById('sortDropdown');
@@ -899,7 +1026,9 @@ function setSort(sort) {
   nav('transactions');
 }
 
-/* ============ PAGE: ACCOUNTS ============ */
+/* ============================================
+   PAGE: ACCOUNTS
+   ============================================ */
 function pageAccounts() {
   const accounts = state.accounts || [];
   const totalBalance = accounts.reduce((s, a) => s + (a.balance || 0), 0);
@@ -927,7 +1056,7 @@ function pageAccounts() {
       <div class="empty-state">
         <div class="icon">${ICONS.accounts}</div>
         <h4>No accounts yet</h4>
-        <p>Add your first bank account, wallet, or cash to start tracking</p>
+        <p>Add your first bank account, wallet, or cash</p>
         <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openAccountModal()">Add Account</button>
       </div>
     ` : `
@@ -945,7 +1074,9 @@ function pageAccounts() {
                 <p style="text-transform:capitalize">${a.type.replace('_', ' ')}</p>
               </div>
             </div>
-            <div class="account-balance" style="color:${a.balance >= 0 ? 'var(--text)' : 'var(--red)'}">₹${fmtINR(a.balance)}</div>
+            <div class="account-balance" style="color:${a.balance >= 0 ? 'var(--text)' : 'var(--red)'}">
+              ₹${fmtINR(a.balance)}
+            </div>
             <div class="account-meta">
               <span>In: ₹${fmtINR(a.income || 0)}</span>
               <span>Out: ₹${fmtINR(a.expense || 0)}</span>
@@ -963,13 +1094,14 @@ function getAccountColor(color) {
     blue: 'linear-gradient(135deg,#3B82F6,#1E40AF)',
     red: 'linear-gradient(135deg,#EF4444,#B91C1C)',
     purple: 'linear-gradient(135deg,#8B5CF6,#5B21B6)',
-    yellow: 'linear-gradient(135deg,#FACC15,#A16207)',
-    gray: '#0A0A0A'
+    yellow: 'linear-gradient(135deg,#FACC15,#A16207)'
   };
   return map[color] || '#0A0A0A';
 }
 
-/* ============ PAGE: ANALYSIS ============ */
+/* ============================================
+   PAGE: ANALYSIS
+   ============================================ */
 function pageAnalysis() {
   const s = state.summary;
   const cats = {};
@@ -995,23 +1127,30 @@ function pageAnalysis() {
     </section>
 
     <div class="chart-card">
-      <div class="section-header"><div><div class="section-title">Category Breakdown</div><div class="section-subtitle">By spending</div></div></div>
+      <div class="section-header">
+        <div><div class="section-title">Category Breakdown</div><div class="section-subtitle">By spending</div></div>
+      </div>
       ${sorted.length === 0
         ? '<div class="empty-state" style="border:none;padding:24px 0"><p>No expense data yet</p></div>'
         : sorted.map(([name, amt]) => {
             const pct = (amt / total) * 100;
-            return `<div class="budget-item">
-              <div class="budget-header">
-                <span class="name">${escapeHtml(name)}</span>
-                <span class="amount">₹${fmtINR(amt)} · ${pct.toFixed(1)}%</span>
+            return `
+              <div class="budget-item">
+                <div class="budget-header">
+                  <span class="name">${escapeHtml(name)}</span>
+                  <span class="amount">₹${fmtINR(amt)} · ${pct.toFixed(1)}%</span>
+                </div>
+                <div class="budget-track"><div class="budget-fill healthy" style="width:${pct}%"></div></div>
               </div>
-              <div class="budget-track"><div class="budget-fill healthy" style="width:${pct}%"></div></div>
-            </div>`;
+            `;
           }).join('')}
     </div>
   `;
 }
-    /* ============ PAGE: CALENDAR ============ */
+
+  /* ============================================
+   PAGE: CALENDAR
+   ============================================ */
 let calendarMonth = new Date().getMonth();
 let calendarYear = new Date().getFullYear();
 
@@ -1023,7 +1162,7 @@ function changeMonth(dir) {
 }
 
 function pageCalendar() {
-  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
   const now = new Date();
   const y = calendarYear, m = calendarMonth;
   const firstDay = new Date(y, m, 1);
@@ -1050,7 +1189,12 @@ function pageCalendar() {
   const monthName = firstDay.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
 
   return `
-    <section class="hero"><div class="hero-greeting">Cash Flow Radar</div><h2>Money Calendar</h2><p>Click any day to see that day's transactions.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Cash Flow Radar</div>
+      <h2>Money Calendar</h2>
+      <p>Click any day to see that day's transactions.</p>
+    </section>
+
     <div class="calendar">
       <div class="cal-header">
         <div style="display:flex;align-items:center;gap:8px">
@@ -1070,10 +1214,12 @@ function pageCalendar() {
           const net = income - expense;
           const isToday = c.d.toDateString() === now.toDateString();
           const hasTx = dayTxs.length > 0 && !c.other;
-          return `<div class="cal-day ${c.other ? 'other-month' : ''} ${isToday ? 'today' : ''} ${hasTx ? 'has-tx' : ''}" onclick="openDayDetail('${iso}')">
-            <div class="day-num">${c.d.getDate()}</div>
-            ${hasTx ? `<div class="day-amount ${net >= 0 ? 'pos' : 'neg'}">${net >= 0 ? '+' : '−'}₹${fmtINR(Math.abs(net))}</div>` : ''}
-          </div>`;
+          return `
+            <div class="cal-day ${c.other ? 'other-month' : ''} ${isToday ? 'today' : ''} ${hasTx ? 'has-tx' : ''}" onclick="openDayDetail('${iso}')">
+              <div class="day-num">${c.d.getDate()}</div>
+              ${hasTx ? `<div class="day-amount ${net >= 0 ? 'pos' : 'neg'}">${net >= 0 ? '+' : '−'}₹${fmtINR(Math.abs(net))}</div>` : ''}
+            </div>
+          `;
         }).join('')}
       </div>
     </div>
@@ -1085,6 +1231,7 @@ function openDayDetail(iso) {
   const dateStr = new Date(iso).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   const income = txs.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
   const expense = txs.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <div><h3>${dateStr}</h3></div>
@@ -1103,10 +1250,17 @@ function openDayDetail(iso) {
     <div style="max-height:50vh;overflow-y:auto">
       ${txs.length === 0
         ? '<div style="padding:20px;text-align:center;color:var(--text-tertiary);font-size:12px">No transactions on this day</div>'
-        : txs.map(t => `<div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--border-soft)">
-            <div><div style="font-size:13px;font-weight:600">${escapeHtml(t.merchant)}</div><div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">${escapeHtml(t.category)} · ${escapeHtml(t.method || '')}</div></div>
-            <div style="font-size:14px;font-weight:700;color:${t.type === 'income' ? 'var(--green)' : 'var(--red)'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</div>
-          </div>`).join('')}
+        : txs.map(t => `
+            <div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--border-soft)">
+              <div>
+                <div style="font-size:13px;font-weight:600">${escapeHtml(t.merchant)}</div>
+                <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">${escapeHtml(t.category)} · ${escapeHtml(t.method || '')}</div>
+              </div>
+              <div style="font-size:14px;font-weight:700;color:${t.type === 'income' ? 'var(--green)' : 'var(--red)'}">
+                ${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}
+              </div>
+            </div>
+          `).join('')}
     </div>
     <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" onclick="closeModal();openModal()">${ICONS.plus} Add Transaction</button>
   `;
@@ -1114,12 +1268,20 @@ function openDayDetail(iso) {
   document.body.style.overflow = 'hidden';
 }
 
-/* ============ PAGE: UPI ============ */
+/* ============================================
+   PAGE: UPI
+   ============================================ */
 function pageUPI() {
   const qr = state.settings.qr_code;
   const upiId = state.settings.upi_id;
+
   return `
-    <section class="hero"><div class="hero-greeting">Unified Payments</div><h2>UPI Hub</h2><p>Your UPI ID and QR code in one place.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Unified Payments</div>
+      <h2>UPI Hub</h2>
+      <p>Your UPI ID and QR code in one place.</p>
+    </section>
+
     <div class="settings-grid">
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.upi}</span>Your UPI ID</h3>
@@ -1128,29 +1290,39 @@ function pageUPI() {
           : '<p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">No UPI ID added yet.</p>'}
         <button class="btn-primary" onclick="openUPIIdModal()">${upiId ? ICONS.edit + ' Update' : ICONS.plus + ' Add UPI ID'}</button>
       </div>
+
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.qr}</span>Payment QR Code</h3>
-        ${qr ? `
-          <div style="text-align:center;margin-bottom:12px"><div class="qr-display"><img src="${qr}" alt="QR"/></div></div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-            <button class="btn-primary" onclick="downloadQR()">${ICONS.download} Download</button>
-            <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openQRModal()">${ICONS.edit} Change</button>
-            <button class="btn-ghost" style="color:var(--red);border:1px solid var(--border)" onclick="removeQR()">${ICONS.trash} Remove</button>
-          </div>
-        ` : `
-          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload your UPI QR code to receive payments</p>
-          <button class="btn-primary" onclick="openQRModal()">${ICONS.upload} Upload QR</button>
-        `}
+        ${qr
+          ? `
+            <div style="text-align:center;margin-bottom:12px"><div class="qr-display"><img src="${qr}" alt="QR"/></div></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+              <button class="btn-primary" onclick="downloadQR()">${ICONS.download} Download</button>
+              <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openQRModal()">${ICONS.edit} Change</button>
+              <button class="btn-ghost" style="color:var(--red);border:1px solid var(--border)" onclick="removeQR()">${ICONS.trash} Remove</button>
+            </div>
+          `
+          : `
+            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload your UPI QR code to receive payments</p>
+            <button class="btn-primary" onclick="openQRModal()">${ICONS.upload} Upload QR</button>
+          `}
       </div>
     </div>
   `;
 }
 
-/* ============ PAGE: CASH FLOW ============ */
+/* ============================================
+   PAGE: CASH FLOW
+   ============================================ */
 function pageCashFlow() {
   const s = state.summary;
   return `
-    <section class="hero"><div class="hero-greeting">Routing Liquidity</div><h2>Cash Flow</h2><p>Money In → Money Out → Net Cash Flow.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Routing Liquidity</div>
+      <h2>Cash Flow</h2>
+      <p>Money In → Money Out → Net Cash Flow.</p>
+    </section>
+
     <div class="chart-card" style="margin-bottom:16px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
         <div style="text-align:center;flex:1;min-width:90px">
@@ -1172,6 +1344,7 @@ function pageCashFlow() {
         </div>
       </div>
     </div>
+
     <div class="chart-card">
       <div class="section-header"><div><div class="section-title">Flow Breakdown</div></div></div>
       <div class="report-row"><span class="label">Total Income</span><span class="value" style="color:var(--green)">+₹${fmtINR(s.income)}</span></div>
@@ -1181,17 +1354,33 @@ function pageCashFlow() {
   `;
 }
 
-/* ============ PAGE: BILLS ============ */
+/* ============================================
+   PAGE: BILLS
+   ============================================ */
 function pageBills() {
   return `
-    <section class="hero"><div class="hero-greeting">Subscriptions & Autopays</div><h2>Bills & Payments</h2><p>Track upcoming and recurring bills.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Subscriptions & Autopays</div>
+      <h2>Bills & Payments</h2>
+      <p>Track upcoming and recurring bills.</p>
+    </section>
+
     <div class="section-header" style="margin-bottom:12px">
       <div class="section-title">Your Bills</div>
       <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBillModal()">${ICONS.plus} Add Bill</button>
     </div>
+
     ${state.bills.length === 0
-      ? `<div class="empty-state"><div class="icon">${ICONS.bills}</div><h4>No bills yet</h4><p>Add your first bill to track upcoming payments</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBillModal()">Add Bill</button></div>`
-      : `<div class="bills-grid">
+      ? `
+        <div class="empty-state">
+          <div class="icon">${ICONS.bills}</div>
+          <h4>No bills yet</h4>
+          <p>Add your first bill to track upcoming payments</p>
+          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBillModal()">Add Bill</button>
+        </div>
+      `
+      : `
+        <div class="bills-grid">
           ${state.bills.map(b => `
             <div class="bill-card ${b.status}">
               <div class="card-edit-actions">
@@ -1208,84 +1397,133 @@ function pageBills() {
               <div class="bill-amount">₹${fmtINR(b.amount)}</div>
               <span class="bill-meta ${b.status}">${b.status === 'paid' ? '✓ PAID' : b.status === 'overdue' ? '⚠ OVERDUE' : '⏰ UPCOMING'}</span>
               <div class="bill-barcode"></div>
-            </div>`).join('')}
-        </div>`}
+            </div>
+          `).join('')}
+        </div>
+      `}
   `;
 }
 
-/* ============ PAGE: BUDGETS ============ */
+/* ============================================
+   PAGE: BUDGETS
+   ============================================ */
 function pageBudgets() {
   return `
-    <section class="hero"><div class="hero-greeting">Plan with Clarity</div><h2>Budgets</h2><p>Stay ahead of spending with monthly budgets.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Plan with Clarity</div>
+      <h2>Budgets</h2>
+      <p>Stay ahead of spending with monthly budgets.</p>
+    </section>
+
     <div class="section-header" style="margin-bottom:12px">
       <div class="section-title">Monthly Budgets</div>
       <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBudgetModal()">${ICONS.plus} Add Budget</button>
     </div>
+
     ${state.budgets.length === 0
-      ? `<div class="empty-state"><div class="icon">${ICONS.budgets}</div><h4>No budgets set</h4><p>Create your first budget to control spending</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBudgetModal()">Create Budget</button></div>`
-      : `<div class="chart-card">
+      ? `
+        <div class="empty-state">
+          <div class="icon">${ICONS.budgets}</div>
+          <h4>No budgets set</h4>
+          <p>Create your first budget to control spending</p>
+          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBudgetModal()">Create Budget</button>
+        </div>
+      `
+      : `
+        <div class="chart-card">
           ${state.budgets.map(b => {
             const pct = b.limit_amount ? (b.spent / b.limit_amount) * 100 : 0;
             const cls = pct > 90 ? 'danger' : pct > 70 ? 'warning' : 'healthy';
-            return `<div class="budget-item">
-              <div class="budget-header">
-                <span class="name">${escapeHtml(b.name)}</span>
-                <div style="display:flex;align-items:center;gap:8px">
-                  <span class="amount">₹${fmtINR(b.spent)} / ₹${fmtINR(b.limit_amount)}</span>
-                  <button class="card-act" onclick="openBudgetModal(${b.id})">${ICONS.edit}</button>
-                  <button class="card-act danger" onclick="deleteBudget(${b.id})">${ICONS.trash}</button>
+            return `
+              <div class="budget-item">
+                <div class="budget-header">
+                  <span class="name">${escapeHtml(b.name)}</span>
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span class="amount">₹${fmtINR(b.spent)} / ₹${fmtINR(b.limit_amount)}</span>
+                    <button class="card-act" onclick="openBudgetModal(${b.id})">${ICONS.edit}</button>
+                    <button class="card-act danger" onclick="deleteBudget(${b.id})">${ICONS.trash}</button>
+                  </div>
                 </div>
+                <div class="budget-track"><div class="budget-fill ${cls}" style="width:${Math.min(pct, 100)}%"></div></div>
               </div>
-              <div class="budget-track"><div class="budget-fill ${cls}" style="width:${Math.min(pct, 100)}%"></div></div>
-            </div>`;
+            `;
           }).join('')}
-        </div>`}
+        </div>
+      `}
   `;
 }
 
-/* ============ PAGE: SAVINGS ============ */
+/* ============================================
+   PAGE: SAVINGS
+   ============================================ */
 function pageSavings() {
   const total = state.goals.reduce((s, g) => s + (g.saved || 0), 0);
-  const colorMap = { green: 'var(--green)', blue: 'var(--blue)', purple: 'var(--purple)', yellow: 'var(--yellow)' };
+  const colorMap = { green: 'var(--green)', blue: 'var(--blue)', purple: 'var(--purple)', yellow: '#A16207' };
+
   return `
-    <section class="hero"><div class="hero-greeting">Future You</div><h2>Savings Goals</h2><p>Track every goal, celebrate every milestone.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Future You</div>
+      <h2>Savings Goals</h2>
+      <p>Track every goal, celebrate every milestone.</p>
+    </section>
+
     ${state.goals.length > 0 ? `
       <div class="savings-hero">
-        <div><div class="label">Total saved across goals</div><div class="amount">₹${fmtINR(total)}</div><div class="sub">${state.goals.length} active goal${state.goals.length !== 1 ? 's' : ''}</div></div>
-      </div>` : ''}
+        <div>
+          <div class="label">Total saved across goals</div>
+          <div class="amount">₹${fmtINR(total)}</div>
+          <div class="sub">${state.goals.length} active goal${state.goals.length !== 1 ? 's' : ''}</div>
+        </div>
+      </div>
+    ` : ''}
+
     <div class="section-header" style="margin-bottom:12px">
       <div class="section-title">Your Goals</div>
       <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openGoalModal()">${ICONS.plus} Add Goal</button>
     </div>
+
     ${state.goals.length === 0
-      ? `<div class="empty-state"><div class="icon">${ICONS.savings}</div><h4>No savings goals yet</h4><p>Set your first goal — laptop, travel, emergency fund</p><button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openGoalModal()">Create First Goal</button></div>`
-      : `<div class="insights-grid">
+      ? `
+        <div class="empty-state">
+          <div class="icon">${ICONS.savings}</div>
+          <h4>No savings goals yet</h4>
+          <p>Set your first goal — laptop, travel, emergency fund</p>
+          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openGoalModal()">Create First Goal</button>
+        </div>
+      `
+      : `
+        <div class="insights-grid">
           ${state.goals.map(g => {
             const pct = g.target ? (g.saved / g.target) * 100 : 0;
             const color = colorMap[g.color] || 'var(--green)';
-            return `<div class="insight" style="align-items:center;gap:16px">
-              <div class="goal-ring">
-                <svg width="76" height="76" viewBox="0 0 90 90">
-                  <circle class="ring-bg" cx="45" cy="45" r="38" fill="none"/>
-                  <circle class="ring-progress" cx="45" cy="45" r="38" fill="none" stroke="${color}" stroke-dasharray="239" stroke-dashoffset="${239 * (1 - Math.min(1, pct / 100))}" style="transform:rotate(-90deg);transform-origin:center"/>
-                </svg>
-                <div class="center">${pct.toFixed(0)}%</div>
-              </div>
-              <div class="insight-content" style="flex:1;min-width:0">
-                <h5>${escapeHtml(g.name)}</h5>
-                <p>₹${fmtINR(g.saved)} / ₹${fmtINR(g.target)}</p>
-                <div style="display:flex;gap:6px;margin-top:10px">
-                  <button class="btn-ghost" style="padding:5px 10px;font-size:11px;border:1px solid var(--border)" onclick="openGoalModal(${g.id})">${ICONS.edit} Edit</button>
-                  <button class="btn-ghost" style="padding:5px 10px;font-size:11px;color:var(--red);border:1px solid var(--border)" onclick="deleteGoal(${g.id})">${ICONS.trash}</button>
+            return `
+              <div class="insight" style="align-items:center;gap:16px">
+                <div class="goal-ring">
+                  <svg width="76" height="76" viewBox="0 0 90 90">
+                    <circle class="ring-bg" cx="45" cy="45" r="38" fill="none"/>
+                    <circle class="ring-progress" cx="45" cy="45" r="38" fill="none" stroke="${color}" stroke-dasharray="239" stroke-dashoffset="${239 * (1 - Math.min(1, pct / 100))}" style="transform:rotate(-90deg);transform-origin:center"/>
+                  </svg>
+                  <div class="center">${pct.toFixed(0)}%</div>
+                </div>
+                <div class="insight-content" style="flex:1;min-width:0">
+                  <h5>${escapeHtml(g.name)}</h5>
+                  <p>₹${fmtINR(g.saved)} / ₹${fmtINR(g.target)}</p>
+                  <div style="display:flex;gap:6px;margin-top:10px">
+                    <button class="btn-ghost" style="padding:5px 10px;font-size:11px;border:1px solid var(--border)" onclick="openGoalModal(${g.id})">${ICONS.edit} Edit</button>
+                    <button class="btn-ghost" style="padding:5px 10px;font-size:11px;color:var(--red);border:1px solid var(--border)" onclick="deleteGoal(${g.id})">${ICONS.trash}</button>
+                  </div>
                 </div>
               </div>
-            </div>`;
+            `;
           }).join('')}
-        </div>`}
+        </div>
+      `}
   `;
 }
 
-/* ============ PAGE: AI ============ */
+/* ============================================
+   PAGE: AI ASSISTANT
+   ============================================ */
 function pageAI() {
   return `
     <section class="hero" style="margin-bottom:16px">
@@ -1293,6 +1531,7 @@ function pageAI() {
       <h2>Your Personal Financial Guide</h2>
       <p>Ask anything about your money. Get smart insights and plans.</p>
     </section>
+
     <div class="ai-header">
       <div class="ai-header-avatar">${ICONS.bot}</div>
       <div class="ai-header-text">
@@ -1300,6 +1539,7 @@ function pageAI() {
         <p><span class="status-dot"></span>Online · Ready to help</p>
       </div>
     </div>
+
     <div class="ai-chat">
       <div class="ai-messages" id="chatMessages"></div>
       <div class="ai-suggestions" id="chatSuggestions">
@@ -1318,7 +1558,9 @@ function pageAI() {
   `;
 }
 
-/* ============ PAGE: REPORTS ============ */
+/* ============================================
+   PAGE: REPORTS
+   ============================================ */
 function pageReports() {
   const s = state.summary;
   const cats = {};
@@ -1326,8 +1568,14 @@ function pageReports() {
     cats[t.category] = (cats[t.category] || 0) + t.amount;
   });
   const topCat = Object.entries(cats).sort((a, b) => b[1] - a[1])[0];
+
   return `
-    <section class="hero"><div class="hero-greeting">Financial Reports</div><h2>Reports</h2><p>Download detailed PDF and CSV reports.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Financial Reports</div>
+      <h2>Reports</h2>
+      <p>Download detailed PDF and CSV reports.</p>
+    </section>
+
     <div class="report-card">
       <div class="section-header">
         <div><div class="section-title">Monthly Report</div><div class="section-subtitle">${new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</div></div>
@@ -1346,16 +1594,24 @@ function pageReports() {
   `;
 }
 
-/* ============ PAGE: PROFILE ============ */
+/* ============================================
+   PAGE: PROFILE
+   ============================================ */
 function pageProfile() {
   return `
-    <section class="hero"><div class="hero-greeting">Personal Info</div><h2>My Profile</h2><p>Manage your personal details and card information.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Personal Info</div>
+      <h2>My Profile</h2>
+      <p>Manage your personal details and card information.</p>
+    </section>
+
     <div class="settings-grid">
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.user}</span>Personal Details</h3>
         <div class="form-group"><label>Full Name</label><input id="pName" value="${escapeHtml(state.user?.name || '')}"/></div>
         <div class="form-group"><label>Email</label><input id="pEmail" value="${escapeHtml(state.user?.email || '')}" disabled/></div>
       </div>
+
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.card}</span>Card Details</h3>
         <div class="form-group"><label>Card Number</label><input id="pCardNumber" value="${escapeHtml(state.user?.card_number || '')}" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)"/></div>
@@ -1366,6 +1622,7 @@ function pageProfile() {
         <p style="font-size:10px;color:var(--text-tertiary);margin-top:4px">Just type digits — slash adds automatically</p>
       </div>
     </div>
+
     <div class="save-changes-bar">
       <button class="btn-ghost" onclick="logout()" style="color:var(--red)">Logout</button>
       <button class="btn-primary" id="saveProfileBtn" onclick="saveProfile()">${ICONS.check} Save Changes</button>
@@ -1377,31 +1634,43 @@ function formatCardNumber(el) {
   let v = el.value.replace(/\s/g, '').replace(/[^0-9]/g, '').slice(0, 16);
   el.value = v.replace(/(.{4})/g, '$1 ').trim();
 }
+
 function formatExpiry(el) {
   let v = el.value.replace(/[^0-9]/g, '').slice(0, 4);
   if (v.length >= 3) el.value = v.slice(0, 2) + '/' + v.slice(2);
   else el.value = v;
 }
 
-/* ============ PAGE: SETTINGS ============ */
+/* ============================================
+   PAGE: SETTINGS
+   ============================================ */
 function pageSettings() {
   const c = state.settings.card_color || 'black';
   const t = state.settings.theme || 'light';
+
   return `
-    <section class="hero"><div class="hero-greeting">Preferences</div><h2>Settings</h2><p>Customize your Wealthy experience.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Preferences</div>
+      <h2>Settings</h2>
+      <p>Customize your Wealthy experience.</p>
+    </section>
+
     <div class="settings-grid">
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.palette}</span>Appearance</h3>
         <div class="form-group"><label>Theme</label><select id="setTheme"><option value="light" ${t === 'light' ? 'selected' : ''}>Light</option><option value="dark" ${t === 'dark' ? 'selected' : ''}>Dark</option></select></div>
-        <div class="form-group"><label>Card Color</label>
+        <div class="form-group">
+          <label>Card Color</label>
           <div class="color-swatches" id="cardSwatches">
             ${Object.keys(CARD_COLORS).map(color => `<button class="color-swatch ${c === color ? 'active' : ''}" data-color="${color}" onclick="previewCardColor('${color}')" style="background:${CARD_COLORS[color].bg}"></button>`).join('')}
           </div>
         </div>
       </div>
+
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.user}</span>Currency</h3>
-        <div class="form-group"><label>Default Currency</label>
+        <div class="form-group">
+          <label>Default Currency</label>
           <select id="setCurrency">
             <option value="INR" ${state.settings.currency === 'INR' ? 'selected' : ''}>₹ Indian Rupee (INR)</option>
             <option value="USD" ${state.settings.currency === 'USD' ? 'selected' : ''}>$ US Dollar (USD)</option>
@@ -1411,18 +1680,21 @@ function pageSettings() {
           </select>
         </div>
       </div>
+
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.bell}</span>Notifications</h3>
         <div class="switch-row"><label>Bill Reminders</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
         <div class="switch-row"><label>Budget Alerts</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
         <div class="switch-row"><label>Weekly Summary</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
       </div>
+
       <div class="settings-card">
         <h3><span class="icon-wrap">${ICONS.lock}</span>Security</h3>
         <div class="report-row"><span class="label">2FA</span><span class="value" style="color:var(--green)">Enabled</span></div>
         <div class="report-row"><span class="label">Encryption</span><span class="value" style="color:var(--green)">AES-256</span></div>
       </div>
     </div>
+
     <div class="save-changes-bar">
       <button class="btn-ghost" onclick="nav('settings')">Cancel</button>
       <button class="btn-primary" id="saveSettingsBtn" onclick="saveSettings()">${ICONS.check} Save Changes</button>
@@ -1430,16 +1702,24 @@ function pageSettings() {
   `;
 }
 
-/* ============ PAGE: HELP ============ */
+/* ============================================
+   PAGE: HELP
+   ============================================ */
 function pageHelp() {
   return `
-    <section class="hero"><div class="hero-greeting">Support Center</div><h2>Help & Support</h2><p>We're here to help you 24/7.</p></section>
+    <section class="hero">
+      <div class="hero-greeting">Support Center</div>
+      <h2>Help & Support</h2>
+      <p>We're here to help you 24/7.</p>
+    </section>
+
     <div class="insights-grid">
       <div class="insight"><div class="insight-icon">${ICONS.help}</div><div class="insight-content"><h5>Getting Started</h5><p>Add transactions to unlock live insights.</p></div></div>
       <div class="insight"><div class="insight-icon blue">${ICONS.shield}</div><div class="insight-content"><h5>Security</h5><p>Bank-grade encryption, no PIN/CVV stored.</p></div></div>
       <div class="insight"><div class="insight-icon purple">${ICONS.upi}</div><div class="insight-content"><h5>UPI Hub</h5><p>Add UPI ID and QR code for payments.</p></div></div>
       <div class="insight"><div class="insight-icon yellow">${ICONS.download}</div><div class="insight-content"><h5>Reports</h5><p>Download PDF, CSV, JSON reports.</p></div></div>
     </div>
+
     <div class="chart-card" style="margin-top:16px">
       <div class="section-title" style="margin-bottom:12px">Contact Support</div>
       <div class="report-row"><span class="label">Email</span><span class="value">support@wealthy.in</span></div>
@@ -1448,196 +1728,10 @@ function pageHelp() {
       <div class="report-row"><span class="label">Status</span><span class="value" style="color:var(--green)">● Online</span></div>
     </div>
   `;
-}
-    /* ============ AI CHAT ============ */
-function handleAiKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    aiSend();
-  }
-}
-
-function aiSend(prefill) {
-  const input = document.getElementById('aiInput');
-  const msg = prefill || (input ? input.value.trim() : '');
-  if (!msg) return toast('Type something first', 'error');
-  if (input && !prefill) input.value = '';
-  state.chatMessages.push({ role: 'user', text: msg });
-  renderChat();
-  const sendBtn = document.getElementById('aiSendBtn');
-  if (sendBtn) sendBtn.disabled = true;
-  setTimeout(() => {
-    const reply = generateAIResponse(msg);
-    state.chatMessages.push({ role: 'bot', text: reply });
-    renderChat();
-    if (sendBtn) sendBtn.disabled = false;
-  }, 600 + Math.random() * 700);
-}
-
-function renderChat() {
-  const container = document.getElementById('chatMessages');
-  if (!container) return;
-  if (state.chatMessages.length === 0) {
-    const userName = (state.user?.name || 'there').split(' ')[0];
-    container.innerHTML = `
-      <div class="ai-msg bot">
-        <div class="avatar bot">${ICONS.bot}</div>
-        <div class="ai-bubble">Hi ${userName} 👋
-I'm <strong>Wealthy AI</strong> — your personal finance assistant.
-
-I can help you with:
-• 💰 Budget planning
-• 📊 Monthly summaries
-• 💡 Savings suggestions
-• 🚨 Emergency fund advice
-• 📈 Spending analysis
-
-Tap a suggestion below or type your question.</div>
-      </div>`;
-    return;
-  }
-  let html = '';
-  state.chatMessages.forEach(m => {
-    if (m.role === 'user') {
-      html += `<div class="ai-msg user"><div class="avatar user">${initials(state.user?.name)}</div><div class="ai-bubble">${escapeHtml(m.text)}</div></div>`;
-    } else {
-      html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="ai-bubble">${m.text}</div></div>`;
-    }
-  });
-  if (state.chatMessages[state.chatMessages.length - 1]?.role === 'user') {
-    html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
-  }
-  container.innerHTML = html;
-  container.scrollTop = container.scrollHeight;
-}
-
-function detectLanguage(text) {
-  const hinglish = /\b(kya|kaise|kaha|kitna|kitne|banao|bana|do|chahiye|hai|hu|ho|ka|ki|ke|mera|meri|paise|paisa|kharch|kharcha|bacha|bachao|salary|mahine|mahina|savings|budget|bhai|yaar|nhi|nahi|abhi|kab|kaun|kyun|kyu|de|dedo|bata|batao|dikha|dikhao|mil|milega|hoga|hogi|raha|rahi|rahe|gaya|gayi|gaye)\b/i;
-  const hindiScript = /[\u0900-\u097F]/;
-  return hinglish.test(text) || hindiScript.test(text) ? 'hinglish' : 'english';
-}
-
-function generateAIResponse(rawQ) {
-  const lang = detectLanguage(rawQ);
-  const t = (en, hi) => lang === 'hinglish' ? hi : en;
-  const q = rawQ.toLowerCase().trim();
-  const s = state.summary;
-  const txs = state.transactions;
-  const incomes = txs.filter(t => t.type === 'income');
-  const expenses = txs.filter(t => t.type === 'expense');
-  const fmt = v => '₹' + fmtINR(Math.round(v));
-
-  if (txs.length === 0 && !q.includes('how') && !q.includes('kaise') && !q.includes('start') && !q.includes('shuru')) {
-    return t(
-      `You don't have any transactions yet 📝\n\n**To get started:**\n1. Click **"+ Add Transaction"** in the sidebar\n2. Add your salary or first expense\n3. Then ask me — I'll analyze your finances\n\n**Suggestions:**\n• Add monthly income\n• Track every expense\n• After 10-15 transactions, I can give real insights`,
-      `Aapke paas abhi koi transaction nahi hai 📝\n\n**Shuru karne ke liye:**\n1. Sidebar mein **"+ Add Transaction"** click karo\n2. Apni salary ya pehla expense add karo\n3. Phir mujhse poocho — main poora analysis kar dunga\n\n**Suggestions:**\n• Monthly income add karo\n• Har expense track karo\n• 10-15 transactions ke baad main real insights dunga`
-    );
-  }
-
-  if (q.includes('budget') || q.includes('plan')) {
-    const monthlyIncome = s.income > 0 ? s.income : 50000;
-    const needs = monthlyIncome * 0.5;
-    const wants = monthlyIncome * 0.3;
-    const savings = monthlyIncome * 0.2;
-    return t(
-      `📊 **Your Budget Plan (50-30-20 Rule)**\n\nMonthly income: <strong>${fmt(monthlyIncome)}</strong>\n\n**🏠 Needs (50%) — ${fmt(needs)}**\n• Rent / EMI\n• Groceries & food\n• Utilities\n• Transport / fuel\n• Insurance\n\n**🎬 Wants (30%) — ${fmt(wants)}**\n• Dining out, movies\n• Shopping\n• Subscriptions\n• Travel\n\n**💰 Savings (20%) — ${fmt(savings)}**\n• Emergency fund\n• SIP / mutual funds\n• Goal-based savings\n\n---\n\n**Your current situation:**\n• Income: ${fmt(s.income)}\n• Expense: ${fmt(s.expense)}\n• Savings: ${fmt(s.savings)}\n• Rate: ${s.savingsRate.toFixed(1)}%\n\n${s.savingsRate >= 20 ? '✅ You are saving 20%+ — excellent!' : '⚠️ Saving less than 20%. Try to reduce spending.'}`,
-      `📊 **Aapka Budget Plan (50-30-20 Rule)**\n\nAapki monthly income: <strong>${fmt(monthlyIncome)}</strong>\n\n**🏠 Needs (50%) — ${fmt(needs)}**\n• Rent / EMI\n• Groceries & khana\n• Utilities (bijli, paani, internet)\n• Transport / fuel\n• Insurance\n\n**🎬 Wants (30%) — ${fmt(wants)}**\n• Bahar khana, movies\n• Shopping\n• Subscriptions\n• Travel & entertainment\n\n**💰 Savings (20%) — ${fmt(savings)}**\n• Emergency fund\n• SIP / mutual funds\n• Goal savings\n\n---\n\n**Aapki current situation:**\n• Income: ${fmt(s.income)}\n• Expense: ${fmt(s.expense)}\n• Savings: ${fmt(s.savings)}\n• Rate: ${s.savingsRate.toFixed(1)}%\n\n${s.savingsRate >= 20 ? '✅ Aap 20%+ save kar rahe ho — bahut acha!' : '⚠️ 20% se kam save ho raha hai. Kharcha thoda kam karo.'}`
-    );
-  }
-
-  if (q.includes('summary') || q.includes('report') || q.includes('monthly') || q.includes('mahine')) {
-    return t(
-      `📊 **Monthly Summary**\n\n**💰 Income:** ${fmt(s.income)}\n**💸 Expense:** ${fmt(s.expense)}\n**🏦 Savings:** ${fmt(s.savings)}\n**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%\n\n**Transactions:** ${txs.length}\n• Income: ${incomes.length}\n• Expense: ${expenses.length}\n\n${s.savings >= 0 ? `✅ **Surplus of ${fmt(s.savings)}** — great job!` : `⚠️ **Deficit of ${fmt(Math.abs(s.savings))}** — spending more than earning.`}`,
-      `📊 **Monthly Summary**\n\n**💰 Income:** ${fmt(s.income)}\n**💸 Expense:** ${fmt(s.expense)}\n**🏦 Savings:** ${fmt(s.savings)}\n**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%\n\n**Total Transactions:** ${txs.length}\n• Income: ${incomes.length}\n• Expense: ${expenses.length}\n\n${s.savings >= 0 ? `✅ **${fmt(s.savings)} ka surplus** — bahut acha!` : `⚠️ **${fmt(Math.abs(s.savings))} ka deficit** — income se zyada kharch.`}`
-    );
-  }
-
-  if (q.includes('save') || q.includes('bacha') || q.includes('kaha')) {
-    const cats = {};
-    expenses.forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
-    const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 3);
-    const topCat = sorted[0];
-    const saveTarget = topCat ? topCat[1] * 0.2 : 0;
-    return t(
-      `💡 **Where to Save**\n\nYour top spending category: **${topCat ? topCat[0] : 'N/A'}**\nAmount: ${topCat ? fmt(topCat[1]) : '—'}\n\n**💡 3 immediate savings tips:**\n\n1. **Cut ${topCat ? topCat[0] : 'spending'} by 20%**\n   → Save ${fmt(saveTarget)} every month\n\n2. **Review subscriptions**\n   → Cancel unused ones\n\n3. **Reduce food delivery**\n   → Cook at home more\n\n**Your top 3 categories:**\n${sorted.map(([n, v], i) => `${i + 1}. ${n} → ${fmt(v)}`).join('\n')}`,
-      `💡 **Kaha Save Karu**\n\nTop category: **${topCat ? topCat[0] : 'N/A'}**\nAmount: ${topCat ? fmt(topCat[1]) : '—'}\n\n**💡 Turant savings ke 3 tarike:**\n\n1. **${topCat ? topCat[0] + ' cut karo' : 'Kharch cut karo'}**\n   → ${fmt(saveTarget)} bachega har mahine\n\n2. **Subscriptions review karo**\n   → Netflix, Spotify unused hata do\n\n3. **Food delivery kam karo**\n   → Cooking at home 3x sasta\n\n**Aapki top 3 categories:**\n${sorted.map(([n, v], i) => `${i + 1}. ${n} → ${fmt(v)}`).join('\n')}`
-    );
-  }
-
-  if (q.includes('emergency') || q.includes('fund')) {
-    const monthlyExp = s.expense > 0 ? s.expense : 30000;
-    const fund3 = monthlyExp * 3;
-    const fund6 = monthlyExp * 6;
-    return t(
-      `🚨 **Emergency Fund Guide**\n\nEmergency fund = 3 to 6 months of expenses\n\n**Your monthly expense:** ${fmt(monthlyExp)}\n\n**📊 Recommended:**\n• **Minimum (3 months):** ${fmt(fund3)}\n• **Ideal (6 months):** ${fmt(fund6)}\n\n**Where to keep:**\n✅ Savings account\n✅ Liquid mutual fund\n❌ Stocks / FD\n\n**Build plan:**\n• Save ${fmt(fund6 / 12)} monthly → 1 year\n• Or ${fmt(fund6 / 6)} → 6 months`,
-      `🚨 **Emergency Fund Guide**\n\nEmergency fund = 3 se 6 months ka kharcha\n\n**Aapka monthly expense:** ${fmt(monthlyExp)}\n\n**📊 Recommended:**\n• **Minimum (3 months):** ${fmt(fund3)}\n• **Ideal (6 months):** ${fmt(fund6)}\n\n**Kaha rakhein:**\n✅ Savings account\n✅ Liquid mutual fund\n❌ Stocks / FD\n\n**Build plan:**\n• ${fmt(fund6 / 12)} monthly → 1 saal\n• Ya ${fmt(fund6 / 6)} → 6 mahine`
-    );
-  }
-
-  if (q.includes('category') || q.includes('top spend') || q.includes('top')) {
-    const cats = {};
-    expenses.forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
-    const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
-    if (sorted.length === 0) return t('📊 No expense data yet.', '📊 Abhi koi expense nahi.');
-    const total = sorted.reduce((sum, [, v]) => sum + v, 0);
-    return t(
-      `📈 **Your Top Spending Categories**\n\n${sorted.map(([n, v], i) => {
-        const pct = (v / total) * 100;
-        return `${i + 1}. **${n}**\n   ${pct.toFixed(1)}% — ${fmt(v)}`;
-      }).join('\n\n')}\n\n**Total:** ${fmt(total)}`,
-      `📈 **Aapki Top Spending Categories**\n\n${sorted.map(([n, v], i) => {
-        const pct = (v / total) * 100;
-        return `${i + 1}. **${n}**\n   ${pct.toFixed(1)}% — ${fmt(v)}`;
-      }).join('\n\n')}\n\n**Total:** ${fmt(total)}`
-    );
-  }
-
-  if (q.includes('rate') || q.includes('savings rate')) {
-    return t(
-      `💵 **Your Savings Rate**\n\n**Current rate:** ${s.savingsRate.toFixed(1)}%\n**Total saved:** ${fmt(s.savings)}\n\n**Benchmarks:**\n• 🔴 Below 10%\n• 🟡 10-20%\n• 🟢 20-30%\n• 🏆 30%+\n\n**Your status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Good' : s.savingsRate >= 10 ? '🟡 Getting there' : '🔴 Needs improvement'}`,
-      `💵 **Aapka Savings Rate**\n\n**Current rate:** ${s.savingsRate.toFixed(1)}%\n**Total saved:** ${fmt(s.savings)}\n\n**Benchmarks:**\n• 🔴 10% se kam\n• 🟡 10-20%\n• 🟢 20-30%\n• 🏆 30%+\n\n**Aapka status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Acha' : s.savingsRate >= 10 ? '🟡 Theek hai' : '🔴 Improve karo'}`
-    );
-  }
-
-  if (q.includes('upi')) {
-    const upiTx = txs.filter(t => (t.method || '').toLowerCase().includes('upi'));
-    const upiTotal = upiTx.reduce((s, t) => s + t.amount, 0);
-    return t(
-      `📱 **UPI Analysis**\n\n**Transactions via UPI:** ${upiTx.length}\n**Total amount:** ${fmt(upiTotal)}\n**Average per transaction:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}`,
-      `📱 **UPI Analysis**\n\n**UPI Transactions:** ${upiTx.length}\n**Total via UPI:** ${fmt(upiTotal)}\n**Average:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}`
-    );
-  }
-
-  if (q.includes('card') || q.includes('credit')) {
-    return t(
-      `💳 **Card Management**\n\n**Your cards:** ${state.cards.length}\n\n${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}`).join('\n') : 'No cards added yet.'}\n\n**Tip:** Keep credit utilization below 30%.`,
-      `💳 **Card Management**\n\n**Aapke cards:** ${state.cards.length}\n\n${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}`).join('\n') : 'Abhi koi card nahi.'}`
-    );
-  }
-
-  if (q.includes('bill') || q.includes('due')) {
-    const upcoming = state.bills.filter(b => b.status === 'upcoming');
-    const overdue = state.bills.filter(b => b.status === 'overdue');
-    return t(
-      `🧾 **Bills Status**\n\n**Upcoming:** ${upcoming.length}\n**Overdue:** ${overdue.length}\n\n${overdue.length > 0 ? `⚠️ **Pay now:**\n${overdue.map(b => `• ${b.name}: ${fmt(b.amount)}`).join('\n')}` : '✅ No overdue bills!'}`,
-      `🧾 **Bills Status**\n\n**Upcoming:** ${upcoming.length}\n**Overdue:** ${overdue.length}\n\n${overdue.length > 0 ? `⚠️ **Turant pay karo:**\n${overdue.map(b => `• ${b.name}: ${fmt(b.amount)}`).join('\n')}` : '✅ Koi overdue nahi hai!'}`
-    );
-  }
-
-  if (q.includes('kaise shuru') || q.includes('how to start') || q.includes('get started')) {
-    return t(
-      `🚀 **How to Use Wealthy**\n\n**Week 1: Setup**\n1. Add salary\n2. Add rent / EMI\n3. Create emergency fund goal\n\n**Week 2: Track**\n1. Add every expense\n2. Update daily\n\n**Week 3: Analyze**\n1. Open Analysis\n2. Set budgets\n\n**Week 4: Optimize**\n1. Cut overspending\n2. Improve savings rate`,
-      `🚀 **Wealthy Kaise Use Kare**\n\n**Week 1: Setup**\n1. Salary add karo\n2. Rent / EMI add karo\n3. Emergency fund banao\n\n**Week 2: Track**\n1. Har expense add karo\n2. Daily update\n\n**Week 3: Analyze**\n1. Analysis page kholo\n2. Budgets set karo\n\n**Week 4: Optimize**\n1. Overspending cut karo\n2. Savings rate improve karo`
-    );
-  }
-
-  return t(
-    `I'm here to help with your money! 💰\n\n**You can ask me:**\n• "Budget plan" — get a 50-30-20 plan\n• "Monthly summary" — see your numbers\n• "Where to save" — find savings opportunities\n• "Emergency fund" — how much you need\n• "Top spending" — your biggest categories\n• "Savings rate" — how you're doing\n• "How to start" — setup guide\n\nTap a suggestion below or type your question.`,
-    `Main aapki help kar sakti hoon! 💰\n\n**Aap pooch sakte ho:**\n• "Budget plan banao" — 50-30-20 plan\n• "Monthly summary" — apne numbers dekho\n• "Kaha save karu?" — savings ka mauka\n• "Emergency fund" — kitna chahiye\n• "Top spending" — sabse zyada kharch\n• "Savings rate" — kaisa chal raha hai\n• "Kaise shuru karu?" — setup guide\n\nNeeche suggestions pe click karo ya apna sawaal likho.`
-  );
-}
-
-/* ============ MODAL: ADD/EDIT TRANSACTION ============ */
+} 
+  /* ============================================
+   MODAL: ADD TRANSACTION
+   ============================================ */
 function openModal(type = 'expense') {
   const accounts = state.accounts || [];
   document.getElementById('modalContent').innerHTML = `
@@ -1668,14 +1762,7 @@ function openModal(type = 'expense') {
         <option>Bank Transfer</option><option>Cash</option>
       </select>
     </div>
-    ${accounts.length > 0 ? `
-      <div class="form-group"><label>Account</label>
-        <select id="txAccount">
-          <option value="">— No account —</option>
-          ${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}
-        </select>
-      </div>
-    ` : ''}
+    ${accounts.length > 0 ? `<div class="form-group"><label>Account</label><select id="txAccount"><option value="">— No account —</option>${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}</select></div>` : ''}
     <div class="form-row">
       <div class="form-group"><label>Date</label><input type="date" id="txDate"/></div>
       <div class="form-group"><label>Notes</label><input id="txNotes" placeholder="Optional"/></div>
@@ -1719,6 +1806,9 @@ async function saveTransaction() {
   }
 }
 
+/* ============================================
+   MODAL: EDIT TRANSACTION
+   ============================================ */
 async function editTx(id) {
   const t = state.transactions.find(x => x.id === id);
   if (!t) return;
@@ -1779,16 +1869,9 @@ async function updateTx(id) {
   }
 }
 
-async function duplicateTx(id) {
-  try {
-    await api('/transactions/' + id + '/duplicate', { method: 'POST' });
-    toast('Transaction duplicated');
-    closeModal();
-    await loadData();
-    nav(state.currentPage);
-  } catch (err) { toast(err.message, 'error'); }
-}
-
+/* ============================================
+   MODAL: VIEW TRANSACTION
+   ============================================ */
 function viewTx(id) {
   const t = state.transactions.find(x => x.id === id);
   if (!t) return;
@@ -1822,6 +1905,19 @@ function viewTx(id) {
   document.body.style.overflow = 'hidden';
 }
 
+/* ============================================
+   DUPLICATE + DELETE TX
+   ============================================ */
+async function duplicateTx(id) {
+  try {
+    await api('/transactions/' + id + '/duplicate', { method: 'POST' });
+    toast('Transaction duplicated');
+    closeModal();
+    await loadData();
+    nav(state.currentPage);
+  } catch (err) { toast(err.message, 'error'); }
+}
+
 function confirmDeleteTx(id) {
   const t = state.transactions.find(x => x.id === id);
   if (!t) return;
@@ -1850,7 +1946,9 @@ async function doDeleteTx(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ FILTER PANEL ============ */
+/* ============================================
+   FILTER PANEL
+   ============================================ */
 function openFilterPanel() {
   const categories = [...new Set(state.transactions.map(t => t.category).filter(Boolean))];
   document.getElementById('modalContent').innerHTML = `
@@ -1912,7 +2010,9 @@ function applyFilters() {
   nav('transactions');
 }
 
-/* ============ ACCOUNT MODAL ============ */
+/* ============================================
+   ACCOUNT MODAL
+   ============================================ */
 function openAccountModal(id) {
   const a = id ? state.accounts.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
@@ -1929,9 +2029,7 @@ function openAccountModal(id) {
     <div class="form-group"><label>Opening Balance (₹)</label><input id="accBalance" type="number" value="${a.opening_balance || 0}" placeholder="0"/></div>
     <div class="form-group"><label>Color</label>
       <div class="color-swatches" id="accColorPick">
-        ${['green', 'blue', 'red', 'purple', 'yellow'].map(color => `
-          <button class="color-swatch ${(a.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickAccColor('${color}')" style="background:${getAccountColor(color)}"></button>
-        `).join('')}
+        ${['green', 'blue', 'red', 'purple', 'yellow'].map(color => `<button class="color-swatch ${(a.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickAccColor('${color}')" style="background:${getAccountColor(color)}"></button>`).join('')}
       </div>
     </div>
     <input type="hidden" id="accColor" value="${a.color || 'green'}"/>
@@ -1975,7 +2073,7 @@ async function confirmDeleteAccount(id) {
     <div class="confirm-icon">${ICONS.trash}</div>
     <div class="confirm-title">Delete this account?</div>
     <div class="confirm-message">
-      <strong>${escapeHtml(a.name)}</strong> will be permanently deleted.<br/>Transactions will remain but no longer be linked.<br/>This action cannot be undone.
+      <strong>${escapeHtml(a.name)}</strong> will be deleted.<br/>Transactions will remain but no longer be linked.<br/>This action cannot be undone.
     </div>
     <div style="display:flex;gap:8px">
       <button class="btn-ghost" style="flex:1;justify-content:center;border:1px solid var(--border)" onclick="closeModal()">Cancel</button>
@@ -1996,12 +2094,12 @@ async function doDeleteAccount(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ TRANSFER MODAL ============ */
+/* ============================================
+   TRANSFER MODAL
+   ============================================ */
 function openTransferModal() {
   const accounts = state.accounts || [];
-  if (accounts.length < 2) {
-    return toast('Need at least 2 accounts to transfer', 'error');
-  }
+  if (accounts.length < 2) return toast('Need at least 2 accounts', 'error');
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Transfer Money</h3>
@@ -2033,10 +2131,8 @@ async function saveTransfer() {
   const amount = parseFloat(document.getElementById('transferAmount').value);
   const date = document.getElementById('transferDate').value;
   const notes = document.getElementById('transferNotes').value;
-
   if (from_account_id === to_account_id) return toast('Same account not allowed', 'error');
   if (!amount || amount <= 0) return toast('Enter valid amount', 'error');
-
   btn.disabled = true;
   btn.textContent = 'Transferring...';
   try {
@@ -2049,7 +2145,9 @@ async function saveTransfer() {
   finally { btn.disabled = false; btn.textContent = 'Transfer'; }
 }
 
-/* ============ BILL MODAL ============ */
+/* ============================================
+   BILL MODAL
+   ============================================ */
 function openBillModal(id) {
   const b = id ? state.bills.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
@@ -2108,7 +2206,9 @@ async function deleteBill(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ BUDGET MODAL ============ */
+/* ============================================
+   BUDGET MODAL
+   ============================================ */
 function openBudgetModal(id) {
   const b = id ? state.budgets.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
@@ -2158,7 +2258,9 @@ async function deleteBudget(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ GOAL MODAL ============ */
+/* ============================================
+   GOAL MODAL
+   ============================================ */
 function openGoalModal(id) {
   const g = id ? state.goals.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
@@ -2173,9 +2275,7 @@ function openGoalModal(id) {
     </div>
     <div class="form-group"><label>Color</label>
       <div class="color-swatches" id="goalColorPick">
-        ${['green', 'blue', 'purple', 'yellow'].map(color => `
-          <button class="color-swatch ${(g.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickGoalColor('${color}')" style="background:${color === 'green' ? '#0F7A4D' : color === 'blue' ? '#2563EB' : color === 'purple' ? '#7C3AED' : '#EAB308'}"></button>
-        `).join('')}
+        ${['green', 'blue', 'purple', 'yellow'].map(color => `<button class="color-swatch ${(g.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickGoalColor('${color}')" style="background:${color === 'green' ? '#0F7A4D' : color === 'blue' ? '#2563EB' : color === 'purple' ? '#7C3AED' : '#EAB308'}"></button>`).join('')}
       </div>
     </div>
     <input type="hidden" id="gColor" value="${g.color || 'green'}"/>
@@ -2222,7 +2322,9 @@ async function deleteGoal(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ PROFILE & SETTINGS SAVE ============ */
+/* ============================================
+   PROFILE & SETTINGS SAVE
+   ============================================ */
 async function saveProfile() {
   const btn = document.getElementById('saveProfileBtn');
   const name = document.getElementById('pName').value.trim();
@@ -2274,7 +2376,9 @@ async function saveSettings() {
   }
 }
 
-/* ============ UPI & QR ============ */
+/* ============================================
+   UPI ID & QR
+   ============================================ */
 function openUPIIdModal() {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
@@ -2364,7 +2468,9 @@ function downloadQR() {
   toast('QR downloaded');
 }
 
-/* ============ EXPORT MODAL ============ */
+/* ============================================
+   EXPORT MODAL
+   ============================================ */
 function openExportModal() {
   const totalCount = state.transactions.length;
   document.getElementById('modalContent').innerHTML = `
@@ -2420,68 +2526,21 @@ async function downloadExport(format) {
 function downloadReportPDF() {
   const s = state.summary;
   const user = state.user?.name || 'User';
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wealthy Report</title><style>
-@page{margin:20mm 15mm}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',sans-serif;color:#111;line-height:1.5}
-.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:3px solid #0F7A4D;margin-bottom:32px}
-.logo{display:flex;align-items:center;gap:12px}.logo-box{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#1A1A1A,#0A0A0A);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:26px;font-weight:800}
-.logo-text h1{font-size:24px;font-weight:800}.logo-text p{font-size:12px;color:#666;margin-top:2px}
-.meta{text-align:right;font-size:11px;color:#666}.meta strong{color:#111;display:block;font-size:13px;margin-bottom:4px}
-h2{font-size:16px;font-weight:700;margin:32px 0 16px;padding-left:12px;border-left:4px solid #0F7A4D}
-.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.summary-card{padding:18px;border-radius:12px;background:#F8F9FB;border:1px solid #E8E8E8}
-.summary-card .label{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;margin-bottom:6px}
-.summary-card .value{font-size:22px;font-weight:800}
-.summary-card.green{background:linear-gradient(135deg,#E8F5EE,#F5FBF7)}.summary-card.green .value{color:#0F7A4D}
-.summary-card.red{background:linear-gradient(135deg,#FEE9E9,#FEF5F5)}.summary-card.red .value{color:#B91C1C}
-.summary-card.blue{background:linear-gradient(135deg,#E8EFFE,#F5F8FE)}.summary-card.blue .value{color:#1E40AF}
-.summary-card.purple{background:linear-gradient(135deg,#F3EBFE,#F9F5FE)}.summary-card.purple .value{color:#5B21B6}
-table{width:100%;border-collapse:collapse;margin-bottom:8px}
-thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#666;background:#F8F9FB;border-bottom:2px solid #E8E8E8}
-thead th:last-child,thead th:nth-child(2){text-align:right}
-.footer{margin-top:40px;padding-top:24px;border-top:2px solid #E8E8E8;text-align:center;font-size:10px;color:#888;line-height:1.8}
-.footer strong{color:#0F7A4D;font-weight:700}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
-.badge-income{background:#E8F5EE;color:#0F7A4D}.badge-expense{background:#FEE9E9;color:#B91C1C}
-</style></head><body>
-<div class="header">
-  <div class="logo"><div class="logo-box">W</div><div class="logo-text"><h1>WEALTHY</h1><p>Track. Understand. Save.</p></div></div>
-  <div class="meta"><strong>Financial Report</strong>${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}<br/>Account: ${user}</div>
-</div>
-<h2>Executive Summary</h2>
-<div class="summary-grid">
-  <div class="summary-card green"><div class="label">Total Income</div><div class="value">+₹${fmtINR(s.income)}</div></div>
-  <div class="summary-card red"><div class="label">Total Expense</div><div class="value">−₹${fmtINR(s.expense)}</div></div>
-  <div class="summary-card blue"><div class="label">Total Savings</div><div class="value">₹${fmtINR(s.savings)}</div></div>
-  <div class="summary-card purple"><div class="label">Savings Rate</div><div class="value">${s.savingsRate.toFixed(1)}%</div></div>
-</div>
-<h2>Transaction Ledger (${state.transactions.length})</h2>
-<table>
-<thead><tr><th>Date & Merchant</th><th>Type</th><th>Amount</th></tr></thead>
-<tbody>
-${state.transactions.slice(0, 100).map(t => `<tr>
-  <td style="padding:10px 14px;border-bottom:1px solid #F0F0F0">
-    <div style="font-weight:600">${escapeHtml(t.merchant || 'Untitled')}</div>
-    <div style="font-size:10px;color:#888;margin-top:2px">${t.date} · ${escapeHtml(t.category || '')} · ${escapeHtml(t.method || '')}</div>
-  </td>
-  <td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right"><span class="badge ${t.type === 'income' ? 'badge-income' : 'badge-expense'}">${t.type === 'income' ? 'INCOME' : 'EXPENSE'}</span></td>
-  <td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right;font-weight:700;color:${t.type === 'income' ? '#0F7A4D' : '#B91C1C'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</td>
-</tr>`).join('')}
-</tbody>
-</table>
-<div class="footer">
-  <div><strong>WEALTHY</strong> · Track. Understand. Save.</div>
-  <div>Owner: <strong>SANJEEV SHEKHAR</strong> · Email: sanjeev@wealthy.in · Parent: D2C Ventures</div>
-  <div>© 2026 Wealthy Financial Services Pvt. Ltd. · Made in India 🇮🇳</div>
-</div>
-</body></html>`;
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wealthy Report</title><style>@page{margin:20mm 15mm}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',sans-serif;color:#111;line-height:1.5}.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:3px solid #0F7A4D;margin-bottom:32px}.logo{display:flex;align-items:center;gap:12px}.logo-box{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#1A1A1A,#0A0A0A);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:26px;font-weight:800}.logo-text h1{font-size:24px;font-weight:800}.logo-text p{font-size:12px;color:#666;margin-top:2px}.meta{text-align:right;font-size:11px;color:#666}.meta strong{color:#111;display:block;font-size:13px;margin-bottom:4px}h2{font-size:16px;font-weight:700;margin:32px 0 16px;padding-left:12px;border-left:4px solid #0F7A4D}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.summary-card{padding:18px;border-radius:12px;background:#F8F9FB;border:1px solid #E8E8E8}.summary-card .label{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;margin-bottom:6px}.summary-card .value{font-size:22px;font-weight:800}.summary-card.green{background:linear-gradient(135deg,#E8F5EE,#F5FBF7)}.summary-card.green .value{color:#0F7A4D}.summary-card.red{background:linear-gradient(135deg,#FEE9E9,#FEF5F5)}.summary-card.red .value{color:#B91C1C}.summary-card.blue{background:linear-gradient(135deg,#E8EFFE,#F5F8FE)}.summary-card.blue .value{color:#1E40AF}.summary-card.purple{background:linear-gradient(135deg,#F3EBFE,#F9F5FE)}.summary-card.purple .value{color:#5B21B6}table{width:100%;border-collapse:collapse;margin-bottom:8px}thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#666;background:#F8F9FB;border-bottom:2px solid #E8E8E8}thead th:last-child,thead th:nth-child(2){text-align:right}.footer{margin-top:40px;padding-top:24px;border-top:2px solid #E8E8E8;text-align:center;font-size:10px;color:#888;line-height:1.8}.footer strong{color:#0F7A4D;font-weight:700}.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}.badge-income{background:#E8F5EE;color:#0F7A4D}.badge-expense{background:#FEE9E9;color:#B91C1C}</style></head><body>
+<div class="header"><div class="logo"><div class="logo-box">W</div><div class="logo-text"><h1>WEALTHY</h1><p>Track. Understand. Save.</p></div></div><div class="meta"><strong>Financial Report</strong>${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}<br/>Account: ${user}</div></div>
+<h2>Executive Summary</h2><div class="summary-grid"><div class="summary-card green"><div class="label">Total Income</div><div class="value">+₹${fmtINR(s.income)}</div></div><div class="summary-card red"><div class="label">Total Expense</div><div class="value">−₹${fmtINR(s.expense)}</div></div><div class="summary-card blue"><div class="label">Total Savings</div><div class="value">₹${fmtINR(s.savings)}</div></div><div class="summary-card purple"><div class="label">Savings Rate</div><div class="value">${s.savingsRate.toFixed(1)}%</div></div></div>
+<h2>Transaction Ledger (${state.transactions.length})</h2><table><thead><tr><th>Date & Merchant</th><th>Type</th><th>Amount</th></tr></thead><tbody>${state.transactions.slice(0, 100).map(t => `<tr><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0"><div style="font-weight:600">${escapeHtml(t.merchant || 'Untitled')}</div><div style="font-size:10px;color:#888;margin-top:2px">${t.date} · ${escapeHtml(t.category || '')} · ${escapeHtml(t.method || '')}</div></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right"><span class="badge ${t.type === 'income' ? 'badge-income' : 'badge-expense'}">${t.type === 'income' ? 'INCOME' : 'EXPENSE'}</span></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right;font-weight:700;color:${t.type === 'income' ? '#0F7A4D' : '#B91C1C'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</td></tr>`).join('')}</tbody></table>
+<div class="footer"><div><strong>WEALTHY</strong> · Track. Understand. Save.</div><div>Owner: <strong>SANJEEV SHEKHAR</strong> · Email: sanjeev@wealthy.in · Parent: D2C Ventures</div><div>© 2026 Wealthy Financial Services Pvt. Ltd. · Made in India 🇮🇳</div></div></body></html>`;
   const win = window.open('', '_blank');
   win.document.write(html);
   win.document.close();
   setTimeout(() => win.print(), 500);
-  toast('Report ready — save as PDF');
+  toast('Report ready');
 }
 
-/* ============ IMPORT (CSV) ============ */
+/* ============================================
+   IMPORT CSV
+   ============================================ */
 function openImportModal() {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
@@ -2544,10 +2603,9 @@ function handleCSVUpload(e) {
       const cells = parseCSVLine(lines[i]);
       const amount = parseFloat((cells[amountCol] || '0').replace(/[^0-9.-]/g, ''));
       if (!amount) continue;
-      let dateStr = cells[dateCol] || '';
-      let d = new Date(dateStr);
+      let d = new Date(cells[dateCol]);
       if (isNaN(d.getTime())) {
-        const m = dateStr.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+        const m = (cells[dateCol] || '').match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
         if (m) d = new Date(`${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`);
       }
       if (isNaN(d.getTime())) continue;
@@ -2589,7 +2647,197 @@ async function confirmImport() {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============ ROUTER ============ */
+/* ============================================
+   AI CHAT FUNCTIONS
+   ============================================ */
+function handleAiKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    aiSend();
+  }
+}
+
+function aiSend(prefill) {
+  const input = document.getElementById('aiInput');
+  const msg = prefill || (input ? input.value.trim() : '');
+  if (!msg) return toast('Type something first', 'error');
+  if (input && !prefill) input.value = '';
+  state.chatMessages.push({ role: 'user', text: msg });
+  renderChat();
+  const sendBtn = document.getElementById('aiSendBtn');
+  if (sendBtn) sendBtn.disabled = true;
+  setTimeout(() => {
+    const reply = generateAIResponse(msg);
+    state.chatMessages.push({ role: 'bot', text: reply });
+    renderChat();
+    if (sendBtn) sendBtn.disabled = false;
+  }, 600 + Math.random() * 700);
+}
+
+function renderChat() {
+  const container = document.getElementById('chatMessages');
+  if (!container) return;
+  if (state.chatMessages.length === 0) {
+    const userName = (state.user?.name || 'there').split(' ')[0];
+    container.innerHTML = `
+      <div class="ai-msg bot">
+        <div class="avatar bot">${ICONS.bot}</div>
+        <div class="ai-bubble">Hi ${userName} 👋
+I'm <strong>Wealthy AI</strong> — your personal finance assistant.
+
+I can help you with:
+• 💰 Budget planning
+• 📊 Monthly summaries
+• 💡 Savings suggestions
+• 🚨 Emergency fund advice
+• 📈 Spending analysis
+
+Tap a suggestion below or type your question.</div>
+      </div>`;
+    return;
+  }
+  let html = '';
+  state.chatMessages.forEach(m => {
+    if (m.role === 'user') {
+      html += `<div class="ai-msg user"><div class="avatar user">${initials(state.user?.name)}</div><div class="ai-bubble">${escapeHtml(m.text)}</div></div>`;
+    } else {
+      html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="ai-bubble">${m.text}</div></div>`;
+    }
+  });
+  if (state.chatMessages[state.chatMessages.length - 1]?.role === 'user') {
+    html += `<div class="ai-msg bot"><div class="avatar bot">${ICONS.bot}</div><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+  }
+  container.innerHTML = html;
+  container.scrollTop = container.scrollHeight;
+}
+
+function detectLanguage(text) {
+  const hinglish = /\b(kya|kaise|kaha|kitna|kitne|banao|bana|do|chahiye|hai|hu|ho|ka|ki|ke|mera|meri|paise|paisa|kharch|kharcha|bacha|bachao|salary|mahine|mahina|savings|budget|bhai|yaar|nhi|nahi|abhi|kab|kaun|kyun|kyu|de|dedo|bata|batao|dikha|dikhao|mil|milega|hoga|hogi|raha|rahi|rahe|gaya|gayi|gaye)\b/i;
+  const hindiScript = /[\u0900-\u097F]/;
+  return hinglish.test(text) || hindiScript.test(text) ? 'hinglish' : 'english';
+}
+
+function generateAIResponse(rawQ) {
+  const lang = detectLanguage(rawQ);
+  const t = (en, hi) => lang === 'hinglish' ? hi : en;
+  const q = rawQ.toLowerCase().trim();
+  const s = state.summary;
+  const txs = state.transactions;
+  const fmt = v => '₹' + fmtINR(Math.round(v));
+
+  if (txs.length === 0 && !q.includes('how') && !q.includes('kaise') && !q.includes('start') && !q.includes('shuru')) {
+    return t(
+      `You don't have any transactions yet 📝\n\n**To get started:**\n1. Click **"+ Add Transaction"** in the sidebar\n2. Add your salary or first expense\n3. Then ask me — I'll analyze your finances\n\n**Suggestions:**\n• Add monthly income\n• Track every expense\n• After 10-15 transactions, I can give real insights`,
+      `Aapke paas abhi koi transaction nahi hai 📝\n\n**Shuru karne ke liye:**\n1. Sidebar mein **"+ Add Transaction"** click karo\n2. Apni salary ya pehla expense add karo\n3. Phir mujhse poocho — main poora analysis kar dunga\n\n**Suggestions:**\n• Monthly income add karo\n• Har expense track karo\n• 10-15 transactions ke baad main real insights dunga`
+    );
+  }
+
+  if (q.includes('budget') || q.includes('plan')) {
+    const monthlyIncome = s.income > 0 ? s.income : 50000;
+    const needs = monthlyIncome * 0.5;
+    const wants = monthlyIncome * 0.3;
+    const savings = monthlyIncome * 0.2;
+    return t(
+      `📊 **Your Budget Plan (50-30-20 Rule)**\n\nMonthly income: <strong>${fmt(monthlyIncome)}</strong>\n\n**🏠 Needs (50%) — ${fmt(needs)}**\n• Rent / EMI\n• Groceries & food\n• Utilities\n• Transport / fuel\n• Insurance\n\n**🎬 Wants (30%) — ${fmt(wants)}**\n• Dining out, movies\n• Shopping\n• Subscriptions\n• Travel\n\n**💰 Savings (20%) — ${fmt(savings)}**\n• Emergency fund\n• SIP / mutual funds\n• Goal-based savings\n\n---\n\n**Your current situation:**\n• Income: ${fmt(s.income)}\n• Expense: ${fmt(s.expense)}\n• Savings: ${fmt(s.savings)}\n• Rate: ${s.savingsRate.toFixed(1)}%\n\n${s.savingsRate >= 20 ? '✅ You are saving 20%+ — excellent!' : '⚠️ Saving less than 20%. Try to reduce spending.'}`,
+      `📊 **Aapka Budget Plan (50-30-20 Rule)**\n\nAapki monthly income: <strong>${fmt(monthlyIncome)}</strong>\n\n**🏠 Needs (50%) — ${fmt(needs)}**\n• Rent / EMI\n• Groceries & khana\n• Utilities (bijli, paani, internet)\n• Transport / fuel\n• Insurance\n\n**🎬 Wants (30%) — ${fmt(wants)}**\n• Bahar khana, movies\n• Shopping\n• Subscriptions\n• Travel & entertainment\n\n**💰 Savings (20%) — ${fmt(savings)}**\n• Emergency fund\n• SIP / mutual funds\n• Goal savings\n\n---\n\n**Aapki current situation:**\n• Income: ${fmt(s.income)}\n• Expense: ${fmt(s.expense)}\n• Savings: ${fmt(s.savings)}\n• Rate: ${s.savingsRate.toFixed(1)}%\n\n${s.savingsRate >= 20 ? '✅ Aap 20%+ save kar rahe ho — bahut acha!' : '⚠️ 20% se kam save ho raha hai.'}`
+    );
+  }
+
+  if (q.includes('summary') || q.includes('report') || q.includes('monthly') || q.includes('mahine')) {
+    return t(
+      `📊 **Monthly Summary**\n\n**💰 Income:** ${fmt(s.income)}\n**💸 Expense:** ${fmt(s.expense)}\n**🏦 Savings:** ${fmt(s.savings)}\n**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%\n\n**Transactions:** ${txs.length}\n\n${s.savings >= 0 ? `✅ **Surplus of ${fmt(s.savings)}** — great job!` : `⚠️ **Deficit of ${fmt(Math.abs(s.savings))}** — spending more than earning.`}`,
+      `📊 **Monthly Summary**\n\n**💰 Income:** ${fmt(s.income)}\n**💸 Expense:** ${fmt(s.expense)}\n**🏦 Savings:** ${fmt(s.savings)}\n**📈 Savings Rate:** ${s.savingsRate.toFixed(1)}%\n\n**Total Transactions:** ${txs.length}\n\n${s.savings >= 0 ? `✅ **${fmt(s.savings)} ka surplus** — bahut acha!` : `⚠️ **${fmt(Math.abs(s.savings))} ka deficit** — income se zyada kharch.`}`
+    );
+  }
+
+  if (q.includes('save') || q.includes('bacha') || q.includes('kaha')) {
+    const cats = {};
+    txs.filter(t => t.type === 'expense').forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+    const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    const topCat = sorted[0];
+    const saveTarget = topCat ? topCat[1] * 0.2 : 0;
+    return t(
+      `💡 **Where to Save**\n\nYour top spending category: **${topCat ? topCat[0] : 'N/A'}**\nAmount: ${topCat ? fmt(topCat[1]) : '—'}\n\n**💡 3 immediate savings tips:**\n\n1. **Cut ${topCat ? topCat[0] : 'spending'} by 20%**\n   → Save ${fmt(saveTarget)} every month\n\n2. **Review subscriptions**\n   → Cancel unused ones\n\n3. **Reduce food delivery**\n   → Cook at home more\n\n**Your top 3 categories:**\n${sorted.map(([n, v], i) => `${i + 1}. ${n} → ${fmt(v)}`).join('\n')}`,
+      `💡 **Kaha Save Karu**\n\nTop category: **${topCat ? topCat[0] : 'N/A'}**\nAmount: ${topCat ? fmt(topCat[1]) : '—'}\n\n**💡 Turant savings ke 3 tarike:**\n\n1. **${topCat ? topCat[0] + ' cut karo' : 'Kharch cut karo'}**\n   → ${fmt(saveTarget)} bachega har mahine\n\n2. **Subscriptions review karo**\n   → Netflix, Spotify unused hata do\n\n3. **Food delivery kam karo**\n   → Cooking at home 3x sasta\n\n**Aapki top 3 categories:**\n${sorted.map(([n, v], i) => `${i + 1}. ${n} → ${fmt(v)}`).join('\n')}`
+    );
+  }
+
+  if (q.includes('emergency') || q.includes('fund')) {
+    const monthlyExp = s.expense > 0 ? s.expense : 30000;
+    const fund3 = monthlyExp * 3;
+    const fund6 = monthlyExp * 6;
+    return t(
+      `🚨 **Emergency Fund Guide**\n\nEmergency fund = 3 to 6 months of expenses\n\n**Your monthly expense:** ${fmt(monthlyExp)}\n\n**📊 Recommended:**\n• **Minimum (3 months):** ${fmt(fund3)}\n• **Ideal (6 months):** ${fmt(fund6)}\n\n**Where to keep:**\n✅ Savings account\n✅ Liquid mutual fund\n❌ Stocks / FD\n\n**Build plan:**\n• Save ${fmt(fund6 / 12)} monthly → 1 year\n• Or ${fmt(fund6 / 6)} → 6 months`,
+      `🚨 **Emergency Fund Guide**\n\nEmergency fund = 3 se 6 months ka kharcha\n\n**Aapka monthly expense:** ${fmt(monthlyExp)}\n\n**📊 Recommended:**\n• **Minimum (3 months):** ${fmt(fund3)}\n• **Ideal (6 months):** ${fmt(fund6)}\n\n**Kaha rakhein:**\n✅ Savings account\n✅ Liquid mutual fund\n❌ Stocks / FD\n\n**Build plan:**\n• ${fmt(fund6 / 12)} monthly → 1 saal\n• Ya ${fmt(fund6 / 6)} → 6 mahine`
+    );
+  }
+
+  if (q.includes('category') || q.includes('top spend') || q.includes('top')) {
+    const cats = {};
+    txs.filter(t => t.type === 'expense').forEach(t => { cats[t.category] = (cats[t.category] || 0) + t.amount; });
+    const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+    if (sorted.length === 0) return t('📊 No expense data yet.', '📊 Abhi koi expense nahi.');
+    const total = sorted.reduce((sum, [, v]) => sum + v, 0);
+    return t(
+      `📈 **Your Top Spending Categories**\n\n${sorted.map(([n, v], i) => {
+        const pct = (v / total) * 100;
+        return `${i + 1}. **${n}**\n   ${pct.toFixed(1)}% — ${fmt(v)}`;
+      }).join('\n\n')}\n\n**Total:** ${fmt(total)}`,
+      `📈 **Aapki Top Spending Categories**\n\n${sorted.map(([n, v], i) => {
+        const pct = (v / total) * 100;
+        return `${i + 1}. **${n}**\n   ${pct.toFixed(1)}% — ${fmt(v)}`;
+      }).join('\n\n')}\n\n**Total:** ${fmt(total)}`
+    );
+  }
+
+  if (q.includes('rate') || q.includes('savings rate')) {
+    return t(
+      `💵 **Your Savings Rate**\n\n**Current rate:** ${s.savingsRate.toFixed(1)}%\n**Total saved:** ${fmt(s.savings)}\n\n**Benchmarks:**\n• 🔴 Below 10%\n• 🟡 10-20%\n• 🟢 20-30%\n• 🏆 30%+\n\n**Your status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Good' : s.savingsRate >= 10 ? '🟡 Getting there' : '🔴 Needs improvement'}`,
+      `💵 **Aapka Savings Rate**\n\n**Current rate:** ${s.savingsRate.toFixed(1)}%\n**Total saved:** ${fmt(s.savings)}\n\n**Benchmarks:**\n• 🔴 10% se kam\n• 🟡 10-20%\n• 🟢 20-30%\n• 🏆 30%+\n\n**Aapka status:** ${s.savingsRate >= 30 ? '🏆 Excellent!' : s.savingsRate >= 20 ? '🟢 Acha' : s.savingsRate >= 10 ? '🟡 Theek hai' : '🔴 Improve karo'}`
+    );
+  }
+
+  if (q.includes('upi')) {
+    const upiTx = txs.filter(t => (t.method || '').toLowerCase().includes('upi'));
+    const upiTotal = upiTx.reduce((s, t) => s + t.amount, 0);
+    return t(
+      `📱 **UPI Analysis**\n\n**Transactions via UPI:** ${upiTx.length}\n**Total amount:** ${fmt(upiTotal)}\n**Average per transaction:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}`,
+      `📱 **UPI Analysis**\n\n**UPI Transactions:** ${upiTx.length}\n**Total via UPI:** ${fmt(upiTotal)}\n**Average:** ${upiTx.length > 0 ? fmt(upiTotal / upiTx.length) : '—'}`
+    );
+  }
+
+  if (q.includes('card') || q.includes('credit')) {
+    return t(
+      `💳 **Card Management**\n\n**Your cards:** ${state.cards.length}\n\n${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}`).join('\n') : 'No cards added yet.'}\n\n**Tip:** Keep credit utilization below 30%.`,
+      `💳 **Card Management**\n\n**Aapke cards:** ${state.cards.length}\n\n${state.cards.length > 0 ? state.cards.map(c => `• **${c.name}** — •••• ${c.last4}`).join('\n') : 'Abhi koi card nahi.'}`
+    );
+  }
+
+  if (q.includes('bill') || q.includes('due')) {
+    const upcoming = state.bills.filter(b => b.status === 'upcoming');
+    const overdue = state.bills.filter(b => b.status === 'overdue');
+    return t(
+      `🧾 **Bills Status**\n\n**Upcoming:** ${upcoming.length}\n**Overdue:** ${overdue.length}\n\n${overdue.length > 0 ? `⚠️ **Pay now:**\n${overdue.map(b => `• ${b.name}: ${fmt(b.amount)}`).join('\n')}` : '✅ No overdue bills!'}`,
+      `🧾 **Bills Status**\n\n**Upcoming:** ${upcoming.length}\n**Overdue:** ${overdue.length}\n\n${overdue.length > 0 ? `⚠️ **Turant pay karo:**\n${overdue.map(b => `• ${b.name}: ${fmt(b.amount)}`).join('\n')}` : '✅ Koi overdue nahi hai!'}`
+    );
+  }
+
+  if (q.includes('kaise shuru') || q.includes('how to start') || q.includes('get started')) {
+    return t(
+      `🚀 **How to Use Wealthy**\n\n**Week 1: Setup**\n1. Add salary\n2. Add rent / EMI\n3. Create emergency fund goal\n\n**Week 2: Track**\n1. Add every expense\n2. Update daily\n\n**Week 3: Analyze**\n1. Open Analysis\n2. Set budgets\n\n**Week 4: Optimize**\n1. Cut overspending\n2. Improve savings rate`,
+      `🚀 **Wealthy Kaise Use Kare**\n\n**Week 1: Setup**\n1. Salary add karo\n2. Rent / EMI add karo\n3. Emergency fund banao\n\n**Week 2: Track**\n1. Har expense add karo\n2. Daily update\n\n**Week 3: Analyze**\n1. Analysis page kholo\n2. Budgets set karo\n\n**Week 4: Optimize**\n1. Overspending cut karo\n2. Savings rate improve karo`
+    );
+  }
+
+  return t(
+    `I'm here to help with your money! 💰\n\n**You can ask me:**\n• "Budget plan" — get a 50-30-20 plan\n• "Monthly summary" — see your numbers\n• "Where to save" — find savings opportunities\n• "Emergency fund" — how much you need\n• "Top spending" — your biggest categories\n• "Savings rate" — how you're doing\n• "How to start" — setup guide\n\nTap a suggestion below or type your question.`,
+    `Main aapki help kar sakti hoon! 💰\n\n**Aap pooch sakte ho:**\n• "Budget plan banao" — 50-30-20 plan\n• "Monthly summary" — apne numbers dekho\n• "Kaha save karu?" — savings ka mauka\n• "Emergency fund" — kitna chahiye\n• "Top spending" — sabse zyada kharch\n• "Savings rate" — kaisa chal raha hai\n• "Kaise shuru karu?" — setup guide\n\nNeeche suggestions pe click karo ya apna sawaal likho.`
+  );
+}
+
+/* ============================================
+   ROUTER
+   ============================================ */
 const PAGES = {
   overview: { title: 'Overview', render: pageOverview },
   transactions: { title: 'Transactions', render: pageTransactions },
@@ -2624,7 +2872,9 @@ function nav(page) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ============ EVENT LISTENERS ============ */
+/* ============================================
+   EVENT LISTENERS
+   ============================================ */
 document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('click', () => nav(btn.dataset.page)));
 
 document.addEventListener('click', e => {
@@ -2651,7 +2901,9 @@ document.getElementById('modal').addEventListener('click', e => {
   if (e.target.id === 'modal') closeModal();
 });
 
-/* ============ BOOT ============ */
+/* ============================================
+   BOOT
+   ============================================ */
 async function boot() {
   try {
     const { user } = await api('/auth/me');
@@ -2679,14 +2931,12 @@ document.querySelectorAll('.nav-icon').forEach(el => {
 
 boot();
 
-/* ============ PWA SERVICE WORKER ============ */
+/* PWA Service Worker */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
-} 
-      
-<script>
+}
+  </script>
 </body>
-</html>
-  
+</html>a

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="#0F7A4D" />
+<meta name="theme-color" content="#007AFF" />
 <title>Wealthy — Track. Understand. Save.</title>
 <link rel="manifest" href="/manifest.json" />
 <link rel="icon" href="/icon-192.png" />
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- ============ AUTH SCREEN ============ -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-bg">
     <div class="orb orb-1"></div>
@@ -24,7 +24,7 @@
   <div class="auth-card">
     <div class="auth-brand">
       <div class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path d="M3 18V8l4 6 5-8 5 8 4-6v10" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
@@ -37,25 +37,42 @@
     </div>
     <div class="auth-error" id="authError"></div>
     <form id="signinForm" onsubmit="handleSignin(event)">
-      <div class="auth-field"><label>Email</label><input type="email" id="signinEmail" placeholder="you@example.com" required autocomplete="email" /></div>
-      <div class="auth-field"><label>Password</label><input type="password" id="signinPassword" placeholder="Enter your password" required autocomplete="current-password" /></div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="signinEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="signinPassword" placeholder="Enter your password" required autocomplete="current-password" />
+      </div>
       <button type="submit" class="auth-btn" id="signinBtn">Sign In</button>
       <div class="auth-footer">New to Wealthy? <a onclick="switchAuth('signup',document.querySelectorAll('.auth-toggle button')[1])">Create account</a></div>
     </form>
     <form id="signupForm" style="display:none" onsubmit="handleSignup(event)">
-      <div class="auth-field"><label>Full Name</label><input type="text" id="signupName" placeholder="Your full name" required autocomplete="name" /></div>
-      <div class="auth-field"><label>Email</label><input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" /></div>
-      <div class="auth-field"><label>Password</label><input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password" /></div>
+      <div class="auth-field">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name" required autocomplete="name" />
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password" />
+      </div>
       <button type="submit" class="auth-btn" id="signupBtn">Create Account</button>
       <div class="auth-footer">Already registered? <a onclick="switchAuth('signin',document.querySelectorAll('.auth-toggle button')[0])">Sign in</a></div>
     </form>
   </div>
 </div>
 
-<!-- APP SCREEN -->
+<!-- ============ APP SCREEN ============ -->
 <div class="app hidden" id="appScreen">
+
   <div class="overlay-backdrop" id="backdrop" onclick="closeSidebar()"></div>
-  
+
+  <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-logo">
@@ -68,17 +85,17 @@
         <p>Track. Understand. Save.</p>
       </div>
     </div>
-    
+
     <button class="cta-primary" onclick="openModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
       Add Transaction
     </button>
-    
+
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input placeholder="Search transactions..." id="globalSearch" oninput="onSearch(this.value)" />
     </div>
-    
+
     <nav class="nav-section">
       <div class="nav-label">Main</div>
       <button class="nav-item active" data-page="overview"><span class="nav-icon" data-icon="overview"></span>Overview</button>
@@ -87,7 +104,7 @@
       <button class="nav-item" data-page="analysis"><span class="nav-icon" data-icon="analysis"></span>Analysis</button>
       <button class="nav-item" data-page="calendar"><span class="nav-icon" data-icon="calendar"></span>Money Calendar</button>
     </nav>
-    
+
     <nav class="nav-section">
       <div class="nav-label">Money & Rails</div>
       <button class="nav-item" data-page="upi"><span class="nav-icon" data-icon="upi"></span>UPI Hub</button>
@@ -95,7 +112,7 @@
       <button class="nav-item" data-page="bills"><span class="nav-icon" data-icon="bills"></span>Bills</button>
       <button class="nav-item" data-page="subscriptions"><span class="nav-icon" data-icon="reports"></span>Subscriptions</button>
     </nav>
-    
+
     <nav class="nav-section">
       <div class="nav-label">Goals & Growth</div>
       <button class="nav-item" data-page="budgets"><span class="nav-icon" data-icon="budgets"></span>Budgets</button>
@@ -105,18 +122,21 @@
       <button class="nav-item" data-page="ai"><span class="nav-icon" data-icon="sparkles"></span>AI Assistant</button>
       <button class="nav-item" data-page="reports"><span class="nav-icon" data-icon="reports"></span>Reports</button>
     </nav>
-    
+
     <nav class="nav-section">
       <div class="nav-label">System</div>
       <button class="nav-item" data-page="profile"><span class="nav-icon" data-icon="user"></span>My Profile</button>
       <button class="nav-item" data-page="settings"><span class="nav-icon" data-icon="settings"></span>Settings</button>
       <button class="nav-item" data-page="help"><span class="nav-icon" data-icon="help"></span>Help</button>
     </nav>
-    
+
     <div class="sidebar-footer">
       <div class="user-chip" onclick="nav('profile')">
         <div class="avatar-sm" id="userAvatar">U</div>
-        <div class="info"><h6 id="userName">User</h6><p id="userEmail">user@wealthy.in</p></div>
+        <div class="info">
+          <h6 id="userName">User</h6>
+          <p id="userEmail">user@wealthy.in</p>
+        </div>
       </div>
       <div class="theme-toggle">
         <button class="active" data-theme-btn="light" onclick="setTheme('light',this)">☀ Light</button>
@@ -124,15 +144,19 @@
       </div>
     </div>
   </aside>
-  
+
+  <!-- ============ MAIN ============ -->
   <main class="main">
+    <!-- Topbar -->
     <div class="topbar">
-      <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
+      <div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1">
         <button class="mobile-menu-btn" onclick="toggleSidebar()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
         <div class="breadcrumb">
-          <span>Wealthy</span><span>/</span><strong id="pageName">Overview</strong>
+          <span>Wealthy</span>
+          <span>/</span>
+          <strong id="pageName">Overview</strong>
         </div>
       </div>
       <div class="topbar-actions">
@@ -140,41 +164,77 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
           <span class="badge-count" id="notifBadge" style="display:none">0</span>
         </button>
-        <div class="avatar-sm" id="topbarAvatar" onclick="nav('profile')" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#22C55E,#0F7A4D);display:grid;place-items:center;color:#FFF;font-weight:700;font-size:12px;cursor:pointer">U</div>
+        <div class="avatar-sm" id="topbarAvatar" onclick="nav('profile')" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,#84CC16,#65A30D);display:grid;place-items:center;color:#FFF;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 4px 12px rgba(132,204,22,0.3),inset 0 1px 0 rgba(255,255,255,0.3)">U</div>
       </div>
     </div>
-    
+
+    <!-- Page Container -->
     <div id="pageContainer"></div>
-    
+
+    <!-- Footer -->
     <div class="footer-note">
       <div class="owner-info">
         <span>Owner: <strong>SANJEEV SHEKHAR</strong></span>
         <span>Email: <strong>sanjeev@wealthy.in</strong></span>
         <span>Parent: <strong>D2C Ventures</strong></span>
       </div>
-      <span>© 2026 Wealthy · v1.0.0 · Made in India 🇮🇳</span>
+      <span>© 2026 Wealthy · v2.0.0 · Made in India 🇮🇳</span>
     </div>
   </main>
 </div>
 
-<!-- NOTIFICATION PANEL -->
+<!-- ============ BOTTOM NAVIGATION (Mobile) ============ -->
+<div class="bottom-nav" id="bottomNav">
+  <button class="bottom-nav-item active" data-bnav="overview" onclick="nav('overview')">
+    <div class="bnav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    </div>
+    Home
+  </button>
+  <button class="bottom-nav-item" data-bnav="analysis" onclick="nav('analysis')">
+    <div class="bnav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+    </div>
+    Stats
+  </button>
+  <button class="bottom-nav-fab" onclick="openModal()" title="Add Transaction">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+  <button class="bottom-nav-item" data-bnav="transactions" onclick="nav('transactions')">
+    <div class="bnav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    </div>
+    Activity
+  </button>
+  <button class="bottom-nav-item" data-bnav="profile" onclick="nav('profile')">
+    <div class="bnav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    Profile
+  </button>
+</div>
+
+<!-- ============ NOTIFICATION PANEL ============ -->
 <div class="notif-panel" id="notifPanel">
-  <div class="notif-header"><h4>Notifications</h4><button onclick="markAllRead()">Mark all read</button></div>
+  <div class="notif-header">
+    <h4>Notifications</h4>
+    <button onclick="markAllRead()">Mark all read</button>
+  </div>
   <div class="notif-list" id="notifList"></div>
 </div>
 
-<!-- MODAL -->
+<!-- ============ MODAL ============ -->
 <div class="modal-overlay" id="modal">
   <div class="modal" id="modalContent"></div>
 </div>
 
-<!-- TOAST -->
+<!-- ============ TOAST ============ -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
-  /* ============================================
-   ICONS - Complete SVG Library
-   ============================================ */
+  /* ============================================================
+   ICONS LIBRARY
+   ============================================================ */
 const ICONS = {
   overview: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`,
   transactions: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>`,
@@ -221,26 +281,30 @@ const ICONS = {
   code: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
   copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
   filter: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>`,
-  sort: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>`
+  sort: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></svg>`,
+  eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  eyeOff: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/></svg>`,
+  refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v5h-5M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16M3 21v-5h5"/></svg>`,
+  grid: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>`
 };
 
-/* ============================================
+/* ============================================================
    CARD COLORS
-   ============================================ */
+   ============================================================ */
 const CARD_COLORS = {
-  black: { bg: 'linear-gradient(135deg,#1F1F1F 0%,#0A0A0A 45%,#151515 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.5)', glow: 'rgba(22,163,74,0.35)' },
-  gunmetal: { bg: 'linear-gradient(135deg,#2A2A2A 0%,#1A1A1A 50%,#3A3A3A 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.5)', glow: 'rgba(148,163,184,0.3)' },
-  silver: { bg: 'linear-gradient(135deg,#F0F0F0 0%,#B0B0B0 50%,#E8E8E8 100%)', text: '#111', muted: 'rgba(0,0,0,0.5)', glow: 'rgba(148,163,184,0.4)' },
-  gold: { bg: 'linear-gradient(135deg,#E5C158 0%,#8B6914 50%,#D4AF37 100%)', text: '#1A1400', muted: 'rgba(26,20,0,0.55)', glow: 'rgba(212,175,55,0.4)' },
-  blue: { bg: 'linear-gradient(135deg,#1E40AF 0%,#0F1E4D 50%,#1E3A8A 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(37,99,235,0.4)' },
-  red: { bg: 'linear-gradient(135deg,#B91C1C 0%,#4D0D0D 50%,#991B1B 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(220,38,38,0.4)' },
-  green: { bg: 'linear-gradient(135deg,#16A34A 0%,#064D2E 50%,#0F7A4D 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(34,197,94,0.4)' },
-  purple: { bg: 'linear-gradient(135deg,#7C3AED 0%,#2D0F5E 50%,#5B21B6 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(124,58,237,0.4)' }
+  black: { bg: 'linear-gradient(135deg, #1F1F1F 0%, #0A0A0A 45%, #151515 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.5)', glow: 'rgba(132,204,22,0.35)' },
+  purple: { bg: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.65)', glow: 'rgba(124,58,237,0.45)' },
+  navy: { bg: 'linear-gradient(135deg, #253745 0%, #11212D 50%, #06141B 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.55)', glow: 'rgba(0,122,255,0.35)' },
+  lime: { bg: 'linear-gradient(135deg, #BEF264 0%, #84CC16 50%, #65A30D 100%)', text: '#1A2E05', muted: 'rgba(26,46,5,0.6)', glow: 'rgba(132,204,22,0.45)' },
+  gold: { bg: 'linear-gradient(135deg, #FDE68A 0%, #EAB308 50%, #A16207 100%)', text: '#1A1400', muted: 'rgba(26,20,0,0.55)', glow: 'rgba(234,179,8,0.4)' },
+  silver: { bg: 'linear-gradient(135deg, #F0F0F0 0%, #C0C0C0 50%, #E8E8E8 100%)', text: '#111', muted: 'rgba(0,0,0,0.5)', glow: 'rgba(148,163,184,0.4)' },
+  blue: { bg: 'linear-gradient(135deg, #60A5FA 0%, #2563EB 50%, #1E3A8A 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.6)', glow: 'rgba(37,99,235,0.4)' },
+  coral: { bg: 'linear-gradient(135deg, #FDA4AF 0%, #F43F5E 50%, #BE123C 100%)', text: '#FFF', muted: 'rgba(255,255,255,0.6)', glow: 'rgba(244,63,94,0.4)' }
 };
 
-/* ============================================
+/* ============================================================
    ACCOUNT TYPES
-   ============================================ */
+   ============================================================ */
 const ACCOUNT_TYPES = [
   { value: 'bank', label: 'Bank Account' },
   { value: 'cash', label: 'Cash' },
@@ -252,14 +316,14 @@ const ACCOUNT_TYPES = [
   { value: 'other', label: 'Other' }
 ];
 
-/* ============================================
+/* ============================================================
    GLOBAL STATE
-   ============================================ */
+   ============================================================ */
 const state = {
   user: null,
   settings: {
     theme: 'light',
-    card_color: 'black',
+    card_color: 'purple',
     currency: 'INR',
     upi_id: '',
     qr_code: ''
@@ -285,11 +349,13 @@ const state = {
   timeframe: 'month',
   chatMessages: [],
   advFilters: { type: '', category: '', from: '', to: '', amountMin: '', amountMax: '' },
-  sort: 'date_desc'
+  sort: 'date_desc',
+  balanceVisible: true
 };
-  /* ============================================
+
+/* ============================================================
    API HELPER
-   ============================================ */
+   ============================================================ */
 async function api(path, options = {}) {
   const res = await fetch('/api' + path, {
     headers: { 'Content-Type': 'application/json' },
@@ -302,9 +368,9 @@ async function api(path, options = {}) {
   return data;
 }
 
-/* ============================================
-   TOAST NOTIFICATION
-   ============================================ */
+/* ============================================================
+   TOAST
+   ============================================================ */
 function toast(msg, type = 'success') {
   const el = document.createElement('div');
   el.className = `toast ${type}`;
@@ -313,14 +379,14 @@ function toast(msg, type = 'success') {
   setTimeout(() => {
     el.style.opacity = '0';
     el.style.transform = 'translateX(30px)';
-    el.style.transition = 'all .4s';
+    el.style.transition = 'all 0.4s';
     setTimeout(() => el.remove(), 400);
   }, 2800);
 }
 
-/* ============================================
-   FORMATTERS & HELPERS
-   ============================================ */
+/* ============================================================
+   FORMATTERS
+   ============================================================ */
 const fmtINR = n => Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
 
 function fmtDate(d) {
@@ -328,7 +394,8 @@ function fmtDate(d) {
   const dt = new Date(d);
   const today = new Date();
   if (dt.toDateString() === today.toDateString()) return 'Today';
-  const y = new Date(today); y.setDate(today.getDate() - 1);
+  const y = new Date(today);
+  y.setDate(today.getDate() - 1);
   if (dt.toDateString() === y.toDateString()) return 'Yesterday';
   return dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
 }
@@ -356,9 +423,9 @@ function timeAgo(dt) {
   return Math.floor(s / 86400) + 'd ago';
 }
 
-/* ============================================
+/* ============================================================
    UI TOGGLES
-   ============================================ */
+   ============================================================ */
 function updateUserChip() {
   const ini = initials(state.user?.name);
   ['userAvatar', 'topbarAvatar'].forEach(id => {
@@ -392,9 +459,9 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-/* ============================================
-   AUTH FUNCTIONS
-   ============================================ */
+/* ============================================================
+   AUTH
+   ============================================================ */
 function switchAuth(mode, btn) {
   document.querySelectorAll('.auth-toggle button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -457,9 +524,9 @@ async function logout() {
   location.reload();
 }
 
-/* ============================================
+/* ============================================================
    THEME
-   ============================================ */
+   ============================================================ */
 async function setTheme(theme, btn) {
   document.body.setAttribute('data-theme', theme);
   document.querySelectorAll('.theme-toggle button').forEach(b => b.classList.remove('active'));
@@ -470,11 +537,11 @@ async function setTheme(theme, btn) {
   } catch (e) {}
 }
 
-/* ============================================
+/* ============================================================
    CARD COLOR
-   ============================================ */
+   ============================================================ */
 function applyCardColor(color) {
-  const c = CARD_COLORS[color] || CARD_COLORS.black;
+  const c = CARD_COLORS[color] || CARD_COLORS.purple;
   document.documentElement.style.setProperty('--card-bg', c.bg);
   document.documentElement.style.setProperty('--card-text', c.text);
   document.documentElement.style.setProperty('--card-muted', c.muted);
@@ -499,9 +566,9 @@ async function changeCardColor(color) {
   } catch (e) {}
 }
 
-/* ============================================
+/* ============================================================
    NOTIFICATIONS
-   ============================================ */
+   ============================================================ */
 function loadNotifications() {
   const list = document.getElementById('notifList');
   if (!state.notifications.length) {
@@ -543,9 +610,9 @@ async function markAllRead() {
   }
 }
 
-/* ============================================
+/* ============================================================
    SEARCH
-   ============================================ */
+   ============================================================ */
 function onSearch(v) {
   state.search = v;
   if (state.currentPage === 'transactions') {
@@ -556,9 +623,28 @@ function onSearch(v) {
   }
 }
 
-/* ============================================
-   DATA LOADING
-   ============================================ */
+/* ============================================================
+   BALANCE VISIBILITY TOGGLE
+   ============================================================ */
+function toggleBalanceVisibility() {
+  state.balanceVisible = !state.balanceVisible;
+  const els = document.querySelectorAll('.balance-amount, .wallet-balance-value');
+  els.forEach(el => {
+    if (state.balanceVisible) {
+      el.style.filter = '';
+    } else {
+      el.style.filter = 'blur(12px)';
+    }
+  });
+  const btns = document.querySelectorAll('.balance-toggle-icon');
+  btns.forEach(b => {
+    b.innerHTML = state.balanceVisible ? ICONS.eye : ICONS.eyeOff;
+  });
+}
+
+/* ============================================================
+   LOAD DATA
+   ============================================================ */
 async function loadData() {
   try {
     const [summary, transactions, bills, budgets, goals, cards, settings, notifications, accounts, dashboardStats, healthScore, netWorth] = await Promise.all([
@@ -587,16 +673,16 @@ async function loadData() {
     state.dashboardStats = dashboardStats;
     state.healthScore = healthScore;
     state.netWorth = netWorth;
-    applyCardColor(settings.card_color || 'black');
+    applyCardColor(settings.card_color || 'purple');
     updateNotifBadge();
   } catch (e) {
     console.error('loadData error:', e);
   }
 }
 
-/* ============================================
+/* ============================================================
    CARD DRAG (3D)
-   ============================================ */
+   ============================================================ */
 function attachCardDrag() {
   const card = document.getElementById('card360');
   if (!card || card.dataset.bound) return;
@@ -626,9 +712,25 @@ function attachCardDrag() {
   window.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
   window.addEventListener('touchend', up);
 }
-  /* ============================================
-   PAGE: OVERVIEW
-   ============================================ */
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+function getAccountColor(color) {
+  const map = {
+    green: 'linear-gradient(145deg, #BEF264, #84CC16)',
+    blue: 'linear-gradient(145deg, #93C5FD, #007AFF)',
+    red: 'linear-gradient(145deg, #FCA5A5, #F43F5E)',
+    purple: 'linear-gradient(145deg, #C4B5FD, #7C3AED)',
+    yellow: 'linear-gradient(145deg, #FDE68A, #EAB308)',
+    navy: 'linear-gradient(145deg, #4A5C6A, #11212D)',
+    coral: 'linear-gradient(145deg, #FDA4AF, #F43F5E)'
+  };
+  return map[color] || 'linear-gradient(145deg, #4A5C6A, #11212D)';
+}
+  /* ============================================================
+   PAGE: OVERVIEW (Dashboard)
+   ============================================================ */
 function pageOverview() {
   const s = state.summary;
   const recent = state.transactions.slice(0, 5);
@@ -636,10 +738,7 @@ function pageOverview() {
   const isEmpty = state.transactions.length === 0;
   const stats = state.dashboardStats;
   const score = state.healthScore;
-
-  const thisMonth = stats?.thisMonth || { income: 0, expense: 0 };
-  const lastMonth = stats?.lastMonth || { income: 0, expense: 0 };
-  const expenseChange = lastMonth.expense > 0 ? ((thisMonth.expense - lastMonth.expense) / lastMonth.expense) * 100 : 0;
+  const savingsGoal = state.goals[0];
 
   return `
     <section class="hero">
@@ -648,110 +747,163 @@ function pageOverview() {
       <p>A clear view of your income, spending, savings and financial progress.</p>
     </section>
 
-    <section class="balance-hero">
-      <div>
-        <div class="balance-label" id="balanceLabel">Total Net Balance</div>
-        <div class="balance-amount" id="balanceAmount"><span class="currency">₹</span>${fmtINR(s.balance)}</div>
-        <div class="balance-change" id="balanceChange">${ICONS.trendingUp} ${s.savingsRate.toFixed(1)}% savings rate</div>
-      </div>
-      <div class="balance-timeframe">
-        <button data-tf="today" onclick="setTimeframe('today')">Today</button>
-        <button data-tf="week" onclick="setTimeframe('week')">Week</button>
-        <button data-tf="month" class="active" onclick="setTimeframe('month')">Month</button>
-        <button data-tf="year" onclick="setTimeframe('year')">Year</button>
+    <!-- 3D PURPLE WALLET HERO -->
+    <section class="wallet-wrap">
+      <div class="wallet-3d">
+        <div class="wallet-card-out">
+          <div class="wallet-card-row">
+            <div class="wallet-card-name">${escapeHtml(state.user?.name || 'CARDHOLDER')}</div>
+            <div class="wallet-card-brand">VISA</div>
+          </div>
+          <div>
+            <div class="wallet-card-number">•••• •••• •••• ${state.user?.card_number?.slice(-4) || '4821'}</div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px">
+              <div class="wallet-card-valid">Valid: ${state.user?.card_expiry || '09/28'}</div>
+            </div>
+          </div>
+        </div>
+        <div class="wallet-body">
+          <div>
+            <div class="wallet-balance-label">Total Balance</div>
+            <div class="wallet-balance-value">
+              ${fmtINR(s.balance)}<span class="currency">INR</span>
+            </div>
+          </div>
+          <div class="wallet-actions">
+            <button class="wallet-add-btn" onclick="openModal()">
+              ${ICONS.plus} Add Balance
+            </button>
+            <div class="wallet-icon-group">
+              <button class="wallet-icon-btn" onclick="openTransferModal()" title="Transfer">
+                ${ICONS.transfer}
+              </button>
+              <button class="wallet-icon-btn balance-toggle-icon" onclick="toggleBalanceVisibility()" title="Hide Balance">
+                ${state.balanceVisible ? ICONS.eye : ICONS.eyeOff}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- METRICS GRID -->
     <section class="metrics-grid">
       <div class="metric">
-        <div class="metric-head"><div class="metric-ico up">${ICONS.trendingUp}</div><div class="metric-label">Income</div></div>
+        <div class="metric-head">
+          <div class="metric-ico up">${ICONS.trendingUp}</div>
+          <div class="metric-label">Income</div>
+        </div>
         <div class="metric-value">₹${fmtINR(s.income)}</div>
-        <div class="metric-trend up">${s.income > 0 ? 'Active' : 'No income yet'}</div>
+        <div class="metric-trend up">${ICONS.trendingUp} Active</div>
       </div>
       <div class="metric">
-        <div class="metric-head"><div class="metric-ico down">${ICONS.trendingDown}</div><div class="metric-label">Expense</div></div>
+        <div class="metric-head">
+          <div class="metric-ico down">${ICONS.trendingDown}</div>
+          <div class="metric-label">Expense</div>
+        </div>
         <div class="metric-value">₹${fmtINR(s.expense)}</div>
-        <div class="metric-trend down">${s.expense > 0 ? 'Tracked' : 'No expense yet'}</div>
+        <div class="metric-trend down">${ICONS.trendingDown} Tracked</div>
       </div>
       <div class="metric">
-        <div class="metric-head"><div class="metric-ico blue">${ICONS.savings}</div><div class="metric-label">Savings</div></div>
+        <div class="metric-head">
+          <div class="metric-ico blue">${ICONS.savings}</div>
+          <div class="metric-label">Savings</div>
+        </div>
         <div class="metric-value">₹${fmtINR(s.savings)}</div>
         <div class="metric-trend up">Net surplus</div>
       </div>
       <div class="metric">
-        <div class="metric-head"><div class="metric-ico purple">${ICONS.analysis}</div><div class="metric-label">Rate</div></div>
+        <div class="metric-head">
+          <div class="metric-ico purple">${ICONS.analysis}</div>
+          <div class="metric-label">Rate</div>
+        </div>
         <div class="metric-value">${s.savingsRate.toFixed(1)}%</div>
         <div class="metric-trend up">${s.savingsRate > 30 ? 'Healthy' : 'Building'}</div>
       </div>
     </section>
 
     ${isEmpty ? `
-      <section style="margin-bottom:20px">
+      <section style="margin-bottom:24px">
         <div class="empty-state">
           <div class="icon">${ICONS.sparkles}</div>
           <h4>Welcome to Wealthy!</h4>
           <p>Your dashboard is empty. Add your first transaction to start seeing insights.</p>
-          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-            <button class="cta-primary" style="max-width:180px" onclick="openModal()">Add Transaction</button>
-            <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openImportModal()">Import CSV</button>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button class="btn-primary" onclick="openModal()">${ICONS.plus} Add Transaction</button>
+            <button class="btn-ghost" onclick="openImportModal()">${ICONS.upload} Import CSV</button>
           </div>
         </div>
       </section>
     ` : `
-      <section class="charts-row">
-        <div class="chart-card">
-          <div class="chart-header">
-            <div><div class="section-title">Income vs Expense</div><div class="section-subtitle">Current period</div></div>
+      <!-- SAVINGS GOAL ARC GAUGE (if goal exists) -->
+      ${savingsGoal ? `
+        <section class="arc-gauge-card">
+          <div class="arc-gauge-label">Saving goals</div>
+          <div class="arc-gauge-value">₹${fmtINR(savingsGoal.saved)}</div>
+          <div class="arc-gauge-target">of ₹${fmtINR(savingsGoal.target)}</div>
+          <div class="arc-gauge-svg-wrap">
+            <svg class="arc-gauge-svg" viewBox="0 0 200 115">
+              <!-- Background arc -->
+              <path class="arc-gauge-track" d="M 20 100 A 80 80 0 0 1 180 100" />
+              <!-- Progress arc -->
+              <path class="arc-gauge-progress" d="M 20 100 A 80 80 0 0 1 180 100"
+                stroke-dasharray="251.3"
+                stroke-dashoffset="${251.3 * (1 - Math.min(1, savingsGoal.saved / savingsGoal.target))}" />
+              <!-- Tick marks -->
+              <g class="arc-gauge-ticks">
+                ${Array.from({ length: 21 }).map((_, i) => {
+                  const angle = 180 - (i * 9);
+                  const rad = (angle * Math.PI) / 180;
+                  const cx1 = 100 + 85 * Math.cos(rad);
+                  const cy1 = 100 - 85 * Math.sin(rad);
+                  const cx2 = 100 + 75 * Math.cos(rad);
+                  const cy2 = 100 - 75 * Math.sin(rad);
+                  return `<line x1="${cx1}" y1="${cy1}" x2="${cx2}" y2="${cy2}" opacity="${i * 9 <= (savingsGoal.saved / savingsGoal.target * 180) ? 1 : 0.3}" />`;
+                }).join('')}
+              </g>
+            </svg>
+            <div class="arc-gauge-percent">${Math.round((savingsGoal.saved / savingsGoal.target) * 100)}%</div>
           </div>
-          ${renderEnhancedChart()}
-        </div>
-        <div class="chart-card">
-          <div class="chart-header">
-            <div><div class="section-title">Financial Health</div><div class="section-subtitle">Score out of 100</div></div>
-          </div>
-          <div style="text-align:center;padding:12px 0">
-            <div style="font-size:48px;font-weight:800;color:${score?.score >= 65 ? 'var(--green)' : score?.score >= 50 ? '#A16207' : 'var(--red)'}">
-              ${score?.score || 0}
-            </div>
-            <div style="font-size:12px;color:var(--text-secondary);margin-top:4px">${score?.label || 'Building your score...'}</div>
-            ${score?.factors?.length ? `
-              <div style="text-align:left;margin-top:12px;font-size:11px;color:var(--text-secondary);display:flex;flex-direction:column;gap:4px">
-                ${score.factors.slice(0, 4).map(f => `
-                  <div style="display:flex;justify-content:space-between">
-                    <span>${f.label}</span>
-                    <span style="color:${f.delta > 0 ? 'var(--green)' : f.delta < 0 ? 'var(--red)' : 'var(--text-tertiary)'};font-weight:700">${f.delta > 0 ? '+' : ''}${f.delta}</span>
-                  </div>
-                `).join('')}
-              </div>
-            ` : ''}
-          </div>
-        </div>
-      </section>
-
-      ${lastMonth.expense > 0 ? `
-        <section class="chart-card" style="margin-bottom:20px">
-          <div class="section-header">
-            <div><div class="section-title">This Month vs Last Month</div><div class="section-subtitle">Expense comparison</div></div>
-            <div style="font-size:12px;font-weight:700;color:${expenseChange > 0 ? 'var(--red)' : 'var(--green)'}">
-              ${expenseChange > 0 ? '+' : ''}${expenseChange.toFixed(1)}%
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div style="padding:12px;background:var(--bg);border-radius:10px">
-              <div style="font-size:10px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;margin-bottom:4px">This Month</div>
-              <div style="font-size:20px;font-weight:800">₹${fmtINR(thisMonth.expense)}</div>
-            </div>
-            <div style="padding:12px;background:var(--bg);border-radius:10px">
-              <div style="font-size:10px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;margin-bottom:4px">Last Month</div>
-              <div style="font-size:20px;font-weight:800">₹${fmtINR(lastMonth.expense)}</div>
-            </div>
+          <div class="arc-gauge-footer">
+            <span class="label">End Date</span>
+            <span class="date">${savingsGoal.target_date ? new Date(savingsGoal.target_date).toLocaleDateString('en-IN', { month: 'short', day: '2-digit', year: 'numeric' }) : 'Dec 31, 2026'}</span>
           </div>
         </section>
       ` : ''}
 
-      <section style="margin-bottom:20px">
+      <!-- ASCENDING BAR CHART -->
+      <section class="chart-ascending" style="margin-bottom:24px">
+        <div class="chart-ascending-header">
+          <div>
+            <div class="chart-ascending-title">Goal breakdown</div>
+            <div class="chart-ascending-sub">Monthly savings progress</div>
+          </div>
+          <div class="chart-legend-pills">
+            <span class="legend-pill-dot saved">Saved</span>
+            <span class="legend-pill-dot remaining">Remaining</span>
+          </div>
+        </div>
+        ${renderAscendingChart()}
+      </section>
+
+      <!-- PULSE BARS -->
+      <section class="chart-ascending" style="margin-bottom:24px">
+        <div class="chart-ascending-header">
+          <div>
+            <div class="chart-ascending-title">Daily activity pulse</div>
+            <div class="chart-ascending-sub">Last 30 days</div>
+          </div>
+        </div>
+        ${renderPulseBars()}
+      </section>
+
+      <!-- RECENT TRANSACTIONS -->
+      <section style="margin-bottom:24px">
         <div class="section-header">
-          <div><div class="section-title">Recent Transactions</div></div>
+          <div>
+            <div class="section-title">Recent Transactions</div>
+            <div class="section-subtitle">Live feed</div>
+          </div>
           <a class="section-link" onclick="nav('transactions')">View All ${ICONS.arrowRight}</a>
         </div>
         <div class="tx-list">${renderTxTable(recent)}</div>
@@ -760,83 +912,70 @@ function pageOverview() {
   `;
 }
 
-/* ============================================
-   CHART HELPER
-   ============================================ */
-function renderEnhancedChart() {
-  const s = state.summary;
-  const max = Math.max(s.income, s.expense, Math.abs(s.savings), 1);
-  const incH = Math.max((s.income / max) * 100, 4);
-  const expH = Math.max((s.expense / max) * 100, 4);
-  const savH = Math.max((Math.abs(s.savings) / max) * 100, 4);
+/* ============================================================
+   HELPER: Ascending Bar Chart
+   ============================================================ */
+function renderAscendingChart() {
+  const goal = state.goals[0];
+  const target = goal?.target || 10000;
+  const saved = goal?.saved || 0;
+  const bars = 8;
+  const increment = saved / bars;
 
-  const gridLines = [0, 25, 50, 75, 100].map(p =>
-    `<div class="grid-line" style="top:${100 - p}%"></div>
-     <div class="grid-line-label" style="top:${100 - p}%">₹${fmtINR(Math.round(max * p / 100))}</div>`
-  ).join('');
-
-  return `
-    <div class="bar-chart-enhanced">
-      ${gridLines}
-      <div class="bars-container">
-        <div class="bar-group-enhanced">
-          <div class="bar-enhanced income" style="height:${incH}%">
-            <div class="bar-value">+₹${fmtINR(s.income)}</div>
-          </div>
-        </div>
-        <div class="bar-group-enhanced">
-          <div class="bar-enhanced expense" style="height:${expH}%">
-            <div class="bar-value">−₹${fmtINR(s.expense)}</div>
-          </div>
-        </div>
-        <div class="bar-group-enhanced">
-          <div class="bar-enhanced" style="height:${savH}%;background:linear-gradient(180deg,#2563EB,#1E40AF)">
-            <div class="bar-value">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</div>
-          </div>
+  let html = '<div class="chart-bars-container">';
+  for (let i = 0; i < bars; i++) {
+    const barValue = increment * (i + 1);
+    const filledHeight = (barValue / target) * 100;
+    const ghostHeight = ((target - barValue) / target) * 100;
+    const isLast = i === bars - 1;
+    html += `
+      <div class="chart-bar-group">
+        <div class="chart-bar-ghost" style="height:${Math.min(ghostHeight + filledHeight, 100)}%;"></div>
+        <div class="chart-bar-filled${isLast ? ' purple' : ''}" style="height:${filledHeight}%;animation-delay:${i * 0.08}s;">
+          ${isLast ? `<div class="chart-tooltip">₹${fmtINR(saved)}</div>` : ''}
         </div>
       </div>
-    </div>
-    <div class="bar-labels-enhanced">
-      <div class="bar-label-enhanced">Income</div>
-      <div class="bar-label-enhanced">Expense</div>
-      <div class="bar-label-enhanced">Net Savings</div>
+    `;
+  }
+  html += '</div>';
+  html += `
+    <div class="chart-x-axis">
+      <div class="chart-x-label">Aug 1</div>
+      <div class="chart-x-label">Aug 8</div>
+      <div class="chart-x-label">Aug 16</div>
+      <div class="chart-x-label">Aug 22</div>
+      <div class="chart-x-label">Aug 31</div>
     </div>
   `;
+  return html;
 }
 
-/* ============================================
-   TIMEFRAME FILTER
-   ============================================ */
-function setTimeframe(tf) {
-  state.timeframe = tf;
+/* ============================================================
+   HELPER: Pulse Bars
+   ============================================================ */
+function renderPulseBars() {
+  const days = 30;
+  const txs = state.transactions;
   const now = new Date();
-  let cutoff = new Date(0);
-  if (tf === 'today') { cutoff = new Date(now); cutoff.setHours(0, 0, 0, 0); }
-  else if (tf === 'week') { cutoff = new Date(now); cutoff.setDate(now.getDate() - 7); }
-  else if (tf === 'month') { cutoff = new Date(now); cutoff.setMonth(now.getMonth() - 1); }
-  else if (tf === 'year') { cutoff = new Date(now); cutoff.setFullYear(now.getFullYear() - 1); }
+  let html = '<div class="pulse-bars-container">';
 
-  const filtered = state.transactions.filter(t => new Date(t.date) >= cutoff);
-  const income = filtered.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
-  const expense = filtered.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
-  const savings = income - expense;
-  const rate = income > 0 ? (savings / income) * 100 : 0;
-
-  const disp = document.getElementById('balanceAmount');
-  if (disp) disp.innerHTML = `<span class="currency">₹</span>${fmtINR(savings)}`;
-
-  const lbl = document.getElementById('balanceLabel');
-  if (lbl) lbl.textContent = `${tf.charAt(0).toUpperCase() + tf.slice(1)} Net Balance`;
-
-  const chg = document.getElementById('balanceChange');
-  if (chg) chg.innerHTML = `${ICONS.trendingUp} ${filtered.length} transactions · ${rate.toFixed(1)}% rate`;
-
-  document.querySelectorAll('.balance-timeframe button').forEach(b => b.classList.toggle('active', b.dataset.tf === tf));
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    const iso = d.toISOString().split('T')[0];
+    const dayTxs = txs.filter(t => t.date === iso);
+    const hasTx = dayTxs.length > 0;
+    const hasIncome = dayTxs.some(t => t.type === 'income');
+    const color = hasTx ? (hasIncome ? 'teal' : 'orange') : 'faded';
+    html += `<div class="pulse-bar ${color}" title="${dayTxs.length} tx"></div>`;
+  }
+  html += '</div>';
+  return html;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: TRANSACTIONS
-   ============================================ */
+   ============================================================ */
 function pageTransactions() {
   const filtered = getFilteredTx();
   const activeFilterCount = (state.advFilters.type ? 1 : 0) + (state.advFilters.category ? 1 : 0) + (state.advFilters.from ? 1 : 0) + (state.advFilters.to ? 1 : 0) + (state.advFilters.amountMin ? 1 : 0) + (state.advFilters.amountMax ? 1 : 0);
@@ -868,16 +1007,16 @@ function pageTransactions() {
         </div>
       </div>
       <button class="tx-filter-btn" onclick="openImportModal()">${ICONS.upload} Import</button>
-      <button class="cta-primary" style="width:auto;padding:10px 14px;font-size:12px" onclick="openModal()">${ICONS.plus} Add</button>
+      <button class="cta-primary" style="width:auto;padding:12px 18px;font-size:12px" onclick="openModal()">${ICONS.plus} Add</button>
     </div>
 
     ${activeFilterCount > 0 ? renderActiveFilters() : ''}
 
     <div class="section-header" style="margin-bottom:12px">
-      <div style="font-size:12px;color:var(--text-secondary)">
+      <div style="font-size:13px;color:var(--text-secondary)">
         ${filtered.length} transaction${filtered.length !== 1 ? 's' : ''}${state.search ? ' for "' + state.search + '"' : ''}
       </div>
-      <button class="btn-ghost" style="padding:8px 12px;font-size:11px;border:1px solid var(--border)" onclick="openExportModal()">
+      <button class="btn-ghost" style="padding:10px 16px;font-size:12px" onclick="openExportModal()">
         ${ICONS.download} Export
       </button>
     </div>
@@ -886,9 +1025,9 @@ function pageTransactions() {
   `;
 }
 
-/* ============================================
-   FILTER LOGIC
-   ============================================ */
+/* ============================================================
+   HELPER: Filter Logic
+   ============================================================ */
 function getFilteredTx() {
   let rows = [...state.transactions];
 
@@ -934,9 +1073,9 @@ function getFilteredTx() {
   return rows;
 }
 
-/* ============================================
-   TRANSACTION TABLE
-   ============================================ */
+/* ============================================================
+   HELPER: Transaction Table
+   ============================================================ */
 function renderTxTable(txs) {
   if (!txs.length) {
     return `
@@ -944,7 +1083,7 @@ function renderTxTable(txs) {
         <div class="icon">${ICONS.transactions}</div>
         <h4>No transactions yet</h4>
         <p>Add your first transaction to see it here</p>
-        <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openModal()">Add Transaction</button>
+        <button class="btn-primary" onclick="openModal()">${ICONS.plus} Add Transaction</button>
       </div>
     `;
   }
@@ -983,9 +1122,9 @@ function renderTxTable(txs) {
   `;
 }
 
-/* ============================================
-   FILTER CHIPS + SORT
-   ============================================ */
+/* ============================================================
+   HELPER: Active Filter Chips
+   ============================================================ */
 function renderActiveFilters() {
   const chips = [];
   if (state.advFilters.type) chips.push(`<span class="filter-chip">Type: ${state.advFilters.type}<button onclick="clearFilter('type')">×</button></span>`);
@@ -1007,18 +1146,15 @@ function clearFilter(key) {
   state.advFilters[key] = '';
   nav('transactions');
 }
-
 function clearAllFilters() {
   state.advFilters = { type: '', category: '', from: '', to: '', amountMin: '', amountMax: '' };
   nav('transactions');
 }
-
 function toggleSortMenu(e) {
   e.stopPropagation();
   const dd = document.getElementById('sortDropdown');
   if (dd) dd.classList.toggle('active');
 }
-
 function setSort(sort) {
   state.sort = sort;
   const dd = document.getElementById('sortDropdown');
@@ -1026,9 +1162,9 @@ function setSort(sort) {
   nav('transactions');
 }
 
-/* ============================================
+/* ============================================================
    PAGE: ACCOUNTS
-   ============================================ */
+   ============================================================ */
 function pageAccounts() {
   const accounts = state.accounts || [];
   const totalBalance = accounts.reduce((s, a) => s + (a.balance || 0), 0);
@@ -1043,12 +1179,16 @@ function pageAccounts() {
     <section class="balance-hero" style="margin-bottom:20px">
       <div>
         <div class="balance-label">Total Across Accounts</div>
-        <div class="balance-amount"><span class="currency">₹</span>${fmtINR(totalBalance)}</div>
-        <div class="balance-change">${ICONS.accounts} ${accounts.length} account${accounts.length !== 1 ? 's' : ''}</div>
+        <div class="balance-amount">
+          <span class="currency">₹</span>${fmtINR(totalBalance)}
+        </div>
+        <div class="balance-change">
+          ${ICONS.accounts} ${accounts.length} account${accounts.length !== 1 ? 's' : ''}
+        </div>
       </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="cta-primary" style="width:auto;padding:10px 14px;font-size:12px" onclick="openAccountModal()">${ICONS.plus} Add Account</button>
-        <button class="btn-ghost" style="border:1px solid var(--border);padding:10px 14px;font-size:12px" onclick="openTransferModal()">${ICONS.transfer} Transfer</button>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="openAccountModal()">${ICONS.plus} Add Account</button>
+        <button class="btn-ghost" onclick="openTransferModal()">${ICONS.transfer} Transfer</button>
       </div>
     </section>
 
@@ -1057,7 +1197,7 @@ function pageAccounts() {
         <div class="icon">${ICONS.accounts}</div>
         <h4>No accounts yet</h4>
         <p>Add your first bank account, wallet, or cash</p>
-        <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openAccountModal()">Add Account</button>
+        <button class="btn-primary" onclick="openAccountModal()">${ICONS.plus} Add Account</button>
       </div>
     ` : `
       <div class="accounts-grid">
@@ -1068,13 +1208,15 @@ function pageAccounts() {
               <button class="card-act danger" onclick="confirmDeleteAccount(${a.id})">${ICONS.trash}</button>
             </div>
             <div class="account-header">
-              <div class="bank-logo" style="background:${getAccountColor(a.color)}">${(a.name || 'A')[0].toUpperCase()}</div>
+              <div class="bank-logo" style="background:${getAccountColor(a.color)}">
+                ${(a.name || 'A')[0].toUpperCase()}
+              </div>
               <div class="account-info">
                 <h5>${escapeHtml(a.name)}</h5>
-                <p style="text-transform:capitalize">${a.type.replace('_', ' ')}</p>
+                <p style="text-transform:capitalize">${(a.type || 'bank').replace('_', ' ')}</p>
               </div>
             </div>
-            <div class="account-balance" style="color:${a.balance >= 0 ? 'var(--text)' : 'var(--red)'}">
+            <div class="account-balance" style="color:${a.balance >= 0 ? 'var(--text)' : 'var(--coral)'}">
               ₹${fmtINR(a.balance)}
             </div>
             <div class="account-meta">
@@ -1088,20 +1230,9 @@ function pageAccounts() {
   `;
 }
 
-function getAccountColor(color) {
-  const map = {
-    green: 'linear-gradient(135deg,#22C55E,#0F7A4D)',
-    blue: 'linear-gradient(135deg,#3B82F6,#1E40AF)',
-    red: 'linear-gradient(135deg,#EF4444,#B91C1C)',
-    purple: 'linear-gradient(135deg,#8B5CF6,#5B21B6)',
-    yellow: 'linear-gradient(135deg,#FACC15,#A16207)'
-  };
-  return map[color] || '#0A0A0A';
-}
-
-/* ============================================
+/* ============================================================
    PAGE: ANALYSIS
-   ============================================ */
+   ============================================================ */
 function pageAnalysis() {
   const s = state.summary;
   const cats = {};
@@ -1120,37 +1251,60 @@ function pageAnalysis() {
     </section>
 
     <section class="metrics-grid">
-      <div class="metric"><div class="metric-head"><div class="metric-ico up">${ICONS.trendingUp}</div><div class="metric-label">Income</div></div><div class="metric-value">₹${fmtINR(s.income)}</div><div class="metric-trend up">Total</div></div>
-      <div class="metric"><div class="metric-head"><div class="metric-ico down">${ICONS.trendingDown}</div><div class="metric-label">Expense</div></div><div class="metric-value">₹${fmtINR(s.expense)}</div><div class="metric-trend down">Total</div></div>
-      <div class="metric"><div class="metric-head"><div class="metric-ico blue">${ICONS.savings}</div><div class="metric-label">Savings</div></div><div class="metric-value">₹${fmtINR(s.savings)}</div><div class="metric-trend up">Surplus</div></div>
-      <div class="metric"><div class="metric-head"><div class="metric-ico purple">${ICONS.analysis}</div><div class="metric-label">Rate</div></div><div class="metric-value">${s.savingsRate.toFixed(1)}%</div><div class="metric-trend up">Savings rate</div></div>
+      <div class="metric">
+        <div class="metric-head"><div class="metric-ico up">${ICONS.trendingUp}</div><div class="metric-label">Income</div></div>
+        <div class="metric-value">₹${fmtINR(s.income)}</div>
+        <div class="metric-trend up">Total</div>
+      </div>
+      <div class="metric">
+        <div class="metric-head"><div class="metric-ico down">${ICONS.trendingDown}</div><div class="metric-label">Expense</div></div>
+        <div class="metric-value">₹${fmtINR(s.expense)}</div>
+        <div class="metric-trend down">Total</div>
+      </div>
+      <div class="metric">
+        <div class="metric-head"><div class="metric-ico blue">${ICONS.savings}</div><div class="metric-label">Savings</div></div>
+        <div class="metric-value">₹${fmtINR(s.savings)}</div>
+        <div class="metric-trend up">Surplus</div>
+      </div>
+      <div class="metric">
+        <div class="metric-head"><div class="metric-ico purple">${ICONS.analysis}</div><div class="metric-label">Rate</div></div>
+        <div class="metric-value">${s.savingsRate.toFixed(1)}%</div>
+        <div class="metric-trend up">Savings rate</div>
+      </div>
     </section>
 
-    <div class="chart-card">
-      <div class="section-header">
-        <div><div class="section-title">Category Breakdown</div><div class="section-subtitle">By spending</div></div>
+    <div class="chart-ascending" style="margin-bottom:24px">
+      <div class="chart-ascending-header">
+        <div>
+          <div class="chart-ascending-title">Category Breakdown</div>
+          <div class="chart-ascending-sub">By spending</div>
+        </div>
       </div>
       ${sorted.length === 0
-        ? '<div class="empty-state" style="border:none;padding:24px 0"><p>No expense data yet</p></div>'
-        : sorted.map(([name, amt]) => {
+        ? '<div class="empty-state" style="border:none;padding:32px 0"><p>No expense data yet</p></div>'
+        : sorted.map(([name, amt], i) => {
             const pct = (amt / total) * 100;
+            const colorClass = i === 0 ? '' : i === 1 ? 'purple' : i === 2 ? 'teal' : 'coral';
             return `
               <div class="budget-item">
                 <div class="budget-header">
                   <span class="name">${escapeHtml(name)}</span>
                   <span class="amount">₹${fmtINR(amt)} · ${pct.toFixed(1)}%</span>
                 </div>
-                <div class="budget-track"><div class="budget-fill healthy" style="width:${pct}%"></div></div>
+                <div class="budget-track">
+                  <div class="budget-fill healthy" style="width:${pct}%;background:linear-gradient(90deg, ${
+                    i === 0 ? '#84CC16, #BEF264' : i === 1 ? '#7C3AED, #C4B5FD' : i === 2 ? '#14B8A6, #5EEAD4' : '#F43F5E, #FDA4AF'
+                  });"></div>
+                </div>
               </div>
             `;
           }).join('')}
     </div>
   `;
 }
-
-  /* ============================================
+  /* ============================================================
    PAGE: CALENDAR
-   ============================================ */
+   ============================================================ */
 let calendarMonth = new Date().getMonth();
 let calendarYear = new Date().getFullYear();
 
@@ -1162,7 +1316,7 @@ function changeMonth(dir) {
 }
 
 function pageCalendar() {
-  const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const now = new Date();
   const y = calendarYear, m = calendarMonth;
   const firstDay = new Date(y, m, 1);
@@ -1195,14 +1349,14 @@ function pageCalendar() {
       <p>Click any day to see that day's transactions.</p>
     </section>
 
-    <div class="calendar">
-      <div class="cal-header">
-        <div style="display:flex;align-items:center;gap:8px">
-          <button class="icon-btn" style="width:30px;height:30px" onclick="changeMonth(-1)">←</button>
-          <div class="section-title" style="min-width:140px;text-align:center">${monthName}</div>
-          <button class="icon-btn" style="width:30px;height:30px" onclick="changeMonth(1)">→</button>
+    <div class="chart-ascending" style="padding:24px">
+      <div class="cal-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="neu-icon-circle" onclick="changeMonth(-1)">←</button>
+          <div style="font-size:18px;font-weight:700;letter-spacing:-0.02em;min-width:180px;text-align:center">${monthName}</div>
+          <button class="neu-icon-circle" onclick="changeMonth(1)">→</button>
         </div>
-        <button class="btn-ghost" style="padding:6px 12px;font-size:11px;border:1px solid var(--border)" onclick="calendarMonth=new Date().getMonth();calendarYear=new Date().getFullYear();nav('calendar')">Today</button>
+        <button class="btn-ghost" onclick="calendarMonth=new Date().getMonth();calendarYear=new Date().getFullYear();nav('calendar')">Today</button>
       </div>
       <div class="cal-grid">
         ${days.map(d => `<div class="cal-day-label">${d}</div>`).join('')}
@@ -1235,42 +1389,42 @@ function openDayDetail(iso) {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <div><h3>${dateStr}</h3></div>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
-    <div style="display:flex;gap:12px;margin-bottom:16px">
-      <div style="flex:1;padding:12px;background:var(--green-soft);border-radius:10px;text-align:center">
-        <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase">Income</div>
-        <div style="font-size:16px;font-weight:800;color:var(--green);margin-top:2px">+₹${fmtINR(income)}</div>
+    <div style="display:flex;gap:12px;margin-bottom:20px">
+      <div style="flex:1;padding:16px;background:var(--lime-soft);border-radius:var(--r-lg);text-align:center">
+        <div style="font-size:11px;font-weight:700;color:var(--lime-dark);text-transform:uppercase;letter-spacing:.08em">Income</div>
+        <div style="font-size:20px;font-weight:800;color:var(--lime-dark);margin-top:4px">+₹${fmtINR(income)}</div>
       </div>
-      <div style="flex:1;padding:12px;background:var(--red-soft);border-radius:10px;text-align:center">
-        <div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase">Expense</div>
-        <div style="font-size:16px;font-weight:800;color:var(--red);margin-top:2px">−₹${fmtINR(expense)}</div>
+      <div style="flex:1;padding:16px;background:var(--coral-soft);border-radius:var(--r-lg);text-align:center">
+        <div style="font-size:11px;font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.08em">Expense</div>
+        <div style="font-size:20px;font-weight:800;color:var(--coral);margin-top:4px">−₹${fmtINR(expense)}</div>
       </div>
     </div>
     <div style="max-height:50vh;overflow-y:auto">
       ${txs.length === 0
-        ? '<div style="padding:20px;text-align:center;color:var(--text-tertiary);font-size:12px">No transactions on this day</div>'
+        ? '<div style="padding:24px;text-align:center;color:var(--text-tertiary);font-size:13px">No transactions on this day</div>'
         : txs.map(t => `
-            <div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--border-soft)">
+            <div style="display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid var(--border-soft)">
               <div>
-                <div style="font-size:13px;font-weight:600">${escapeHtml(t.merchant)}</div>
-                <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">${escapeHtml(t.category)} · ${escapeHtml(t.method || '')}</div>
+                <div style="font-size:14px;font-weight:600">${escapeHtml(t.merchant)}</div>
+                <div style="font-size:11px;color:var(--text-tertiary);margin-top:3px">${escapeHtml(t.category)} · ${escapeHtml(t.method || '')}</div>
               </div>
-              <div style="font-size:14px;font-weight:700;color:${t.type === 'income' ? 'var(--green)' : 'var(--red)'}">
+              <div style="font-size:14px;font-weight:700;color:${t.type === 'income' ? 'var(--lime-dark)' : 'var(--coral)'}">
                 ${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}
               </div>
             </div>
           `).join('')}
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" onclick="closeModal();openModal()">${ICONS.plus} Add Transaction</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:20px" onclick="closeModal();openModal()">${ICONS.plus} Add Transaction</button>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-/* ============================================
-   PAGE: UPI
-   ============================================ */
+/* ============================================================
+   PAGE: UPI HUB
+   ============================================================ */
 function pageUPI() {
   const qr = state.settings.qr_code;
   const upiId = state.settings.upi_id;
@@ -1283,27 +1437,41 @@ function pageUPI() {
     </section>
 
     <div class="settings-grid">
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.upi}</span>Your UPI ID</h3>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--blue);display:grid;place-items:center">
+            ${ICONS.upi}
+          </div>
+          <h3 style="font-size:16px;font-weight:700">Your UPI ID</h3>
+        </div>
         ${upiId
-          ? `<div style="padding:14px;background:var(--bg);border-radius:12px;margin-bottom:12px;font-family:monospace;font-size:15px;font-weight:700;text-align:center;border:1px dashed var(--border);word-break:break-all">${escapeHtml(upiId)}</div>`
-          : '<p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">No UPI ID added yet.</p>'}
-        <button class="btn-primary" onclick="openUPIIdModal()">${upiId ? ICONS.edit + ' Update' : ICONS.plus + ' Add UPI ID'}</button>
+          ? `<div style="padding:18px;background:var(--bg);border-radius:var(--r-md);margin-bottom:16px;font-family:monospace;font-size:15px;font-weight:700;text-align:center;border:1.5px dashed var(--border);word-break:break-all">${escapeHtml(upiId)}</div>`
+          : '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">No UPI ID added yet.</p>'}
+        <button class="btn-primary" onclick="openUPIIdModal()">
+          ${upiId ? ICONS.edit + ' Update UPI ID' : ICONS.plus + ' Add UPI ID'}
+        </button>
       </div>
 
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.qr}</span>Payment QR Code</h3>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--purple-soft);color:var(--purple);display:grid;place-items:center">
+            ${ICONS.qr}
+          </div>
+          <h3 style="font-size:16px;font-weight:700">Payment QR</h3>
+        </div>
         ${qr
           ? `
-            <div style="text-align:center;margin-bottom:12px"><div class="qr-display"><img src="${qr}" alt="QR"/></div></div>
+            <div style="text-align:center;margin-bottom:16px">
+              <div class="qr-display"><img src="${qr}" alt="QR"/></div>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
               <button class="btn-primary" onclick="downloadQR()">${ICONS.download} Download</button>
-              <button class="btn-ghost" style="border:1px solid var(--border)" onclick="openQRModal()">${ICONS.edit} Change</button>
-              <button class="btn-ghost" style="color:var(--red);border:1px solid var(--border)" onclick="removeQR()">${ICONS.trash} Remove</button>
+              <button class="btn-ghost" onclick="openQRModal()">${ICONS.edit} Change</button>
+              <button class="btn-ghost" style="color:var(--coral);border-color:var(--coral)" onclick="removeQR()">${ICONS.trash} Remove</button>
             </div>
           `
           : `
-            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload your UPI QR code to receive payments</p>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Upload your UPI QR code to receive payments</p>
             <button class="btn-primary" onclick="openQRModal()">${ICONS.upload} Upload QR</button>
           `}
       </div>
@@ -1311,9 +1479,9 @@ function pageUPI() {
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: CASH FLOW
-   ============================================ */
+   ============================================================ */
 function pageCashFlow() {
   const s = state.summary;
   return `
@@ -1323,40 +1491,51 @@ function pageCashFlow() {
       <p>Money In → Money Out → Net Cash Flow.</p>
     </section>
 
-    <div class="chart-card" style="margin-bottom:16px">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-        <div style="text-align:center;flex:1;min-width:90px">
-          <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#22C55E,#0F7A4D);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800">+₹</div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Money In</div>
-          <div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--green)">₹${fmtINR(s.income)}</div>
+    <div class="chart-ascending" style="padding:32px 24px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,#BEF264,#84CC16);color:#1A2E05;display:grid;place-items:center;margin:0 auto 10px;font-size:18px;font-weight:800;box-shadow:0 8px 24px rgba(132,204,22,0.35)">+₹</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary);letter-spacing:.08em">Money In</div>
+          <div style="font-size:18px;font-weight:800;margin-top:4px;color:var(--lime-dark)">₹${fmtINR(s.income)}</div>
         </div>
-        <div style="font-size:18px;color:var(--text-tertiary)">→</div>
-        <div style="text-align:center;flex:1;min-width:90px">
-          <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#EF4444,#991B1B);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800">−₹</div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Money Out</div>
-          <div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--red)">₹${fmtINR(s.expense)}</div>
+        <div style="font-size:22px;color:var(--text-tertiary)">→</div>
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,#FDA4AF,#F43F5E);color:#FFF;display:grid;place-items:center;margin:0 auto 10px;font-size:18px;font-weight:800;box-shadow:0 8px 24px rgba(244,63,94,0.35)">−₹</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary);letter-spacing:.08em">Money Out</div>
+          <div style="font-size:18px;font-weight:800;margin-top:4px;color:var(--coral)">₹${fmtINR(s.expense)}</div>
         </div>
-        <div style="font-size:18px;color:var(--text-tertiary)">=</div>
-        <div style="text-align:center;flex:1;min-width:90px">
-          <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#1A1A1A,#000);color:#FFF;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800;border:2px solid var(--green)">=₹</div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary)">Net Flow</div>
-          <div style="font-size:15px;font-weight:800;margin-top:3px;color:var(--green)">₹${fmtINR(s.savings)}</div>
+        <div style="font-size:22px;color:var(--text-tertiary)">=</div>
+        <div style="text-align:center;flex:1;min-width:100px">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,#007AFF,#0055CC);color:#FFF;display:grid;place-items:center;margin:0 auto 10px;font-size:18px;font-weight:800;box-shadow:0 8px 24px rgba(0,122,255,0.35)">=₹</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary);letter-spacing:.08em">Net Flow</div>
+          <div style="font-size:18px;font-weight:800;margin-top:4px;color:var(--blue)">₹${fmtINR(s.savings)}</div>
         </div>
       </div>
     </div>
 
-    <div class="chart-card">
-      <div class="section-header"><div><div class="section-title">Flow Breakdown</div></div></div>
-      <div class="report-row"><span class="label">Total Income</span><span class="value" style="color:var(--green)">+₹${fmtINR(s.income)}</span></div>
-      <div class="report-row"><span class="label">Total Expense</span><span class="value" style="color:var(--red)">−₹${fmtINR(s.expense)}</span></div>
-      <div class="report-row total"><span class="label">Net Cash Flow</span><span class="value">+₹${fmtINR(s.savings)}</span></div>
+    <div class="chart-ascending" style="padding:24px">
+      <div class="section-header" style="margin-bottom:16px">
+        <div><div class="section-title">Flow Breakdown</div></div>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Total Income</span>
+        <span style="font-weight:700;color:var(--lime-dark)">+₹${fmtINR(s.income)}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Total Expense</span>
+        <span style="font-weight:700;color:var(--coral)">−₹${fmtINR(s.expense)}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:16px 0;border-top:2px solid var(--border);margin-top:4px">
+        <span style="font-weight:600">Net Cash Flow</span>
+        <span style="font-weight:800;color:var(--blue)">+₹${fmtINR(s.savings)}</span>
+      </div>
     </div>
   `;
 }
 
-/* ============================================
-   PAGE: BILLS
-   ============================================ */
+/* ============================================================
+   PAGE: BILLS (Receipt style)
+   ============================================================ */
 function pageBills() {
   return `
     <section class="hero">
@@ -1365,9 +1544,9 @@ function pageBills() {
       <p>Track upcoming and recurring bills.</p>
     </section>
 
-    <div class="section-header" style="margin-bottom:12px">
+    <div class="section-header" style="margin-bottom:16px">
       <div class="section-title">Your Bills</div>
-      <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBillModal()">${ICONS.plus} Add Bill</button>
+      <button class="btn-primary" onclick="openBillModal()">${ICONS.plus} Add Bill</button>
     </div>
 
     ${state.bills.length === 0
@@ -1376,27 +1555,35 @@ function pageBills() {
           <div class="icon">${ICONS.bills}</div>
           <h4>No bills yet</h4>
           <p>Add your first bill to track upcoming payments</p>
-          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBillModal()">Add Bill</button>
+          <button class="btn-primary" onclick="openBillModal()">${ICONS.plus} Add Bill</button>
         </div>
       `
       : `
         <div class="bills-grid">
           ${state.bills.map(b => `
-            <div class="bill-card ${b.status}">
-              <div class="card-edit-actions">
-                <button class="card-act" onclick="openBillModal(${b.id})">${ICONS.edit}</button>
-                <button class="card-act danger" onclick="deleteBill(${b.id})">${ICONS.trash}</button>
-              </div>
-              <div class="bill-header">
-                <div class="bill-icon">${ICONS[b.icon] || ICONS.bill}</div>
-                <div class="bill-info">
-                  <h5>${escapeHtml(b.name)}</h5>
-                  <p>${b.due_date ? new Date(b.due_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' }) : 'No date'}</p>
+            <div class="receipt-holder">
+              <div class="receipt-holder-clip"></div>
+              <div class="receipt-body">
+                <div class="card-edit-actions" style="position:absolute;top:8px;right:12px;display:flex;gap:6px">
+                  <button class="neu-icon-circle" style="width:32px;height:32px" onclick="openBillModal(${b.id})">${ICONS.edit}</button>
+                  <button class="neu-icon-circle" style="width:32px;height:32px;color:var(--coral)" onclick="deleteBill(${b.id})">${ICONS.trash}</button>
+                </div>
+                <div class="receipt-title">${escapeHtml(b.name)}</div>
+                <div class="receipt-row">
+                  <span class="label">Amount</span>
+                  <span class="value">₹${fmtINR(b.amount)}</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="label">Due Date</span>
+                  <span class="value">${b.due_date ? new Date(b.due_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}</span>
+                </div>
+                <div class="receipt-row total">
+                  <span class="label" style="text-transform:uppercase;font-weight:700">Status</span>
+                  <span class="value" style="color:${b.status === 'paid' ? 'var(--lime-dark)' : b.status === 'overdue' ? 'var(--coral)' : 'var(--orange-dark)'}">
+                    ${b.status === 'paid' ? '✓ PAID' : b.status === 'overdue' ? '⚠ OVERDUE' : '⏰ UPCOMING'}
+                  </span>
                 </div>
               </div>
-              <div class="bill-amount">₹${fmtINR(b.amount)}</div>
-              <span class="bill-meta ${b.status}">${b.status === 'paid' ? '✓ PAID' : b.status === 'overdue' ? '⚠ OVERDUE' : '⏰ UPCOMING'}</span>
-              <div class="bill-barcode"></div>
             </div>
           `).join('')}
         </div>
@@ -1404,9 +1591,9 @@ function pageBills() {
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: BUDGETS
-   ============================================ */
+   ============================================================ */
 function pageBudgets() {
   return `
     <section class="hero">
@@ -1415,9 +1602,9 @@ function pageBudgets() {
       <p>Stay ahead of spending with monthly budgets.</p>
     </section>
 
-    <div class="section-header" style="margin-bottom:12px">
+    <div class="section-header" style="margin-bottom:16px">
       <div class="section-title">Monthly Budgets</div>
-      <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openBudgetModal()">${ICONS.plus} Add Budget</button>
+      <button class="btn-primary" onclick="openBudgetModal()">${ICONS.plus} Add Budget</button>
     </div>
 
     ${state.budgets.length === 0
@@ -1426,25 +1613,33 @@ function pageBudgets() {
           <div class="icon">${ICONS.budgets}</div>
           <h4>No budgets set</h4>
           <p>Create your first budget to control spending</p>
-          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openBudgetModal()">Create Budget</button>
+          <button class="btn-primary" onclick="openBudgetModal()">${ICONS.plus} Create Budget</button>
         </div>
       `
       : `
-        <div class="chart-card">
+        <div class="chart-ascending" style="padding:24px">
           ${state.budgets.map(b => {
             const pct = b.limit_amount ? (b.spent / b.limit_amount) * 100 : 0;
             const cls = pct > 90 ? 'danger' : pct > 70 ? 'warning' : 'healthy';
+            const colors = {
+              healthy: 'linear-gradient(90deg, #84CC16, #BEF264)',
+              warning: 'linear-gradient(90deg, #EAB308, #FDE68A)',
+              danger: 'linear-gradient(90deg, #F43F5E, #FDA4AF)'
+            };
             return `
               <div class="budget-item">
                 <div class="budget-header">
                   <span class="name">${escapeHtml(b.name)}</span>
-                  <div style="display:flex;align-items:center;gap:8px">
+                  <div style="display:flex;align-items:center;gap:10px">
                     <span class="amount">₹${fmtINR(b.spent)} / ₹${fmtINR(b.limit_amount)}</span>
-                    <button class="card-act" onclick="openBudgetModal(${b.id})">${ICONS.edit}</button>
-                    <button class="card-act danger" onclick="deleteBudget(${b.id})">${ICONS.trash}</button>
+                    <button class="neu-icon-circle" style="width:30px;height:30px" onclick="openBudgetModal(${b.id})">${ICONS.edit}</button>
+                    <button class="neu-icon-circle" style="width:30px;height:30px;color:var(--coral)" onclick="deleteBudget(${b.id})">${ICONS.trash}</button>
                   </div>
                 </div>
-                <div class="budget-track"><div class="budget-fill ${cls}" style="width:${Math.min(pct, 100)}%"></div></div>
+                <div class="budget-track">
+                  <div class="budget-fill ${cls}" style="width:${Math.min(pct, 100)}%;background:${colors[cls]};"></div>
+                </div>
+                <div style="font-size:11px;color:var(--text-tertiary);margin-top:6px">${pct.toFixed(1)}% used</div>
               </div>
             `;
           }).join('')}
@@ -1453,12 +1648,11 @@ function pageBudgets() {
   `;
 }
 
-/* ============================================
-   PAGE: SAVINGS
-   ============================================ */
+/* ============================================================
+   PAGE: SAVINGS GOALS
+   ============================================================ */
 function pageSavings() {
   const total = state.goals.reduce((s, g) => s + (g.saved || 0), 0);
-  const colorMap = { green: 'var(--green)', blue: 'var(--blue)', purple: 'var(--purple)', yellow: '#A16207' };
 
   return `
     <section class="hero">
@@ -1468,18 +1662,16 @@ function pageSavings() {
     </section>
 
     ${state.goals.length > 0 ? `
-      <div class="savings-hero">
-        <div>
-          <div class="label">Total saved across goals</div>
-          <div class="amount">₹${fmtINR(total)}</div>
-          <div class="sub">${state.goals.length} active goal${state.goals.length !== 1 ? 's' : ''}</div>
-        </div>
-      </div>
+      <section class="arc-gauge-card" style="margin-bottom:20px">
+        <div class="arc-gauge-label">Total saved across goals</div>
+        <div class="arc-gauge-value">₹${fmtINR(total)}</div>
+        <div class="arc-gauge-target">${state.goals.length} active goal${state.goals.length !== 1 ? 's' : ''}</div>
+      </section>
     ` : ''}
 
-    <div class="section-header" style="margin-bottom:12px">
+    <div class="section-header" style="margin-bottom:16px">
       <div class="section-title">Your Goals</div>
-      <button class="cta-primary" style="width:auto;padding:8px 14px;font-size:11px" onclick="openGoalModal()">${ICONS.plus} Add Goal</button>
+      <button class="btn-primary" onclick="openGoalModal()">${ICONS.plus} Add Goal</button>
     </div>
 
     ${state.goals.length === 0
@@ -1488,30 +1680,39 @@ function pageSavings() {
           <div class="icon">${ICONS.savings}</div>
           <h4>No savings goals yet</h4>
           <p>Set your first goal — laptop, travel, emergency fund</p>
-          <button class="cta-primary" style="max-width:200px;margin:0 auto" onclick="openGoalModal()">Create First Goal</button>
+          <button class="btn-primary" onclick="openGoalModal()">${ICONS.plus} Create First Goal</button>
         </div>
       `
       : `
-        <div class="insights-grid">
+        <div class="accounts-grid">
           ${state.goals.map(g => {
             const pct = g.target ? (g.saved / g.target) * 100 : 0;
-            const color = colorMap[g.color] || 'var(--green)';
+            const colors = {
+              green: ['#84CC16', '#BEF264'],
+              blue: ['#007AFF', '#93C5FD'],
+              purple: ['#7C3AED', '#C4B5FD'],
+              yellow: ['#EAB308', '#FDE68A']
+            };
+            const [c1, c2] = colors[g.color] || colors.green;
             return `
-              <div class="insight" style="align-items:center;gap:16px">
-                <div class="goal-ring">
-                  <svg width="76" height="76" viewBox="0 0 90 90">
-                    <circle class="ring-bg" cx="45" cy="45" r="38" fill="none"/>
-                    <circle class="ring-progress" cx="45" cy="45" r="38" fill="none" stroke="${color}" stroke-dasharray="239" stroke-dashoffset="${239 * (1 - Math.min(1, pct / 100))}" style="transform:rotate(-90deg);transform-origin:center"/>
-                  </svg>
-                  <div class="center">${pct.toFixed(0)}%</div>
+              <div class="chart-ascending" style="padding:24px;position:relative">
+                <div style="position:absolute;top:16px;right:16px;display:flex;gap:6px">
+                  <button class="neu-icon-circle" style="width:32px;height:32px" onclick="openGoalModal(${g.id})">${ICONS.edit}</button>
+                  <button class="neu-icon-circle" style="width:32px;height:32px;color:var(--coral)" onclick="deleteGoal(${g.id})">${ICONS.trash}</button>
                 </div>
-                <div class="insight-content" style="flex:1;min-width:0">
-                  <h5>${escapeHtml(g.name)}</h5>
-                  <p>₹${fmtINR(g.saved)} / ₹${fmtINR(g.target)}</p>
-                  <div style="display:flex;gap:6px;margin-top:10px">
-                    <button class="btn-ghost" style="padding:5px 10px;font-size:11px;border:1px solid var(--border)" onclick="openGoalModal(${g.id})">${ICONS.edit} Edit</button>
-                    <button class="btn-ghost" style="padding:5px 10px;font-size:11px;color:var(--red);border:1px solid var(--border)" onclick="deleteGoal(${g.id})">${ICONS.trash}</button>
-                  </div>
+                <div class="goal-ring" style="margin-bottom:16px">
+                  <svg width="90" height="90" viewBox="0 0 90 90">
+                    <circle class="ring-bg" cx="45" cy="45" r="38" fill="none" stroke="var(--border)" stroke-width="7"/>
+                    <circle class="ring-progress" cx="45" cy="45" r="38" fill="none" stroke="${c1}" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="239" stroke-dashoffset="${239 * (1 - Math.min(1, pct / 100))}"
+                      style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1.6s var(--ease-expo)"/>
+                  </svg>
+                  <div class="center" style="position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800">${pct.toFixed(0)}%</div>
+                </div>
+                <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">${escapeHtml(g.name)}</h3>
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">₹${fmtINR(g.saved)} / ₹${fmtINR(g.target)}</p>
+                <div class="budget-track">
+                  <div class="budget-fill healthy" style="width:${Math.min(pct, 100)}%;background:linear-gradient(90deg, ${c1}, ${c2});"></div>
                 </div>
               </div>
             `;
@@ -1521,26 +1722,52 @@ function pageSavings() {
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: AI ASSISTANT
-   ============================================ */
+   ============================================================ */
 function pageAI() {
   return `
-    <section class="hero" style="margin-bottom:16px">
+    <section class="hero" style="margin-bottom:20px">
       <div class="hero-greeting">AI Assistant</div>
       <h2>Your Personal Financial Guide</h2>
-      <p>Ask anything about your money. Get smart insights and plans.</p>
+      <p>Ask anything about your money. Get smart insights.</p>
     </section>
 
-    <div class="ai-header">
-      <div class="ai-header-avatar">${ICONS.bot}</div>
-      <div class="ai-header-text">
-        <h3>Wealthy AI</h3>
-        <p><span class="status-dot"></span>Online · Ready to help</p>
+    <!-- 3D Blob AI Card -->
+    <div class="ai-blob-card" id="aiBlobCard" style="margin-bottom:20px">
+      <div class="ai-blob-title">What can I help with?</div>
+      <div class="ai-blob-sub">I'm Wealthy AI — your finance assistant</div>
+      <div class="ai-blob-3d">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="blobGrad" cx="30%" cy="30%">
+              <stop offset="0%" stop-color="#D9F99D"/>
+              <stop offset="40%" stop-color="#BEF264"/>
+              <stop offset="100%" stop-color="#65A30D"/>
+            </radialGradient>
+            <radialGradient id="blobHighlight" cx="30%" cy="25%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.8)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="100" cy="100" rx="85" ry="85" fill="url(#blobGrad)"/>
+          <ellipse cx="100" cy="100" rx="85" ry="85" fill="url(#blobHighlight)" opacity="0.6"/>
+          <ellipse cx="65" cy="65" rx="25" ry="15" fill="rgba(255,255,255,0.4)" transform="rotate(-30 65 65)"/>
+          <rect x="78" y="92" width="14" height="34" rx="7" fill="#FFFFFF"/>
+          <rect x="108" y="92" width="14" height="34" rx="7" fill="#FFFFFF"/>
+        </svg>
       </div>
     </div>
 
-    <div class="ai-chat">
+    <!-- AI Chat -->
+    <div class="ai-chat-container">
+      <div class="ai-header">
+        <div class="ai-header-avatar">${ICONS.bot}</div>
+        <div class="ai-header-text">
+          <h3>Wealthy AI</h3>
+          <p><span class="status-dot"></span>Online · Ready to help</p>
+        </div>
+      </div>
       <div class="ai-messages" id="chatMessages"></div>
       <div class="ai-suggestions" id="chatSuggestions">
         <div class="ai-chip" onclick="aiSend('Budget plan banao')">💰 Budget plan</div>
@@ -1558,9 +1785,9 @@ function pageAI() {
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: REPORTS
-   ============================================ */
+   ============================================================ */
 function pageReports() {
   const s = state.summary;
   const cats = {};
@@ -1576,27 +1803,49 @@ function pageReports() {
       <p>Download detailed PDF and CSV reports.</p>
     </section>
 
-    <div class="report-card">
-      <div class="section-header">
-        <div><div class="section-title">Monthly Report</div><div class="section-subtitle">${new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</div></div>
-        <div class="export-btns">
-          <button class="export-btn" onclick="openExportModal()">${ICONS.download} Export</button>
+    <div class="chart-ascending" style="padding:24px">
+      <div class="section-header" style="margin-bottom:20px">
+        <div>
+          <div class="section-title">Monthly Report</div>
+          <div class="section-subtitle">${new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</div>
         </div>
+        <button class="btn-primary" onclick="openExportModal()">${ICONS.download} Export</button>
       </div>
-      <div class="report-row"><span class="label">Total Income</span><span class="value" style="color:var(--green)">+₹${fmtINR(s.income)}</span></div>
-      <div class="report-row"><span class="label">Total Expense</span><span class="value" style="color:var(--red)">−₹${fmtINR(s.expense)}</span></div>
-      <div class="report-row"><span class="label">Total Savings</span><span class="value">₹${fmtINR(s.savings)}</span></div>
-      <div class="report-row"><span class="label">Savings Rate</span><span class="value">${s.savingsRate.toFixed(1)}%</span></div>
-      <div class="report-row"><span class="label">Transactions</span><span class="value">${state.transactions.length}</span></div>
-      <div class="report-row"><span class="label">Top Category</span><span class="value">${topCat ? topCat[0] + ' (₹' + fmtINR(topCat[1]) + ')' : '—'}</span></div>
-      <div class="report-row total"><span class="label">Net Worth Change</span><span class="value">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</span></div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Total Income</span>
+        <span style="font-weight:700;color:var(--lime-dark)">+₹${fmtINR(s.income)}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Total Expense</span>
+        <span style="font-weight:700;color:var(--coral)">−₹${fmtINR(s.expense)}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Total Savings</span>
+        <span style="font-weight:700">₹${fmtINR(s.savings)}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Savings Rate</span>
+        <span style="font-weight:700">${s.savingsRate.toFixed(1)}%</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Transactions</span>
+        <span style="font-weight:700">${state.transactions.length}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Top Category</span>
+        <span style="font-weight:700">${topCat ? topCat[0] + ' (₹' + fmtINR(topCat[1]) + ')' : '—'}</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:16px 0;border-top:2px solid var(--border);margin-top:4px">
+        <span style="font-weight:600">Net Worth Change</span>
+        <span style="font-weight:800;color:var(--blue)">${s.savings >= 0 ? '+' : ''}₹${fmtINR(s.savings)}</span>
+      </div>
     </div>
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: PROFILE
-   ============================================ */
+   ============================================================ */
 function pageProfile() {
   return `
     <section class="hero">
@@ -1606,25 +1855,46 @@ function pageProfile() {
     </section>
 
     <div class="settings-grid">
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.user}</span>Personal Details</h3>
-        <div class="form-group"><label>Full Name</label><input id="pName" value="${escapeHtml(state.user?.name || '')}"/></div>
-        <div class="form-group"><label>Email</label><input id="pEmail" value="${escapeHtml(state.user?.email || '')}" disabled/></div>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--blue);display:grid;place-items:center">${ICONS.user}</div>
+          <h3 style="font-size:16px;font-weight:700">Personal Details</h3>
+        </div>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input id="pName" value="${escapeHtml(state.user?.name || '')}"/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input id="pEmail" value="${escapeHtml(state.user?.email || '')}" disabled/>
+        </div>
       </div>
 
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.card}</span>Card Details</h3>
-        <div class="form-group"><label>Card Number</label><input id="pCardNumber" value="${escapeHtml(state.user?.card_number || '')}" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)"/></div>
-        <div class="form-row">
-          <div class="form-group"><label>Cardholder</label><input id="pCardHolder" value="${escapeHtml(state.user?.card_holder || '')}" placeholder="NAME ON CARD"/></div>
-          <div class="form-group"><label>Expiry</label><input id="pCardExpiry" value="${escapeHtml(state.user?.card_expiry || '')}" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/></div>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--purple-soft);color:var(--purple);display:grid;place-items:center">${ICONS.card}</div>
+          <h3 style="font-size:16px;font-weight:700">Card Details</h3>
         </div>
-        <p style="font-size:10px;color:var(--text-tertiary);margin-top:4px">Just type digits — slash adds automatically</p>
+        <div class="form-group">
+          <label>Card Number</label>
+          <input id="pCardNumber" value="${escapeHtml(state.user?.card_number || '')}" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Cardholder</label>
+            <input id="pCardHolder" value="${escapeHtml(state.user?.card_holder || '')}" placeholder="NAME ON CARD"/>
+          </div>
+          <div class="form-group">
+            <label>Expiry</label>
+            <input id="pCardExpiry" value="${escapeHtml(state.user?.card_expiry || '')}" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-tertiary);margin-top:4px">Just type digits — slash adds automatically</p>
       </div>
     </div>
 
-    <div class="save-changes-bar">
-      <button class="btn-ghost" onclick="logout()" style="color:var(--red)">Logout</button>
+    <div class="save-changes-bar" style="position:sticky;bottom:100px;display:flex;justify-content:flex-end;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-2xl);padding:16px;box-shadow:var(--shadow-lg);margin-top:20px">
+      <button class="btn-ghost" onclick="logout()" style="color:var(--coral);border-color:var(--coral)">Logout</button>
       <button class="btn-primary" id="saveProfileBtn" onclick="saveProfile()">${ICONS.check} Save Changes</button>
     </div>
   `;
@@ -1634,18 +1904,17 @@ function formatCardNumber(el) {
   let v = el.value.replace(/\s/g, '').replace(/[^0-9]/g, '').slice(0, 16);
   el.value = v.replace(/(.{4})/g, '$1 ').trim();
 }
-
 function formatExpiry(el) {
   let v = el.value.replace(/[^0-9]/g, '').slice(0, 4);
   if (v.length >= 3) el.value = v.slice(0, 2) + '/' + v.slice(2);
   else el.value = v;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: SETTINGS
-   ============================================ */
+   ============================================================ */
 function pageSettings() {
-  const c = state.settings.card_color || 'black';
+  const c = state.settings.card_color || 'purple';
   const t = state.settings.theme || 'light';
 
   return `
@@ -1656,19 +1925,33 @@ function pageSettings() {
     </section>
 
     <div class="settings-grid">
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.palette}</span>Appearance</h3>
-        <div class="form-group"><label>Theme</label><select id="setTheme"><option value="light" ${t === 'light' ? 'selected' : ''}>Light</option><option value="dark" ${t === 'dark' ? 'selected' : ''}>Dark</option></select></div>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--purple-soft);color:var(--purple);display:grid;place-items:center">${ICONS.palette}</div>
+          <h3 style="font-size:16px;font-weight:700">Appearance</h3>
+        </div>
+        <div class="form-group">
+          <label>Theme</label>
+          <select id="setTheme">
+            <option value="light" ${t === 'light' ? 'selected' : ''}>Light</option>
+            <option value="dark" ${t === 'dark' ? 'selected' : ''}>Dark</option>
+          </select>
+        </div>
         <div class="form-group">
           <label>Card Color</label>
           <div class="color-swatches" id="cardSwatches">
-            ${Object.keys(CARD_COLORS).map(color => `<button class="color-swatch ${c === color ? 'active' : ''}" data-color="${color}" onclick="previewCardColor('${color}')" style="background:${CARD_COLORS[color].bg}"></button>`).join('')}
+            ${Object.keys(CARD_COLORS).map(color => `
+              <button class="color-swatch ${c === color ? 'active' : ''}" data-color="${color}" onclick="previewCardColor('${color}')" style="background:${CARD_COLORS[color].bg}"></button>
+            `).join('')}
           </div>
         </div>
       </div>
 
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.user}</span>Currency</h3>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--lime-soft);color:var(--lime-dark);display:grid;place-items:center">${ICONS.user}</div>
+          <h3 style="font-size:16px;font-weight:700">Currency</h3>
+        </div>
         <div class="form-group">
           <label>Default Currency</label>
           <select id="setCurrency">
@@ -1681,30 +1964,51 @@ function pageSettings() {
         </div>
       </div>
 
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.bell}</span>Notifications</h3>
-        <div class="switch-row"><label>Bill Reminders</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="switch-row"><label>Budget Alerts</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="switch-row"><label>Weekly Summary</label><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--blue);display:grid;place-items:center">${ICONS.bell}</div>
+          <h3 style="font-size:16px;font-weight:700">Notifications</h3>
+        </div>
+        <div class="switch-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+          <label>Bill Reminders</label>
+          <div class="switch on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="switch-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+          <label>Budget Alerts</label>
+          <div class="switch on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="switch-row" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
+          <label>Weekly Summary</label>
+          <div class="switch on" onclick="this.classList.toggle('on')"></div>
+        </div>
       </div>
 
-      <div class="settings-card">
-        <h3><span class="icon-wrap">${ICONS.lock}</span>Security</h3>
-        <div class="report-row"><span class="label">2FA</span><span class="value" style="color:var(--green)">Enabled</span></div>
-        <div class="report-row"><span class="label">Encryption</span><span class="value" style="color:var(--green)">AES-256</span></div>
+      <div class="chart-ascending" style="padding:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--coral-soft);color:var(--coral);display:grid;place-items:center">${ICONS.lock}</div>
+          <h3 style="font-size:16px;font-weight:700">Security</h3>
+        </div>
+        <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+          <span style="color:var(--text-secondary)">2FA</span>
+          <span style="font-weight:700;color:var(--lime-dark)">Enabled</span>
+        </div>
+        <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0">
+          <span style="color:var(--text-secondary)">Encryption</span>
+          <span style="font-weight:700;color:var(--lime-dark)">AES-256</span>
+        </div>
       </div>
     </div>
 
-    <div class="save-changes-bar">
+    <div class="save-changes-bar" style="position:sticky;bottom:100px;display:flex;justify-content:flex-end;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-2xl);padding:16px;box-shadow:var(--shadow-lg);margin-top:20px">
       <button class="btn-ghost" onclick="nav('settings')">Cancel</button>
       <button class="btn-primary" id="saveSettingsBtn" onclick="saveSettings()">${ICONS.check} Save Changes</button>
     </div>
   `;
 }
 
-/* ============================================
+/* ============================================================
    PAGE: HELP
-   ============================================ */
+   ============================================================ */
 function pageHelp() {
   return `
     <section class="hero">
@@ -1713,31 +2017,67 @@ function pageHelp() {
       <p>We're here to help you 24/7.</p>
     </section>
 
-    <div class="insights-grid">
-      <div class="insight"><div class="insight-icon">${ICONS.help}</div><div class="insight-content"><h5>Getting Started</h5><p>Add transactions to unlock live insights.</p></div></div>
-      <div class="insight"><div class="insight-icon blue">${ICONS.shield}</div><div class="insight-content"><h5>Security</h5><p>Bank-grade encryption, no PIN/CVV stored.</p></div></div>
-      <div class="insight"><div class="insight-icon purple">${ICONS.upi}</div><div class="insight-content"><h5>UPI Hub</h5><p>Add UPI ID and QR code for payments.</p></div></div>
-      <div class="insight"><div class="insight-icon yellow">${ICONS.download}</div><div class="insight-content"><h5>Reports</h5><p>Download PDF, CSV, JSON reports.</p></div></div>
+    <div class="insights-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px">
+      <div class="chart-ascending" style="padding:20px;display:flex;gap:14px">
+        <div style="width:44px;height:44px;border-radius:var(--r-md);background:var(--lime-soft);color:var(--lime-dark);display:grid;place-items:center;flex-shrink:0">${ICONS.help}</div>
+        <div>
+          <h5 style="font-size:14px;font-weight:700;margin-bottom:6px">Getting Started</h5>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">Add transactions to unlock live insights.</p>
+        </div>
+      </div>
+      <div class="chart-ascending" style="padding:20px;display:flex;gap:14px">
+        <div style="width:44px;height:44px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0">${ICONS.shield}</div>
+        <div>
+          <h5 style="font-size:14px;font-weight:700;margin-bottom:6px">Security</h5>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">Bank-grade encryption, no PIN/CVV stored.</p>
+        </div>
+      </div>
+      <div class="chart-ascending" style="padding:20px;display:flex;gap:14px">
+        <div style="width:44px;height:44px;border-radius:var(--r-md);background:var(--purple-soft);color:var(--purple);display:grid;place-items:center;flex-shrink:0">${ICONS.upi}</div>
+        <div>
+          <h5 style="font-size:14px;font-weight:700;margin-bottom:6px">UPI Hub</h5>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">Add UPI ID and QR code for payments.</p>
+        </div>
+      </div>
+      <div class="chart-ascending" style="padding:20px;display:flex;gap:14px">
+        <div style="width:44px;height:44px;border-radius:var(--r-md);background:var(--yellow-soft);color:var(--yellow);display:grid;place-items:center;flex-shrink:0">${ICONS.download}</div>
+        <div>
+          <h5 style="font-size:14px;font-weight:700;margin-bottom:6px">Reports</h5>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">Download PDF, CSV, JSON reports.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="chart-card" style="margin-top:16px">
-      <div class="section-title" style="margin-bottom:12px">Contact Support</div>
-      <div class="report-row"><span class="label">Email</span><span class="value">support@wealthy.in</span></div>
-      <div class="report-row"><span class="label">Owner</span><span class="value">SANJEEV SHEKHAR</span></div>
-      <div class="report-row"><span class="label">Parent</span><span class="value">D2C Ventures</span></div>
-      <div class="report-row"><span class="label">Status</span><span class="value" style="color:var(--green)">● Online</span></div>
+    <div class="chart-ascending" style="padding:24px">
+      <div class="section-title" style="margin-bottom:16px">Contact Support</div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Email</span>
+        <span style="font-weight:700">support@wealthy.in</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Owner</span>
+        <span style="font-weight:700">SANJEEV SHEKHAR</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+        <span style="color:var(--text-secondary)">Parent</span>
+        <span style="font-weight:700">D2C Ventures</span>
+      </div>
+      <div class="report-row" style="display:flex;justify-content:space-between;padding:12px 0">
+        <span style="color:var(--text-secondary)">Status</span>
+        <span style="font-weight:700;color:var(--lime-dark)">● Online</span>
+      </div>
     </div>
   `;
-} 
-  /* ============================================
+}
+  /* ============================================================
    MODAL: ADD TRANSACTION
-   ============================================ */
+   ============================================================ */
 function openModal(type = 'expense') {
   const accounts = state.accounts || [];
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Add Transaction</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="modal-toggle">
       <button class="${type === 'expense' ? 'active' : ''}" data-type="expense">Money Out</button>
@@ -1750,24 +2090,39 @@ function openModal(type = 'expense') {
     <div class="form-group"><label>Merchant</label><input id="txMerchant" placeholder="e.g. Swiggy"/></div>
     <div class="form-group"><label>Category</label>
       <select id="txCategory">
-        <option>Food & Dining</option><option>Shopping</option><option>Transport</option>
-        <option>Utilities</option><option>Entertainment</option><option>Health</option>
-        <option>Salary</option><option>Other</option>
+        <option>Food & Dining</option>
+        <option>Shopping</option>
+        <option>Transport</option>
+        <option>Utilities</option>
+        <option>Entertainment</option>
+        <option>Health</option>
+        <option>Salary</option>
+        <option>Other</option>
       </select>
     </div>
     <div class="form-group"><label>Payment Method</label>
       <select id="txMethod">
-        <option>UPI · Google Pay</option><option>UPI · PhonePe</option>
-        <option>Credit Card</option><option>Debit Card</option>
-        <option>Bank Transfer</option><option>Cash</option>
+        <option>UPI · Google Pay</option>
+        <option>UPI · PhonePe</option>
+        <option>Credit Card</option>
+        <option>Debit Card</option>
+        <option>Bank Transfer</option>
+        <option>Cash</option>
       </select>
     </div>
-    ${accounts.length > 0 ? `<div class="form-group"><label>Account</label><select id="txAccount"><option value="">— No account —</option>${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}</select></div>` : ''}
+    ${accounts.length > 0 ? `
+      <div class="form-group"><label>Account</label>
+        <select id="txAccount">
+          <option value="">— No account —</option>
+          ${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}
+        </select>
+      </div>
+    ` : ''}
     <div class="form-row">
       <div class="form-group"><label>Date</label><input type="date" id="txDate"/></div>
       <div class="form-group"><label>Notes</label><input id="txNotes" placeholder="Optional"/></div>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveTxBtn" onclick="saveTransaction()">Save Transaction</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveTxBtn" onclick="saveTransaction()">Save Transaction</button>
   `;
   document.querySelectorAll('.modal-toggle button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.modal-toggle button').forEach(x => x.classList.remove('active'));
@@ -1776,7 +2131,7 @@ function openModal(type = 'expense') {
   document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('txAmount')?.focus(), 100);
+  setTimeout(() => document.getElementById('txAmount')?.focus(), 150);
 }
 
 async function saveTransaction() {
@@ -1793,7 +2148,10 @@ async function saveTransaction() {
   btn.disabled = true;
   btn.textContent = 'Saving...';
   try {
-    await api('/transactions', { method: 'POST', body: { merchant, category, method, amount, type, date, notes, account_id: account_id ? parseInt(account_id) : null } });
+    await api('/transactions', {
+      method: 'POST',
+      body: { merchant, category, method, amount, type, date, notes, account_id: account_id ? parseInt(account_id) : null }
+    });
     toast('Transaction added');
     closeModal();
     await loadData();
@@ -1806,17 +2164,16 @@ async function saveTransaction() {
   }
 }
 
-/* ============================================
+/* ============================================================
    MODAL: EDIT TRANSACTION
-   ============================================ */
+   ============================================================ */
 async function editTx(id) {
   const t = state.transactions.find(x => x.id === id);
   if (!t) return;
-  const accounts = state.accounts || [];
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Edit Transaction</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="modal-toggle">
       <button class="${t.type === 'expense' ? 'active' : ''}" data-type="expense">Money Out</button>
@@ -1833,7 +2190,7 @@ async function editTx(id) {
       <div class="form-group"><label>Date</label><input type="date" id="txDate" value="${t.date || ''}"/></div>
       <div class="form-group"><label>Notes</label><input id="txNotes" value="${escapeHtml(t.notes || '')}"/></div>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveTxBtn" onclick="updateTx(${id})">Update</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveTxBtn" onclick="updateTx(${id})">Update</button>
   `;
   document.querySelectorAll('.modal-toggle button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.modal-toggle button').forEach(x => x.classList.remove('active'));
@@ -1856,7 +2213,10 @@ async function updateTx(id) {
   btn.disabled = true;
   btn.textContent = 'Updating...';
   try {
-    await api('/transactions/' + id, { method: 'PUT', body: { merchant, category, method, amount, type, date, notes } });
+    await api('/transactions/' + id, {
+      method: 'PUT',
+      body: { merchant, category, method, amount, type, date, notes }
+    });
     toast('Updated');
     closeModal();
     await loadData();
@@ -1869,16 +2229,16 @@ async function updateTx(id) {
   }
 }
 
-/* ============================================
+/* ============================================================
    MODAL: VIEW TRANSACTION
-   ============================================ */
+   ============================================================ */
 function viewTx(id) {
   const t = state.transactions.find(x => x.id === id);
   if (!t) return;
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Transaction Details</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="tx-detail-header">
       <div class="tx-detail-icon ${t.type}">${t.type === 'income' ? ICONS.plus : ICONS.minus}</div>
@@ -1896,18 +2256,18 @@ function viewTx(id) {
     </div>
     ${t.notes ? `<div class="tx-detail-note"><div class="label">Notes</div><div class="value">${escapeHtml(t.notes)}</div></div>` : ''}
     <div class="tx-detail-actions">
-      <button class="btn-ghost" style="border:1px solid var(--border)" onclick="closeModal();editTx(${t.id})">${ICONS.edit} Edit</button>
-      <button class="btn-ghost" style="border:1px solid var(--border)" onclick="closeModal();duplicateTx(${t.id})">${ICONS.copy} Duplicate</button>
-      <button class="btn-ghost" style="border:1px solid var(--border);color:var(--red)" onclick="closeModal();confirmDeleteTx(${t.id})">${ICONS.trash} Delete</button>
+      <button class="btn-ghost" onclick="closeModal();editTx(${t.id})">${ICONS.edit} Edit</button>
+      <button class="btn-ghost" onclick="closeModal();duplicateTx(${t.id})">${ICONS.copy} Duplicate</button>
+      <button class="btn-ghost" style="color:var(--coral);border-color:var(--coral)" onclick="closeModal();confirmDeleteTx(${t.id})">${ICONS.trash} Delete</button>
     </div>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-/* ============================================
-   DUPLICATE + DELETE TX
-   ============================================ */
+/* ============================================================
+   DUPLICATE + DELETE
+   ============================================================ */
 async function duplicateTx(id) {
   try {
     await api('/transactions/' + id + '/duplicate', { method: 'POST' });
@@ -1927,9 +2287,9 @@ function confirmDeleteTx(id) {
     <div class="confirm-message">
       <strong>${escapeHtml(t.merchant || 'Untitled')}</strong> for ₹${fmtINR(t.amount)} will be permanently deleted.<br/>This action cannot be undone.
     </div>
-    <div style="display:flex;gap:8px">
-      <button class="btn-ghost" style="flex:1;justify-content:center;border:1px solid var(--border)" onclick="closeModal()">Cancel</button>
-      <button class="btn-primary" style="flex:1;justify-content:center;background:linear-gradient(145deg,#DC2626,#B91C1C)" onclick="doDeleteTx(${id})">Delete</button>
+    <div style="display:flex;gap:10px">
+      <button class="btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" style="flex:1;justify-content:center;background:linear-gradient(145deg,#F43F5E,#BE123C)" onclick="doDeleteTx(${id})">Delete</button>
     </div>
   `;
   document.getElementById('modal').classList.add('active');
@@ -1946,49 +2306,49 @@ async function doDeleteTx(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
+/* ============================================================
    FILTER PANEL
-   ============================================ */
+   ============================================================ */
 function openFilterPanel() {
   const categories = [...new Set(state.transactions.map(t => t.category).filter(Boolean))];
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Filter Transactions</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
-    <div class="filter-panel">
-      <div class="filter-section">
-        <h4>Type</h4>
-        <div class="filter-options">
-          <button class="filter-opt ${!state.advFilters.type ? 'active' : ''}" onclick="setFilterField('type', '')">All</button>
-          <button class="filter-opt ${state.advFilters.type === 'income' ? 'active' : ''}" onclick="setFilterField('type', 'income')">Income</button>
-          <button class="filter-opt ${state.advFilters.type === 'expense' ? 'active' : ''}" onclick="setFilterField('type', 'expense')">Expense</button>
+    <div style="max-height:70vh;overflow-y:auto">
+      <div style="margin-bottom:20px">
+        <h4 style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px">Type</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="neu-btn ${!state.advFilters.type ? 'active' : ''}" onclick="setFilterField('type', '')">All</button>
+          <button class="neu-btn ${state.advFilters.type === 'income' ? 'active' : ''}" onclick="setFilterField('type', 'income')">Income</button>
+          <button class="neu-btn ${state.advFilters.type === 'expense' ? 'active' : ''}" onclick="setFilterField('type', 'expense')">Expense</button>
         </div>
       </div>
-      <div class="filter-section">
-        <h4>Category</h4>
-        <div class="filter-options">
-          <button class="filter-opt ${!state.advFilters.category ? 'active' : ''}" onclick="setFilterField('category', '')">All</button>
-          ${categories.map(c => `<button class="filter-opt ${state.advFilters.category === c ? 'active' : ''}" onclick="setFilterField('category', '${c.replace(/'/g, "\\'")}')">${escapeHtml(c)}</button>`).join('')}
+      <div style="margin-bottom:20px">
+        <h4 style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px">Category</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="neu-btn ${!state.advFilters.category ? 'active' : ''}" onclick="setFilterField('category', '')">All</button>
+          ${categories.map(c => `<button class="neu-btn ${state.advFilters.category === c ? 'active' : ''}" onclick="setFilterField('category', '${c.replace(/'/g, "\\'")}')">${escapeHtml(c)}</button>`).join('')}
         </div>
       </div>
-      <div class="filter-section">
-        <h4>Date Range</h4>
-        <div class="filter-inputs">
+      <div style="margin-bottom:20px">
+        <h4 style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px">Date Range</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div class="form-group" style="margin:0"><label>From</label><input type="date" id="filterFrom" value="${state.advFilters.from}"/></div>
           <div class="form-group" style="margin:0"><label>To</label><input type="date" id="filterTo" value="${state.advFilters.to}"/></div>
         </div>
       </div>
-      <div class="filter-section">
-        <h4>Amount Range</h4>
-        <div class="filter-inputs">
+      <div style="margin-bottom:20px">
+        <h4 style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px">Amount Range</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div class="form-group" style="margin:0"><label>Min (₹)</label><input type="number" id="filterMin" value="${state.advFilters.amountMin}" placeholder="0"/></div>
           <div class="form-group" style="margin:0"><label>Max (₹)</label><input type="number" id="filterMax" value="${state.advFilters.amountMax}" placeholder="100000"/></div>
         </div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;margin-top:16px">
-      <button class="btn-ghost" style="flex:1;justify-content:center;border:1px solid var(--border)" onclick="clearAllFilters();closeModal();">Reset</button>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn-ghost" style="flex:1;justify-content:center" onclick="clearAllFilters();closeModal();">Reset</button>
       <button class="btn-primary" style="flex:2;justify-content:center" onclick="applyFilters()">Apply Filters</button>
     </div>
   `;
@@ -2010,15 +2370,15 @@ function applyFilters() {
   nav('transactions');
 }
 
-/* ============================================
-   ACCOUNT MODAL
-   ============================================ */
+/* ============================================================
+   MODAL: ACCOUNT
+   ============================================================ */
 function openAccountModal(id) {
   const a = id ? state.accounts.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>${id ? 'Edit' : 'Add'} Account</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>Account Name</label><input id="accName" value="${escapeHtml(a.name || '')}" placeholder="e.g. HDFC Savings"/></div>
     <div class="form-group"><label>Type</label>
@@ -2029,11 +2389,13 @@ function openAccountModal(id) {
     <div class="form-group"><label>Opening Balance (₹)</label><input id="accBalance" type="number" value="${a.opening_balance || 0}" placeholder="0"/></div>
     <div class="form-group"><label>Color</label>
       <div class="color-swatches" id="accColorPick">
-        ${['green', 'blue', 'red', 'purple', 'yellow'].map(color => `<button class="color-swatch ${(a.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickAccColor('${color}')" style="background:${getAccountColor(color)}"></button>`).join('')}
+        ${['green', 'blue', 'red', 'purple', 'yellow', 'navy', 'coral'].map(color => `
+          <button class="color-swatch ${(a.color || 'purple') === color ? 'active' : ''}" data-color="${color}" onclick="pickAccColor('${color}')" style="background:${getAccountColor(color)}"></button>
+        `).join('')}
       </div>
     </div>
-    <input type="hidden" id="accColor" value="${a.color || 'green'}"/>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveAccBtn" onclick="saveAccount(${id || 0})">${id ? 'Update' : 'Add'} Account</button>
+    <input type="hidden" id="accColor" value="${a.color || 'purple'}"/>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveAccBtn" onclick="saveAccount(${id || 0})">${id ? 'Update' : 'Add'} Account</button>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2073,11 +2435,11 @@ async function confirmDeleteAccount(id) {
     <div class="confirm-icon">${ICONS.trash}</div>
     <div class="confirm-title">Delete this account?</div>
     <div class="confirm-message">
-      <strong>${escapeHtml(a.name)}</strong> will be deleted.<br/>Transactions will remain but no longer be linked.<br/>This action cannot be undone.
+      <strong>${escapeHtml(a.name)}</strong> will be permanently deleted.<br/>Transactions will remain but no longer be linked.<br/>This action cannot be undone.
     </div>
-    <div style="display:flex;gap:8px">
-      <button class="btn-ghost" style="flex:1;justify-content:center;border:1px solid var(--border)" onclick="closeModal()">Cancel</button>
-      <button class="btn-primary" style="flex:1;justify-content:center;background:linear-gradient(145deg,#DC2626,#B91C1C)" onclick="doDeleteAccount(${id})">Delete</button>
+    <div style="display:flex;gap:10px">
+      <button class="btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" style="flex:1;justify-content:center;background:linear-gradient(145deg,#F43F5E,#BE123C)" onclick="doDeleteAccount(${id})">Delete</button>
     </div>
   `;
   document.getElementById('modal').classList.add('active');
@@ -2094,22 +2456,26 @@ async function doDeleteAccount(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
-   TRANSFER MODAL
-   ============================================ */
+/* ============================================================
+   MODAL: TRANSFER
+   ============================================================ */
 function openTransferModal() {
   const accounts = state.accounts || [];
   if (accounts.length < 2) return toast('Need at least 2 accounts', 'error');
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Transfer Money</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>From Account</label>
-      <select id="fromAcc">${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}</select>
+      <select id="fromAcc">
+        ${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}
+      </select>
     </div>
     <div class="form-group"><label>To Account</label>
-      <select id="toAcc">${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}</select>
+      <select id="toAcc">
+        ${accounts.map(a => `<option value="${a.id}">${escapeHtml(a.name)} (₹${fmtINR(a.balance)})</option>`).join('')}
+      </select>
     </div>
     <div class="amount-input">
       <span class="currency">₹</span>
@@ -2117,7 +2483,7 @@ function openTransferModal() {
     </div>
     <div class="form-group"><label>Date</label><input type="date" id="transferDate"/></div>
     <div class="form-group"><label>Notes</label><input id="transferNotes" placeholder="Optional"/></div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveTransferBtn" onclick="saveTransfer()">Transfer</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveTransferBtn" onclick="saveTransfer()">Transfer</button>
   `;
   document.getElementById('transferDate').value = new Date().toISOString().split('T')[0];
   document.getElementById('modal').classList.add('active');
@@ -2145,15 +2511,15 @@ async function saveTransfer() {
   finally { btn.disabled = false; btn.textContent = 'Transfer'; }
 }
 
-/* ============================================
-   BILL MODAL
-   ============================================ */
+/* ============================================================
+   MODAL: BILL
+   ============================================================ */
 function openBillModal(id) {
   const b = id ? state.bills.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>${id ? 'Edit' : 'Add'} Bill</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>Bill Name</label><input id="bName" value="${escapeHtml(b.name || '')}" placeholder="e.g. Electricity"/></div>
     <div class="form-row">
@@ -2167,7 +2533,7 @@ function openBillModal(id) {
         <option value="paid" ${b.status === 'paid' ? 'selected' : ''}>Paid</option>
       </select>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveBillBtn" onclick="saveBill(${id || 0})">${id ? 'Update' : 'Add'} Bill</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveBillBtn" onclick="saveBill(${id || 0})">${id ? 'Update' : 'Add'} Bill</button>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2206,22 +2572,22 @@ async function deleteBill(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
-   BUDGET MODAL
-   ============================================ */
+/* ============================================================
+   MODAL: BUDGET
+   ============================================================ */
 function openBudgetModal(id) {
   const b = id ? state.budgets.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>${id ? 'Edit' : 'Add'} Budget</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>Category Name</label><input id="buName" value="${escapeHtml(b.name || '')}" placeholder="e.g. Food & Dining"/></div>
     <div class="form-row">
       <div class="form-group"><label>Spent</label><input id="buSpent" type="number" value="${b.spent || 0}"/></div>
       <div class="form-group"><label>Limit</label><input id="buLimit" type="number" value="${b.limit_amount || ''}" placeholder="10000"/></div>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveBudgetBtn" onclick="saveBudget(${id || 0})">${id ? 'Update' : 'Add'} Budget</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveBudgetBtn" onclick="saveBudget(${id || 0})">${id ? 'Update' : 'Add'} Budget</button>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2258,28 +2624,31 @@ async function deleteBudget(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
-   GOAL MODAL
-   ============================================ */
+/* ============================================================
+   MODAL: GOAL
+   ============================================================ */
 function openGoalModal(id) {
   const g = id ? state.goals.find(x => x.id === id) : {};
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>${id ? 'Edit' : 'Add'} Savings Goal</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>Goal Name</label><input id="gName" value="${escapeHtml(g.name || '')}" placeholder="e.g. Laptop Fund"/></div>
     <div class="form-row">
       <div class="form-group"><label>Saved So Far</label><input id="gSaved" type="number" value="${g.saved || ''}" placeholder="0"/></div>
       <div class="form-group"><label>Target Amount</label><input id="gTarget" type="number" value="${g.target || ''}" placeholder="100000"/></div>
     </div>
+    <div class="form-group"><label>Target Date</label><input id="gTargetDate" type="date" value="${g.target_date || ''}"/></div>
     <div class="form-group"><label>Color</label>
       <div class="color-swatches" id="goalColorPick">
-        ${['green', 'blue', 'purple', 'yellow'].map(color => `<button class="color-swatch ${(g.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickGoalColor('${color}')" style="background:${color === 'green' ? '#0F7A4D' : color === 'blue' ? '#2563EB' : color === 'purple' ? '#7C3AED' : '#EAB308'}"></button>`).join('')}
+        ${['green', 'blue', 'purple', 'yellow'].map(color => `
+          <button class="color-swatch ${(g.color || 'green') === color ? 'active' : ''}" data-color="${color}" onclick="pickGoalColor('${color}')" style="background:${color === 'green' ? 'linear-gradient(145deg,#BEF264,#84CC16)' : color === 'blue' ? 'linear-gradient(145deg,#93C5FD,#007AFF)' : color === 'purple' ? 'linear-gradient(145deg,#C4B5FD,#7C3AED)' : 'linear-gradient(145deg,#FDE68A,#EAB308)'}"></button>
+        `).join('')}
       </div>
     </div>
     <input type="hidden" id="gColor" value="${g.color || 'green'}"/>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:12px" id="saveGoalBtn" onclick="saveGoal(${id || 0})">${id ? 'Update' : 'Add'} Goal</button>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:16px" id="saveGoalBtn" onclick="saveGoal(${id || 0})">${id ? 'Update' : 'Add'} Goal</button>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2296,7 +2665,8 @@ async function saveGoal(id) {
     name: document.getElementById('gName').value.trim(),
     saved: parseFloat(document.getElementById('gSaved').value) || 0,
     target: parseFloat(document.getElementById('gTarget').value) || 0,
-    color: document.getElementById('gColor').value
+    color: document.getElementById('gColor').value,
+    target_date: document.getElementById('gTargetDate').value || null
   };
   if (!body.name || !body.target) return toast('Name and target required', 'error');
   btn.disabled = true;
@@ -2322,9 +2692,9 @@ async function deleteGoal(id) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
+/* ============================================================
    PROFILE & SETTINGS SAVE
-   ============================================ */
+   ============================================================ */
 async function saveProfile() {
   const btn = document.getElementById('saveProfileBtn');
   const name = document.getElementById('pName').value.trim();
@@ -2376,17 +2746,17 @@ async function saveSettings() {
   }
 }
 
-/* ============================================
+/* ============================================================
    UPI ID & QR
-   ============================================ */
+   ============================================================ */
 function openUPIIdModal() {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Your UPI ID</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
     <div class="form-group"><label>UPI ID</label><input id="upiIdInput" value="${escapeHtml(state.settings.upi_id || '')}" placeholder="yourname@okhdfcbank"/></div>
-    <p style="font-size:11px;color:var(--text-secondary);margin-bottom:12px">Example: name@okhdfcbank, name@ybl, name@paytm</p>
+    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Example: name@okhdfcbank, name@ybl, name@paytm</p>
     <button class="btn-primary" style="width:100%;justify-content:center" onclick="saveUPIId()">${ICONS.check} Save UPI ID</button>
   `;
   document.getElementById('modal').classList.add('active');
@@ -2408,16 +2778,16 @@ function openQRModal() {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Upload UPI QR</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
-    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Upload a screenshot of your UPI QR code.</p>
-    <label for="qrFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:12px;cursor:pointer;margin-bottom:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;color:var(--green)">${ICONS.upload}</div>
-      <div style="font-size:13px;font-weight:600">Tap to select QR image</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Upload a screenshot of your UPI QR code.</p>
+    <label for="qrFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:var(--r-xl);cursor:pointer;margin-bottom:16px;transition:all 0.3s">
+      <div style="width:48px;height:48px;border-radius:var(--r-md);background:var(--blue-soft);display:grid;place-items:center;color:var(--blue)">${ICONS.upload}</div>
+      <div style="font-size:14px;font-weight:600">Tap to select QR image</div>
       <div style="font-size:11px;color:var(--text-tertiary)">PNG, JPG up to 5MB</div>
       <input type="file" id="qrFile" accept="image/*" style="display:none" onchange="handleQRUpload(event)"/>
     </label>
-    <div id="qrPreview" style="text-align:center;margin-bottom:12px"></div>
+    <div id="qrPreview" style="text-align:center;margin-bottom:16px"></div>
   `;
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2431,7 +2801,10 @@ function handleQRUpload(e) {
   reader.onload = (ev) => {
     const dataUrl = ev.target.result;
     window._qrDataUrl = dataUrl;
-    document.getElementById('qrPreview').innerHTML = `<div class="qr-display"><img src="${dataUrl}"/></div><button class="btn-primary" style="margin-top:12px;justify-content:center;width:100%" onclick="saveQR()">${ICONS.check} Save QR Code</button>`;
+    document.getElementById('qrPreview').innerHTML = `
+      <div class="qr-display"><img src="${dataUrl}"/></div>
+      <button class="btn-primary" style="margin-top:16px;justify-content:center;width:100%" onclick="saveQR()">${ICONS.check} Save QR Code</button>
+    `;
   };
   reader.readAsDataURL(file);
 }
@@ -2468,31 +2841,40 @@ function downloadQR() {
   toast('QR downloaded');
 }
 
-/* ============================================
+/* ============================================================
    EXPORT MODAL
-   ============================================ */
+   ============================================================ */
 function openExportModal() {
   const totalCount = state.transactions.length;
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Export Transactions</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
-    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Download your ${totalCount} transaction${totalCount !== 1 ? 's' : ''} in your preferred format.</p>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <button class="export-option" onclick="downloadExport('csv')">
-        <div class="export-icon" style="background:var(--green-soft);color:var(--green)">${ICONS.file}</div>
-        <div class="export-info"><h5>CSV File</h5><p>Best for Excel, Google Sheets</p></div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px">Download your ${totalCount} transaction${totalCount !== 1 ? 's' : ''} in your preferred format.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="neu-btn" style="justify-content:flex-start;padding:16px;width:100%" onclick="downloadExport('csv')">
+        <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--lime-soft);color:var(--lime-dark);display:grid;place-items:center;flex-shrink:0">${ICONS.file}</div>
+        <div style="text-align:left;flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--text)">CSV File</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Best for Excel, Google Sheets</div>
+        </div>
         ${ICONS.arrowRight}
       </button>
-      <button class="export-option" onclick="downloadExport('json')">
-        <div class="export-icon" style="background:var(--blue-soft);color:var(--blue)">${ICONS.code}</div>
-        <div class="export-info"><h5>JSON File</h5><p>Developer backup</p></div>
+      <button class="neu-btn" style="justify-content:flex-start;padding:16px;width:100%" onclick="downloadExport('json')">
+        <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0">${ICONS.code}</div>
+        <div style="text-align:left;flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--text)">JSON File</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Developer backup</div>
+        </div>
         ${ICONS.arrowRight}
       </button>
-      <button class="export-option" onclick="downloadExport('pdf')">
-        <div class="export-icon" style="background:var(--purple-soft);color:var(--purple)">${ICONS.reports}</div>
-        <div class="export-info"><h5>PDF Report</h5><p>Printable statement</p></div>
+      <button class="neu-btn" style="justify-content:flex-start;padding:16px;width:100%" onclick="downloadExport('pdf')">
+        <div style="width:40px;height:40px;border-radius:var(--r-md);background:var(--purple-soft);color:var(--purple);display:grid;place-items:center;flex-shrink:0">${ICONS.reports}</div>
+        <div style="text-align:left;flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--text)">PDF Report</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Printable statement</div>
+        </div>
         ${ICONS.arrowRight}
       </button>
     </div>
@@ -2504,11 +2886,7 @@ function openExportModal() {
 async function downloadExport(format) {
   toast('Preparing download...', 'success');
   try {
-    if (format === 'pdf') {
-      closeModal();
-      downloadReportPDF();
-      return;
-    }
+    if (format === 'pdf') { closeModal(); downloadReportPDF(); return; }
     const url = format === 'csv' ? '/api/export/csv' : '/api/export/json';
     const res = await fetch(url, { credentials: 'include' });
     if (!res.ok) throw new Error('Export failed');
@@ -2526,11 +2904,56 @@ async function downloadExport(format) {
 function downloadReportPDF() {
   const s = state.summary;
   const user = state.user?.name || 'User';
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wealthy Report</title><style>@page{margin:20mm 15mm}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',sans-serif;color:#111;line-height:1.5}.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:3px solid #0F7A4D;margin-bottom:32px}.logo{display:flex;align-items:center;gap:12px}.logo-box{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#1A1A1A,#0A0A0A);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:26px;font-weight:800}.logo-text h1{font-size:24px;font-weight:800}.logo-text p{font-size:12px;color:#666;margin-top:2px}.meta{text-align:right;font-size:11px;color:#666}.meta strong{color:#111;display:block;font-size:13px;margin-bottom:4px}h2{font-size:16px;font-weight:700;margin:32px 0 16px;padding-left:12px;border-left:4px solid #0F7A4D}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.summary-card{padding:18px;border-radius:12px;background:#F8F9FB;border:1px solid #E8E8E8}.summary-card .label{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;margin-bottom:6px}.summary-card .value{font-size:22px;font-weight:800}.summary-card.green{background:linear-gradient(135deg,#E8F5EE,#F5FBF7)}.summary-card.green .value{color:#0F7A4D}.summary-card.red{background:linear-gradient(135deg,#FEE9E9,#FEF5F5)}.summary-card.red .value{color:#B91C1C}.summary-card.blue{background:linear-gradient(135deg,#E8EFFE,#F5F8FE)}.summary-card.blue .value{color:#1E40AF}.summary-card.purple{background:linear-gradient(135deg,#F3EBFE,#F9F5FE)}.summary-card.purple .value{color:#5B21B6}table{width:100%;border-collapse:collapse;margin-bottom:8px}thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#666;background:#F8F9FB;border-bottom:2px solid #E8E8E8}thead th:last-child,thead th:nth-child(2){text-align:right}.footer{margin-top:40px;padding-top:24px;border-top:2px solid #E8E8E8;text-align:center;font-size:10px;color:#888;line-height:1.8}.footer strong{color:#0F7A4D;font-weight:700}.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}.badge-income{background:#E8F5EE;color:#0F7A4D}.badge-expense{background:#FEE9E9;color:#B91C1C}</style></head><body>
-<div class="header"><div class="logo"><div class="logo-box">W</div><div class="logo-text"><h1>WEALTHY</h1><p>Track. Understand. Save.</p></div></div><div class="meta"><strong>Financial Report</strong>${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}<br/>Account: ${user}</div></div>
-<h2>Executive Summary</h2><div class="summary-grid"><div class="summary-card green"><div class="label">Total Income</div><div class="value">+₹${fmtINR(s.income)}</div></div><div class="summary-card red"><div class="label">Total Expense</div><div class="value">−₹${fmtINR(s.expense)}</div></div><div class="summary-card blue"><div class="label">Total Savings</div><div class="value">₹${fmtINR(s.savings)}</div></div><div class="summary-card purple"><div class="label">Savings Rate</div><div class="value">${s.savingsRate.toFixed(1)}%</div></div></div>
-<h2>Transaction Ledger (${state.transactions.length})</h2><table><thead><tr><th>Date & Merchant</th><th>Type</th><th>Amount</th></tr></thead><tbody>${state.transactions.slice(0, 100).map(t => `<tr><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0"><div style="font-weight:600">${escapeHtml(t.merchant || 'Untitled')}</div><div style="font-size:10px;color:#888;margin-top:2px">${t.date} · ${escapeHtml(t.category || '')} · ${escapeHtml(t.method || '')}</div></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right"><span class="badge ${t.type === 'income' ? 'badge-income' : 'badge-expense'}">${t.type === 'income' ? 'INCOME' : 'EXPENSE'}</span></td><td style="padding:10px 14px;border-bottom:1px solid #F0F0F0;text-align:right;font-weight:700;color:${t.type === 'income' ? '#0F7A4D' : '#B91C1C'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</td></tr>`).join('')}</tbody></table>
-<div class="footer"><div><strong>WEALTHY</strong> · Track. Understand. Save.</div><div>Owner: <strong>SANJEEV SHEKHAR</strong> · Email: sanjeev@wealthy.in · Parent: D2C Ventures</div><div>© 2026 Wealthy Financial Services Pvt. Ltd. · Made in India 🇮🇳</div></div></body></html>`;
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wealthy Report</title><style>
+@page{margin:20mm 15mm}*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',sans-serif;color:#1D1D1F;line-height:1.5}
+.header{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:3px solid #007AFF;margin-bottom:32px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-box{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#1D1D1F,#06141B);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:26px;font-weight:800}
+.logo-text h1{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.logo-text p{font-size:12px;color:#6E6E73;margin-top:2px}
+.meta{text-align:right;font-size:11px;color:#6E6E73}
+.meta strong{color:#1D1D1F;display:block;font-size:13px;margin-bottom:4px}
+h2{font-size:16px;font-weight:700;margin:32px 0 16px;padding-left:12px;border-left:4px solid #007AFF}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{padding:18px;border-radius:12px;background:#F5F5F7;border:1px solid #E5E5EA}
+.label{font-size:10px;font-weight:700;color:#6E6E73;text-transform:uppercase;margin-bottom:6px}
+.value{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.green{color:#0F7A4D}.red{color:#F43F5E}.blue{color:#007AFF}.purple{color:#7C3AED}
+table{width:100%;border-collapse:collapse;margin-bottom:8px}
+th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#6E6E73;background:#F5F5F7;border-bottom:2px solid #E5E5EA}
+td{padding:12px 14px;border-bottom:1px solid #F0F0F5;font-size:12px}
+td:last-child{text-align:right;font-weight:700}
+.footer{margin-top:40px;padding-top:24px;border-top:2px solid #E5E5EA;text-align:center;font-size:10px;color:#A1A1A6;line-height:1.8}
+.footer strong{color:#007AFF;font-weight:700}
+</style></head><body>
+<div class="header">
+  <div class="logo"><div class="logo-box">W</div><div class="logo-text"><h1>WEALTHY</h1><p>Track. Understand. Save.</p></div></div>
+  <div class="meta"><strong>Financial Report</strong>${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}<br/>Account: ${user}</div>
+</div>
+<h2>Executive Summary</h2>
+<div class="grid">
+  <div class="card"><div class="label">Total Income</div><div class="value green">+₹${fmtINR(s.income)}</div></div>
+  <div class="card"><div class="label">Total Expense</div><div class="value red">−₹${fmtINR(s.expense)}</div></div>
+  <div class="card"><div class="label">Total Savings</div><div class="value blue">₹${fmtINR(s.savings)}</div></div>
+  <div class="card"><div class="label">Savings Rate</div><div class="value purple">${s.savingsRate.toFixed(1)}%</div></div>
+</div>
+<h2>Transaction Ledger (${state.transactions.length})</h2>
+<table>
+<thead><tr><th>Date & Merchant</th><th>Type</th><th>Amount</th></tr></thead>
+<tbody>
+${state.transactions.slice(0, 100).map(t => `<tr>
+<td><strong>${escapeHtml(t.merchant)}</strong><br/><span style="color:#A1A1A6;font-size:10px">${t.date} · ${escapeHtml(t.category || '')} · ${escapeHtml(t.method || '')}</span></td>
+<td>${t.type === 'income' ? 'INCOME' : 'EXPENSE'}</td>
+<td style="color:${t.type === 'income' ? '#0F7A4D' : '#F43F5E'}">${t.type === 'income' ? '+' : '−'}₹${fmtINR(t.amount)}</td>
+</tr>`).join('')}
+</tbody></table>
+<div class="footer">
+<div><strong>WEALTHY</strong> · Track. Understand. Save.</div>
+<div>Owner: <strong>SANJEEV SHEKHAR</strong> · Email: sanjeev@wealthy.in · Parent: D2C Ventures</div>
+<div>© 2026 Wealthy Financial Services Pvt. Ltd. · Made in India 🇮🇳</div>
+</div>
+</body></html>`;
   const win = window.open('', '_blank');
   win.document.write(html);
   win.document.close();
@@ -2538,19 +2961,19 @@ function downloadReportPDF() {
   toast('Report ready');
 }
 
-/* ============================================
+/* ============================================================
    IMPORT CSV
-   ============================================ */
+   ============================================================ */
 function openImportModal() {
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <h3>Import Transactions</h3>
-      <button class="icon-btn" style="width:30px;height:30px" onclick="closeModal()">${ICONS.x}</button>
+      <button class="icon-btn" style="width:36px;height:36px" onclick="closeModal()">${ICONS.x}</button>
     </div>
-    <p style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Upload a CSV file with columns: Date, Amount, Description (optional: Type, Category)</p>
-    <label for="csvFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:12px;cursor:pointer;margin-bottom:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;color:var(--green)">${ICONS.upload}</div>
-      <div style="font-size:13px;font-weight:600">Tap to select CSV file</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Upload a CSV file with columns: Date, Amount, Description (optional: Type, Category)</p>
+    <label for="csvFile" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 16px;background:var(--bg);border:2px dashed var(--border);border-radius:var(--r-xl);cursor:pointer;margin-bottom:16px">
+      <div style="width:48px;height:48px;border-radius:var(--r-md);background:var(--blue-soft);display:grid;place-items:center;color:var(--blue)">${ICONS.upload}</div>
+      <div style="font-size:14px;font-weight:600">Tap to select CSV file</div>
       <div style="font-size:11px;color:var(--text-tertiary)">CSV up to 5MB</div>
       <input type="file" id="csvFile" accept=".csv,text/csv" style="display:none" onchange="handleCSVUpload(event)"/>
     </label>
@@ -2595,7 +3018,7 @@ function handleCSVUpload(e) {
     const typeCol = findCol(['type', 'transactiontype', 'txntype']);
     const categoryCol = findCol(['category', 'cat']);
     if (dateCol === -1 || amountCol === -1) {
-      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--red-soft);border-radius:10px;font-size:12px;color:var(--red);text-align:center">Could not detect Date or Amount column.</div>`;
+      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--coral-soft);border-radius:var(--r-md);font-size:13px;color:var(--coral);text-align:center">Could not detect Date or Amount column.</div>`;
       return;
     }
     const rows = [];
@@ -2621,13 +3044,13 @@ function handleCSVUpload(e) {
       });
     }
     if (!rows.length) {
-      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--red-soft);border-radius:10px;font-size:12px;color:var(--red);text-align:center">No valid rows found.</div>`;
+      document.getElementById('csvPreview').innerHTML = `<div style="padding:16px;background:var(--coral-soft);border-radius:var(--r-md);font-size:13px;color:var(--coral);text-align:center">No valid rows found.</div>`;
       return;
     }
     window._importRows = rows;
     document.getElementById('csvPreview').innerHTML = `
-      <div style="padding:12px;background:var(--green-soft);border-radius:10px;margin-bottom:12px">
-        <div style="font-size:13px;font-weight:700;color:var(--green)">✓ Detected ${rows.length} transactions</div>
+      <div style="padding:16px;background:var(--lime-soft);border-radius:var(--r-md);margin-bottom:16px">
+        <div style="font-size:14px;font-weight:700;color:var(--lime-dark)">✓ Detected ${rows.length} transactions</div>
       </div>
       <button class="btn-primary" style="width:100%;justify-content:center" onclick="confirmImport()">${ICONS.check} Import ${rows.length} Transactions</button>
     `;
@@ -2647,9 +3070,9 @@ async function confirmImport() {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-/* ============================================
+/* ============================================================
    AI CHAT FUNCTIONS
-   ============================================ */
+   ============================================================ */
 function handleAiKey(e) {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
@@ -2835,9 +3258,9 @@ function generateAIResponse(rawQ) {
   );
 }
 
-/* ============================================
+/* ============================================================
    ROUTER
-   ============================================ */
+   ============================================================ */
 const PAGES = {
   overview: { title: 'Overview', render: pageOverview },
   transactions: { title: 'Transactions', render: pageTransactions },
@@ -2866,15 +3289,16 @@ function nav(page) {
   container.innerHTML = `<div class="page active">${PAGES[page].render()}</div>`;
   document.getElementById('pageName').textContent = PAGES[page].title;
   document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page === page));
+  document.querySelectorAll('.bottom-nav-item').forEach(el => el.classList.toggle('active', el.dataset.bnav === page));
   closeSidebar();
   attachCardDrag();
   if (page === 'ai') setTimeout(renderChat, 50);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ============================================
+/* ============================================================
    EVENT LISTENERS
-   ============================================ */
+   ============================================================ */
 document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('click', () => nav(btn.dataset.page)));
 
 document.addEventListener('click', e => {
@@ -2901,9 +3325,9 @@ document.getElementById('modal').addEventListener('click', e => {
   if (e.target.id === 'modal') closeModal();
 });
 
-/* ============================================
+/* ============================================================
    BOOT
-   ============================================ */
+   ============================================================ */
 async function boot() {
   try {
     const { user } = await api('/auth/me');
@@ -2939,4 +3363,4 @@ if ('serviceWorker' in navigator) {
 }
   </script>
 </body>
-</html>a
+</html>
